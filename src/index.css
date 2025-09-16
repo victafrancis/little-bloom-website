@@ -1,0 +1,30 @@
+/* PLEASE NOTE: THESE TAILWIND IMPORTS SHOULD NEVER BE DELETED */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL */
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body text-text bg-white;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 uppercase tracking-wide text-sm border-2 border-text/60 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sage;
+  }
+  .btn:hover {
+    @apply bg-sage/10;
+  }
+  .btn-disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
