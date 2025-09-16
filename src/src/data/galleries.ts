@@ -10,13 +10,13 @@ export const galleries: Gallery[] = [{
   title: 'Bumps & Beginnings',
   blurb: "Ready to celebrate? We'll capture the incredible chapter of your life, and that includes your growing bump.",
   cover: 'https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=2670&auto=format&fit=crop',
-  images: ['https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=2670&auto=format&fit=crop', 'https://images.unsplash.com/photo-1556207944-1a0e645bdcab?q=80&w=2670&auto=format&fit=crop']
+  images: ['https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=2670&auto=format&fit=crop', '/placeholder.jpeg']
 }, {
   slug: 'little-blooms',
   title: 'Little Blooms',
   blurb: 'I let babies chill and kids be kids! Their boundless energy and genuine personalities will shine through in a fun, natural way, from their tiny details to their biggest grins.',
   cover: 'https://images.unsplash.com/photo-1612209246511-5b81949e5fdd?q=80&w=2679&auto=format&fit=crop',
-  images: ['https://images.unsplash.com/photo-1612209246511-5b81949e5fdd?q=80&w=2679&auto=format&fit=crop', 'https://images.unsplash.com/photo-1602858321031-3c1d4d2d6b9a?q=80&w=2670&auto=format&fit=crop']
+  images: ['https://images.unsplash.com/photo-1612209246511-5b81949e5fdd?q=80&w=2679&auto=format&fit=crop', '/placeholder.jpeg']
 }, {
   slug: 'love-stories',
   title: 'Love Stories',

@@ -18,7 +18,7 @@ export const meta = {
         label: 'Book a Session',
         to: '/contact'
       },
-      images: ['public/placeholder.jpeg']
+      images: ['/placeholder-2.jpg']
     },
     quickLinks: [{
       label: 'ABOUT ME',

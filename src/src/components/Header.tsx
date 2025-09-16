@@ -56,7 +56,7 @@ export function Header() {
         </Link>
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
-          {navLinks.map(link => <Link key={link.path} to={link.path} className={`transition-colors hover:text-sage ${location.pathname === link.path ? 'text-sage font-medium' : ''}`}>
+          {navLinks.map(link => <Link key={link.path} to={link.path} className={`transition-colors hover:text-sage uppercase font-light ${location.pathname === link.path ? 'text-sage font-medium' : ''}`}>
               {link.name}
             </Link>)}
         </nav>
@@ -68,10 +68,11 @@ export function Header() {
         <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
           <div className="container mx-auto px-4 pt-20 pb-8">
             <nav className="flex flex-col space-y-6">
-              {navLinks.map(link => <Link key={link.path} to={link.path} className={`text-xl transition-colors hover:text-sage ${location.pathname === link.path ? 'text-sage font-medium' : ''}`} onClick={closeMenu}>
+              {navLinks.map(link => <Link key={link.path} to={link.path} className={`text-xl transition-colors hover:text-sage text-right uppercase font-light ${location.pathname === link.path ? 'text-sage font-medium' : ''}`} onClick={closeMenu}>
                   {link.name}
                 </Link>)}
             </nav>
+            <img src="/assets/logo.png" alt="Little Bloom Photography" className="absolute bottom-4 left-1/2 transform -translate-x-1/2 h-32 w-auto mb-16" />
           </div>
         </div>
       </div>

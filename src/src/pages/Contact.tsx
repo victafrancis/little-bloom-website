@@ -19,37 +19,8 @@ export default function Contact() {
               I'd love to hear from you.
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-3">
                 <ContactForm />
-              </div>
-              <div>
-                <div className="bg-cream p-6 rounded-lg">
-                  <h2 className="text-xl font-display mb-4">
-                    Contact Information
-                  </h2>
-                  <div className="space-y-4 text-text/70">
-                    <p>
-                      <strong className="block text-text">Email</strong>
-                      <a href={`mailto:${site.socials.email}`} className="hover:text-sage">
-                        {site.socials.email}
-                      </a>
-                    </p>
-                    <p>
-                      <strong className="block text-text">Phone</strong>
-                      <a href="tel:+14155551234" className="hover:text-sage">
-                        (415) 555-1234
-                      </a>
-                    </p>
-                    <p>
-                      <strong className="block text-text">
-                        Studio Address
-                      </strong>
-                      123 Photography Lane
-                      <br />
-                      San Francisco, CA 94110
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
