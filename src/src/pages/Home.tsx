@@ -134,7 +134,7 @@ export default function Home() {
                   <div className="relative overflow-hidden rounded-lg aspect-square mb-4 max-w-96 mx-auto">
                     <img src={item.cover} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
-                  <h3 className="text-center text-base font-light">{item.title}</h3>
+                  <h3 className="text-center text-base md:text-xl font-light">{item.title}</h3>
                 </Link>)}
             </div>
           </div>

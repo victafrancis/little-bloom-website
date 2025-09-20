@@ -20,12 +20,12 @@ export default function Portfolio() {
               approach to different types of sessions.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {galleries.map(gallery => <Link key={gallery.slug} to={`/portfolio/${gallery.slug}`} className="group">
                 <div className="relative aspect-square overflow-hidden rounded-lg mb-4">
                   <img src={gallery.cover} alt={gallery.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
-                <h3 className="text-center text-xl font-display mb-2">{gallery.title}</h3>
+                <h3 className="text-center text-base md:text-xl font-light">{gallery.title}</h3>
               </Link>)}
           </div>
         </section>

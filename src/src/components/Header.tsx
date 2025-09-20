@@ -51,12 +51,12 @@ export function Header() {
   }];
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="text-xl md:text-2xl font-display font-semibold z-50">
+        <Link to="/" className="text-base md:text-2xl font-display font-semibold z-50">
           <img src="/assets/logo-nav.png" alt="Little Bloom Photography" className="h-16 w-auto" />
         </Link>
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
-          {navLinks.map(link => <Link key={link.path} to={link.path} className={`transition-colors hover:text-sage uppercase font-light ${location.pathname === link.path ? 'text-sage font-medium' : ''}`}>
+          {navLinks.map(link => <Link key={link.path} to={link.path} className={`transition-colors hover:text-mustard uppercase font-light ${location.pathname === link.path ? 'text-mustard font-medium' : ''}`}>
               {link.name}
             </Link>)}
         </nav>
@@ -68,7 +68,7 @@ export function Header() {
         <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
           <div className="container mx-auto px-4 pt-20 pb-8">
             <nav className="flex flex-col space-y-6">
-              {navLinks.map(link => <Link key={link.path} to={link.path} className={`text-xl transition-colors hover:text-sage text-right uppercase font-light ${location.pathname === link.path ? 'text-sage font-medium' : ''}`} onClick={closeMenu}>
+              {navLinks.map(link => <Link key={link.path} to={link.path} className={`text-base transition-colors hover:text-mustard text-right uppercase font-light ${location.pathname === link.path ? 'text-mustard font-medium' : ''}`} onClick={closeMenu}>
                   {link.name}
                 </Link>)}
             </nav>
