@@ -29,10 +29,10 @@ export default function Home() {
                 Little Moments<br />
                 Big Memories
               </h2>
-              <p className="text-text/70 text-1xl md:text-1xl">  
+              <p className="text-text/60 text-sm md:text-base lg:text-lg leading-relaxed md:leading-normal">
                 Becoming a mother showed me how quickly time passes and how precious each memory is. My firstborn inspired me to see beauty in the everyday and to capture it before it slips away.
               </p><br />
-              <p className="text-text/70 text-1xl md:text-1xl"> 
+              <p className="text-text/60 text-sm md:text-base lg:text-lg leading-relaxed md:leading-normal">
                 That’s what I want for you — relaxed, natural photos where you can laugh, play, and simply be yourselves, knowing your family’s authentic moments are being preserved forever.
               </p>
             </div>
