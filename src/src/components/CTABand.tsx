@@ -16,7 +16,7 @@ export function CTABand({
 }: CTABandProps) {
   return <section className={`py-16 ${bgColor}`}>
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-display font-semibold mb-4">
+        <h2 className="text-xl md:text-3xl font-display font-semibold mb-4">
           {headline}
         </h2>
         {subheading && <p className="text-text/70 max-w-2xl mx-auto mb-8">{subheading}</p>}

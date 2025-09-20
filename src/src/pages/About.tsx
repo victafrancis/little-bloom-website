@@ -14,7 +14,7 @@ export default function About() {
             <h1 className="text-3xl md:text-4xl font-display mb-8">About Me</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
               <div>
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop" alt="Photographer portrait" className="rounded-lg w-full" />
+                <img src="/img/about.jpg" alt="Photographer portrait" className="rounded-lg w-full" />
               </div>
               <div>
                 <h2 className="text-2xl font-display mb-4">My Story</h2>

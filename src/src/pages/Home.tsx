@@ -127,19 +127,21 @@ export default function Home() {
         <section className="py-16 md:py-24 mt-5">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl md:text-3xl font-display mb-8 text-center">
-              Featured Work
+              Explore Galleries
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {meta.home.featured.map(item => <Link key={item.to} to={item.to} className="group">
-                  <div className="relative overflow-hidden rounded-lg aspect-square mb-4">
+                  <div className="relative overflow-hidden rounded-lg aspect-square mb-4 max-w-96 mx-auto">
                     <img src={item.cover} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
-                  <h3 className="text-center text-lg font-medium">{item.title}</h3>
+                  <h3 className="text-center text-base font-light">{item.title}</h3>
                 </Link>)}
             </div>
           </div>
         </section>
-        <CTABand headline="Ready to book your next session?" buttonText="Contact Me" buttonLink="/contact" />
+
+
+        <CTABand headline="Your story is beautiful, I’d be honored to capture it." buttonText="Contact Me" buttonLink="/contact" />
       </main>
     </>;
 }

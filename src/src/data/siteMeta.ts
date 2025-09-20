@@ -19,8 +19,8 @@ export const meta = {
         to: '/contact'
       },
       images: {
-        desktop: '/img/hero/hero-desktop.jpg',
-        mobile: '/img/hero/hero-mobile.jpg'
+        desktop: '/img/hero-desktop.jpg',
+        mobile: '/img/hero-mobile.jpg'
       }
     },
     quickLinks: [{
@@ -37,22 +37,26 @@ export const meta = {
       to: '/services'
     }],
     featured: [{
-      title: 'Family Fun',
-      to: '/portfolio/family-fun',
-      cover: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=2670&auto=format&fit=crop'
+      title: 'Bumps & Beginnings',
+      to: '/portfolio/bumps-and-beginnings',
+      cover: '/img/bumps-and-beginnings/cover.jpg'
     }, {
       title: 'Little Blooms',
       to: '/portfolio/little-blooms',
-      cover: 'https://images.unsplash.com/photo-1612209246511-5b81949e5fdd?q=80&w=2679&auto=format&fit=crop'
+      cover: '/img/little-blooms/cover.jpg'
     }, {
-      title: 'Love Stories',
-      to: '/portfolio/love-stories',
-      cover: 'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=2670&auto=format&fit=crop'
+      title: 'Love & Connections',
+      to: '/portfolio/love-and-connections',
+      cover: '/img/love-and-connections/cover.jpg'
+    }, {
+      title: 'Personal Portraits',
+      to: '/portfolio/personal-portraits',
+      cover: '/img/personal-portraits/cover.jpg'
     }]
   },
   about: {
     title: 'About Me | Little Bloom Photography',
-    description: "Hi, I'm Ayi, and I've been capturing families and kids for over 20 years. My goal is to create relaxed, fun sessions where real moments shine."
+    description: "Hello, I am Ayi, I am glad you are here! Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom."
   },
   faq: {
     title: 'Frequently Asked Questions | Little Bloom Photography',
