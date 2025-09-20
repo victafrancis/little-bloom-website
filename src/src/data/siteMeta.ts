@@ -28,13 +28,13 @@ export const meta = {
       caption: 'Hi! I\'m Ayi..',
       to: '/about'
     }, {
-      label: 'PORTFOLIO',
-      caption: 'View galleries',
-      to: '/portfolio'
-    }, {
-      label: 'SERVICES',
-      caption: 'Details and Pricing',
+      label: 'THE EXPERIENCE',
+      caption: 'Services and Pricing',
       to: '/services'
+    }, {
+      label: 'JOURNAL',
+      caption: 'Tips & Inspiration',
+      to: '/journals'
     }],
     featured: [{
       title: 'Bumps & Beginnings',

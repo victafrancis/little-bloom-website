@@ -59,6 +59,11 @@ export default function About() {
             </div>
           </div>
         </section>
+        <img
+          src="/assets/flowers.png"
+          alt="Decorative image"
+          className="w-max h-max object-cover mx-auto"
+        />
       </main>
     </>;
 }

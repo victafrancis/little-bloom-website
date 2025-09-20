@@ -72,8 +72,12 @@ export function Header() {
                   {link.name}
                 </Link>)}
             </nav>
-            <img src="/assets/logo.png" alt="Little Bloom Photography" className="absolute bottom-4 left-1/2 transform -translate-x-1/2 h-32 w-auto mb-16" />
           </div>
+          <img
+            src="/assets/butterflies.png"
+            alt="Decorative image"
+            className="w-max h-max object-cover mx-auto"
+          />
         </div>
       </div>
     </header>;
