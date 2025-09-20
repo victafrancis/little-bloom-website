@@ -35,7 +35,7 @@ export function Hero({
   return <section
     className="relative min-h-[80vh] flex items-center justify-center"
     style={{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImage})`,
+      backgroundImage: `url(${backgroundImage})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}
