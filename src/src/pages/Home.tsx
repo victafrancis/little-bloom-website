@@ -5,6 +5,17 @@ import { Hero } from '../components/Hero';
 import { CTABand } from '../components/CTABand';
 import { ArrowRightIcon } from 'lucide-react';
 import { meta } from '../data/siteMeta';
+
+const archedBackgroundStyle = {
+  clipPath: 'ellipse(80% 80% at 50% 80%)',
+  backgroundColor: '#FFF5F2',
+  minHeight: '300px',
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  padding: '2rem 2rem 1rem 2rem',
+};
+
 export default function Home() {
   return <>
       <Helmet>
@@ -78,12 +89,12 @@ export default function Home() {
 
         {/* Desktop Layout */}
         <section className="hidden md:block relative">
-          <div className="grid grid-cols-3 min-h-[400px]">
+          <div className="grid grid-cols-3 min-h-[300px]">
             {/* Left - Empty */}
             <div></div>
 
-            {/* Center - QuickLinks Menu with cream background */}
-            <div className="bg-cream flex flex-col justify-center py-16">
+            {/* Center - QuickLinks Menu with arched cream background */}
+            <div style={archedBackgroundStyle}>
               <div className="max-w-md mx-auto w-full">
                 {meta.home.quickLinks.map((link, index) => (
                   <Link
