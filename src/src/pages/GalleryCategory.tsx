@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import { GalleryGrid } from '../components/GalleryGrid';
 import { Lightbox } from '../components/Lightbox';
 import { galleries } from '../data/galleries';
-export default function PortfolioCategory() {
+export default function GalleryCategory() {
   const {
     slug
   } = useParams<{
@@ -20,12 +20,12 @@ export default function PortfolioCategory() {
     setLightboxOpen(true);
   };
   if (!gallery) {
-    navigate('/portfolio');
+    navigate('/gallery');
     return null;
   }
   return <>
       <Helmet>
-        <title>{gallery.title} | Portfolio</title>
+        <title>{gallery.title} | Gallery</title>
         <meta name="description" content={gallery.blurb} />
       </Helmet>
       <main className="pt-24 md:pt-32">

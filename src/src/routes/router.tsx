@@ -6,8 +6,8 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import FAQ from '../pages/FAQ';
 import Services from '../pages/Services';
-import Portfolio from '../pages/Portfolio';
-import PortfolioCategory from '../pages/PortfolioCategory';
+import Gallery from '../pages/Gallery';
+import GalleryCategory from '../pages/GalleryCategory';
 import Contact from '../pages/Contact';
 import NotFound from '../pages/NotFound';
 
@@ -79,7 +79,7 @@ export function AppRoutes() {
             <Services />
           </motion.div>
         } />
-        <Route path="/portfolio" element={
+        <Route path="/gallery" element={
           <motion.div
             initial="initial"
             animate="in"
@@ -87,10 +87,10 @@ export function AppRoutes() {
             variants={pageVariants}
             transition={pageTransition}
           >
-            <Portfolio />
+            <Gallery />
           </motion.div>
         } />
-        <Route path="/portfolio/:slug" element={
+        <Route path="/gallery/:slug" element={
           <motion.div
             initial="initial"
             animate="in"
@@ -98,7 +98,7 @@ export function AppRoutes() {
             variants={pageVariants}
             transition={pageTransition}
           >
-            <PortfolioCategory />
+            <GalleryCategory />
           </motion.div>
         } />
         <Route path="/contact" element={

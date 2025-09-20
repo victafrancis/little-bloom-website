@@ -38,19 +38,19 @@ export const meta = {
     }],
     featured: [{
       title: 'Bumps & Beginnings',
-      to: '/portfolio/bumps-and-beginnings',
+      to: '/gallery/bumps-and-beginnings',
       cover: '/img/bumps-and-beginnings/cover.jpg'
     }, {
       title: 'Little Blooms',
-      to: '/portfolio/little-blooms',
+      to: '/gallery/little-blooms',
       cover: '/img/little-blooms/cover.jpg'
     }, {
       title: 'Love & Connections',
-      to: '/portfolio/love-and-connections',
+      to: '/gallery/love-and-connections',
       cover: '/img/love-and-connections/cover.jpg'
     }, {
       title: 'Personal Portraits',
-      to: '/portfolio/personal-portraits',
+      to: '/gallery/personal-portraits',
       cover: '/img/personal-portraits/cover.jpg'
     }]
   },
@@ -92,8 +92,8 @@ export const meta = {
       to: '/contact'
     }
   },
-  portfolio: {
-    title: 'Portfolio | Little Bloom Photography',
+  gallery: {
+    title: 'Gallery | Little Bloom Photography',
     description: 'Explore our galleries by category.'
   },
   contact: {

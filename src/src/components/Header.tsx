@@ -37,8 +37,8 @@ export function Header() {
     name: 'About',
     path: '/about'
   }, {
-    name: 'Portfolio',
-    path: '/portfolio'
+    name: 'Gallery',
+    path: '/gallery'
   }, {
     name: 'Services',
     path: '/services'
