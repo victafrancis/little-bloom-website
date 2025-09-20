@@ -12,19 +12,28 @@ export default function Home() {
         <meta name="description" content={meta.home.description} />
         <meta property="og:title" content={meta.home.title} />
         <meta property="og:description" content={meta.home.description} />
-        <meta property="og:image" content={meta.home.hero.images[0]} />
+        <meta property="og:image" content={meta.home.hero.images.desktop} />
       </Helmet>
       <main>
-        <Hero headline={meta.home.hero.headline} kicker={meta.home.hero.kicker} backgroundImage={meta.home.hero.images[0]} cta={meta.home.hero.cta} />
+        <Hero
+          headline={meta.home.hero.headline}
+          kicker={meta.home.hero.kicker}
+          backgroundImageDesktop={meta.home.hero.images.desktop}
+          backgroundImageMobile={meta.home.hero.images.mobile}
+          cta={meta.home.hero.cta}
+        />
         <section className="py-16 md:py-24 mb-20">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-display mb-6">
-                We are a photography studio specializing in families, kids, and
-                the stories that bring them together.
+              <h2 className="text-2xl md:text-4xl font-display mb-6">
+                Little Moments<br />
+                Big Memories
               </h2>
-              <p className="text-text/70 text-lg">
-                We aim to create timeless images you'll cherish.
+              <p className="text-text/70 text-1xl md:text-1xl">  
+                Becoming a mother showed me how quickly time passes and how precious each memory is. My firstborn inspired me to see beauty in the everyday and to capture it before it slips away.
+              </p><br />
+              <p className="text-text/70 text-1xl md:text-1xl"> 
+                That’s what I want for you — relaxed, natural photos where you can laugh, play, and simply be yourselves, knowing your family’s authentic moments are being preserved forever.
               </p>
             </div>
           </div>

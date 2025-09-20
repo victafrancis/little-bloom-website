@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 type HeroProps = {
   headline: string;
   kicker?: string;
-  backgroundImage: string;
+  backgroundImageDesktop: string;
+  backgroundImageMobile: string;
   cta?: {
     label: string;
     to: string;
@@ -12,15 +13,34 @@ type HeroProps = {
 export function Hero({
   headline,
   kicker,
-  backgroundImage,
+  backgroundImageDesktop,
+  backgroundImageMobile,
   cta
 }: HeroProps) {
-  return <section className="relative min-h-[80vh] flex items-center justify-center" style={{
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
-  }}>
-      <div className="container mx-auto px-4 text-center relative z-10">
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const backgroundImage = isDesktop ? backgroundImageDesktop : backgroundImageMobile;
+
+  return <section
+    className="relative min-h-[80vh] flex items-center justify-center"
+    style={{
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }}
+  >
+      {/* <div className="container mx-auto px-4 text-center relative z-10">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-semibold text-white mb-4">
             {headline}
@@ -30,6 +50,6 @@ export function Hero({
               {cta.label}
             </Button>}
         </div>
-      </div>
+      </div> */}
     </section>;
 }

@@ -18,7 +18,10 @@ export const meta = {
         label: 'Book a Session',
         to: '/contact'
       },
-      images: ['/placeholder-2.jpg']
+      images: {
+        desktop: '/img/hero/hero-desktop.jpg',
+        mobile: '/img/hero/hero-mobile.jpg'
+      }
     },
     quickLinks: [{
       label: 'ABOUT ME',
