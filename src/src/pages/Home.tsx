@@ -14,6 +14,7 @@ const archedBackgroundStyle = {
   alignItems: 'flex-start',
   justifyContent: 'center',
   padding: '2rem 2rem 1rem 2rem',
+  width: '600px',
 };
 
 export default function Home() {
@@ -67,7 +68,7 @@ export default function Home() {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="flex items-center justify-between py-3 border-b border-text/10 group"
+                    className={`flex items-center justify-between py-3 ${index < meta.home.quickLinks.length - 1 ? 'border-b border-text/10' : ''} group`}
                   >
                     <div className="flex-1 text-center">
                       <div className="flex flex-col items-center">
@@ -89,18 +90,15 @@ export default function Home() {
 
         {/* Desktop Layout */}
         <section className="hidden md:block relative">
-          <div className="grid grid-cols-3 min-h-[300px]">
-            {/* Left - Empty */}
-            <div></div>
-
-            {/* Center - QuickLinks Menu with arched cream background */}
+          <div className="flex justify-center min-h-[300px]">
+            {/* QuickLinks Menu with arched cream background */}
             <div style={archedBackgroundStyle}>
               <div className="max-w-md mx-auto w-full">
                 {meta.home.quickLinks.map((link, index) => (
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="flex items-center justify-between py-6 border-b border-text/10 group"
+                    className={`flex items-center justify-between py-3 ${index < meta.home.quickLinks.length - 1 ? 'border-b border-text/10' : ''} group`}
                   >
                     <div className="flex-1 text-center">
                       <div className="flex flex-col items-center">
@@ -117,9 +115,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-
-            {/* Right - Empty */}
-            <div></div>
           </div>
         </section>
 
