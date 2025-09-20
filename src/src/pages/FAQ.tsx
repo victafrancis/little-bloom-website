@@ -9,9 +9,9 @@ export default function FAQ() {
         <meta name="description" content={meta.faq.description} />
       </Helmet>
       <main className="pt-24 md:pt-32">
-        <section className="container mx-auto px-4 py-12 md:py-16">
+        <section className="container mx-auto px-4 py-8">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-display mb-8">
+            <h1 className="text-center text-3xl md:text-4xl font-light mb-8">
               Frequently Asked Questions
             </h1>
             <p className="text-text/70 mb-12">{meta.faq.description}</p>
