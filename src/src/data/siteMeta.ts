@@ -2,7 +2,7 @@ export const site = {
   name: 'Little Bloom Photography',
   domain: 'littlebloomphotography.com',
   socials: {
-    instagram: 'https://instagram.com/yourstudio',
+    instagram: 'https://instagram.com/littlebloom.photos',
     facebook: 'https://facebook.com/yourstudio',
     email: 'hello@littlebloomphotography.com'
   }

@@ -43,7 +43,7 @@ export default function About() {
                 People who know me say I’m a little “extra”, and honestly, I take that as a compliment! :) It means you can trust that I’ll pour my whole heart and soul into your session.
               </p>
             </div>
-            <div className="bg-cream py-6 px-4 rounded-lg">
+            <div className="bg-mustard/10 py-6 px-4 rounded-lg">
               <h2 className="text-2xl font-light mb-4">My Approach</h2>
               <p>
                 I believe the best photos are never forced. Forget stiff poses and awkward smiles, my sessions are about having fun, letting go, and allowing your family’s story to shine through naturally.
@@ -59,7 +59,7 @@ export default function About() {
               </p>
             </div>
             <div className="text-center mt-8">
-              <Button className='bg-cream' to="/contact">Book Your Session Today</Button>
+              <Button className='bg-sage/50' to="/contact">Book Your Session Today</Button>
             </div>
           </div>
         </section>
