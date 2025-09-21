@@ -8,6 +8,8 @@ import FAQ from '../pages/FAQ';
 import Pricing from '../pages/Pricing';
 import Gallery from '../pages/Gallery';
 import GalleryCategory from '../pages/GalleryCategory';
+import Notes from '../pages/Notes';
+import Note from '../pages/Note';
 import Contact from '../pages/Contact';
 import NotFound from '../pages/NotFound';
 
@@ -99,6 +101,28 @@ export function AppRoutes() {
             transition={pageTransition}
           >
             <GalleryCategory />
+          </motion.div>
+        } />
+        <Route path="/notes" element={
+          <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
+            <Notes />
+          </motion.div>
+        } />
+        <Route path="/notes/:slug" element={
+          <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
+            <Note />
           </motion.div>
         } />
         <Route path="/contact" element={

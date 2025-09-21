@@ -96,6 +96,14 @@ export const meta = {
     title: 'Gallery | Little Bloom Photography',
     description: 'Explore our galleries by category.'
   },
+  notes: {
+    title: 'Notes | Little Bloom Photography',
+    description: 'Photography tips, inspiration, and guides to help you prepare for your session.',
+    list: {
+      title: 'Notes | Little Bloom Photography',
+      description: 'Photography tips, inspiration, and guides from Little Bloom Photography'
+    }
+  },
   contact: {
     title: 'Contact & Booking | Little Bloom Photography',
     description: "Tell me about your family and the kind of session you're dreaming of.",
