@@ -18,9 +18,9 @@ export default function About() {
               </div>
               <div>
                 <div className="py-6 px-4 rounded-lg">
-                  <h2 className="text-2xl font-light mb-4">My Story</h2>
+                  <h2 className="text-2xl font-light mb-4">Hello! I'm Ayi, and I'm so glad you're here!</h2>
                   <p>
-                    Hello! I'm Ayi, and I'm so glad you're here! Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.
+                    Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.
                   </p>
                 </div>
                 <div className="bg-cream py-6 px-4 rounded-lg">
