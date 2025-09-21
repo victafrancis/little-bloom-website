@@ -14,7 +14,7 @@ export function CTABand({
   buttonLink,
   bgColor = 'bg-sage/10'
 }: CTABandProps) {
-  return <section className={`py-16 ${bgColor}`}>
+  return <section className={`py-8 ${bgColor}`}>
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-xl md:text-3xl font-display font-semibold mb-4">
           {headline}

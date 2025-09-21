@@ -21,7 +21,7 @@ export default function FAQ() {
                   <dd className="text-text/70">{item.a}</dd>
                 </div>)}
             </dl>
-            <div className="mt-16 text-center">
+            <div className="bg-mustard/10 p-6 mt-10 rounded-lg text-center">
               <p className="mb-6">
                 Have more questions? I'm happy to answer them!
               </p>

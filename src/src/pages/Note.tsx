@@ -40,25 +40,26 @@ export default function Note() {
         </div>
 
         {/* Note Content */}
-        <section className="container mx-auto px-4 py-8">
+        <section>
           <article className="max-w-4xl mx-auto">
-            <header className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-light mb-6">
-                {note.title}
-              </h1>
-              <p className="text-text/70 text-lg leading-relaxed">
-                {note.excerpt}
-              </p>
-            </header>
-
             {/* Render HTML content with Tailwind classes */}
             <div
-              className="note-content"
               dangerouslySetInnerHTML={createMarkup(note.content)}
             />
 
+            {/* Back Navigation */}
+            <div className="container mx-auto px-4 py-4">
+              <Link
+                to="/notes"
+                className="inline-flex items-center text-mustard hover:text-mustard/80 transition-colors font-light"
+              >
+                <ArrowLeftIcon className="h-4 w-4 mr-2" />
+                Back to Notes
+              </Link>
+            </div>
+
             {/* Call to Action */}
-            <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="bg-sage/10 pt-8 pb-4 border-t border-gray-200">
               <div className="text-center">
                 <p className="text-text/70 mb-6">
                   Ready to capture your beautiful moments? Let's create something special together.
