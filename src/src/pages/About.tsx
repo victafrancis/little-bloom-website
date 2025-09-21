@@ -16,21 +16,25 @@ export default function About() {
               <div>
                 <img src="/img/about.jpg" alt="Photographer portrait" className="rounded-lg w-full" />
               </div>
-              <div className="py-6 px-4 rounded-lg">
-                <h2 className="text-2xl font-light mb-4">My Story</h2>
-                <p className="mb-10">
-                  Hello! I'm Ayi, and I'm so glad you're here! Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.
-                </p>
-                <h2 className="text-2xl font-light mt-6 mb-4">The Heart Behind “Little Bloom”</h2>
-                <p className="mb-4">
-                  When my firstborn arrived, I began to see the world through a new lens, one filled with wonder, gratitude, and an awareness of just how quickly life moves. Every smile, every milestone, every tiny moment feels like a precious bloom.
-                </p>
-                <p>
-                  That’s how <b>Little Bloom Photography</b> came to life. It’s more than a name, it’s a promise to treat your story with the same care and love I give to my own.
-                </p>
+              <div>
+                <div className="py-6 px-4 rounded-lg">
+                  <h2 className="text-2xl font-light mb-4">My Story</h2>
+                  <p>
+                    Hello! I'm Ayi, and I'm so glad you're here! Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.
+                  </p>
+                </div>
+                <div className="bg-cream py-6 px-4 rounded-lg">
+                  <h2 className="text-2xl font-light mb-4">The Heart Behind “Little Bloom”</h2>
+                  <p className="mb-4">
+                    When my firstborn arrived, I began to see the world through a new lens, one filled with wonder, gratitude, and an awareness of just how quickly life moves. Every smile, every milestone, every tiny moment feels like a precious bloom.
+                  </p>
+                  <p>
+                    That’s how <b>Little Bloom Photography</b> came to life. It’s more than a name, it’s a promise to treat your story with the same care and love I give to my own.
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="bg-cream py-6 px-4 rounded-lg">
+            <div className="py-6 px-4 rounded-lg">
               <h2 className="text-2xl font-light mb-4">A Little Bit More About Me</h2>
               <p className="mb-4">
                 When I’m not behind the camera, you’ll usually find me having a warm cup of coffee (or matcha latte), cooking, spending time with my family, or getting lost in a good K-drama. I also love exploring hidden gems at thrift / vintage shops.
@@ -39,13 +43,13 @@ export default function About() {
                 People who know me say I’m a little “extra”, and honestly, I take that as a compliment! :) It means you can trust that I’ll pour my whole heart and soul into your session.
               </p>
             </div>
-            <div className="py-6 px-4 rounded-lg">
+            <div className="bg-cream py-6 px-4 rounded-lg">
               <h2 className="text-2xl font-light mb-4">My Approach</h2>
               <p>
                 I believe the best photos are never forced. Forget stiff poses and awkward smiles, my sessions are about having fun, letting go, and allowing your family’s story to shine through naturally.
               </p>
             </div>
-            <div className="bg-cream py-6 px-4 rounded-lg">
+            <div className="py-6 px-4 rounded-lg">
               <h2 className="text-2xl font-light mb-4">What You Can Expect</h2>
               <p className="mb-4">
                 Working with me feels less like a photoshoot and more like spending time with a friend. I’ll guide you when you need it, but I’ll also step back and let the natural magic happen. My goal is to make the experience stress-free from start to finish.
@@ -55,7 +59,7 @@ export default function About() {
               </p>
             </div>
             <div className="text-center mt-8">
-              <Button to="/contact">Book Your Session Today</Button>
+              <Button className='bg-cream' to="/contact">Book Your Session Today</Button>
             </div>
           </div>
         </section>
