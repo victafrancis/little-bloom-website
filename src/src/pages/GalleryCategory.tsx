@@ -31,8 +31,11 @@ export default function GalleryCategory() {
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-4xl mx-auto mb-12">
-            <h1 className="text-3xl md:text-4xl font-display mb-4">
+            <h1 className="text-3xl md:text-4xl font-display mb-1">
               {gallery.title}
+            </h1>
+            <h1 className="text-xl md:text-2xl font-display mb-4">
+              ~{gallery.subtitle}~
             </h1>
             <p className="text-text/70 text-lg">{gallery.blurb}</p>
           </div>
