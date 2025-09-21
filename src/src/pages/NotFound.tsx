@@ -10,7 +10,7 @@ export default function NotFound() {
       </Helmet>
       <main className="pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[60vh]">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-display mb-6">404</h1>
+          <h1 className="text-4xl md:text-6xl font-display my-6">404</h1>
           <h2 className="text-2xl md:text-3xl font-display mb-6">
             Page Not Found
           </h2>

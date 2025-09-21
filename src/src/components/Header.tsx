@@ -46,9 +46,9 @@ export function Header() {
     name: 'Pricing',
     path: '/pricing'
   }, {
-    name: 'FAQ',
-    path: '/faq'
-  }, {
+  //   name: 'FAQ',
+  //   path: '/faq'
+  // }, {
     name: 'Contact',
     path: '/contact'
   }];

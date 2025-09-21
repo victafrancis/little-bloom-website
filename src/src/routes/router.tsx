@@ -59,7 +59,7 @@ export function AppRoutes() {
             <About />
           </motion.div>
         } />
-        <Route path="/faq" element={
+        {/* <Route path="/faq" element={
           <motion.div
             initial="initial"
             animate="in"
@@ -69,7 +69,7 @@ export function AppRoutes() {
           >
             <FAQ />
           </motion.div>
-        } />
+        } /> */}
         <Route path="/pricing" element={
           <motion.div
             initial="initial"
