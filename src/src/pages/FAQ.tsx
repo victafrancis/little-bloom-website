@@ -15,8 +15,8 @@ export default function FAQ() {
               Frequently Asked Questions
             </h1>
             <p className="text-text/70 mb-12">{meta.faq.description}</p>
-            <dl className="space-y-8">
-              {meta.faq.items.map((item, index) => <div key={index} className="border-b border-text/10 pb-8">
+            <dl className="space-y-4">
+              {meta.faq.items.map((item, index) => <div key={index} className="border border-text/30 p-6 rounded-lg">
                   <dt className="text-xl font-display mb-3">{item.q}</dt>
                   <dd className="text-text/70">{item.a}</dd>
                 </div>)}

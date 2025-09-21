@@ -71,7 +71,7 @@ export function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          className="w-full border border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage"
+          className="w-full border border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage rounded-lg"
           placeholder="Tell me about your session"
         />
       </div>
@@ -79,8 +79,10 @@ export function ContactForm() {
       <div className="hidden">
         <input type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
-      <Button type="submit" className="w-full md:w-auto">
-        Send Message
-      </Button>
+      <div className="flex justify-center">
+        <Button type="submit" className="w-full md:w-auto bg-sage/20">
+          Send Message
+        </Button>
+      </div>
     </form>;
 }
