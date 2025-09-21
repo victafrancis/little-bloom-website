@@ -30,11 +30,11 @@ export const meta = {
     }, {
       label: 'THE EXPERIENCE',
       caption: 'Services and Pricing',
-      to: '/services'
+      to: '/pricing'
     }, {
-      label: 'JOURNAL',
+      label: 'NOTES',
       caption: 'Tips & Inspiration',
-      to: '/journals'
+      to: '/notes'
     }],
     featured: [{
       title: 'Bumps & Beginnings',
@@ -75,7 +75,7 @@ export const meta = {
       a: 'We reschedule at no cost.'
     }]
   },
-  services: {
+  pricing: {
     title: 'Sessions & Pricing | Little Bloom Photography',
     description: 'Your experience should be stress-free. My pricing is simple and transparent, with no hidden fees.',
     packages: [{

@@ -40,8 +40,8 @@ export function Header() {
     name: 'Gallery',
     path: '/gallery'
   }, {
-    name: 'Services',
-    path: '/services'
+    name: 'Pricing',
+    path: '/pricing'
   }, {
     name: 'FAQ',
     path: '/faq'

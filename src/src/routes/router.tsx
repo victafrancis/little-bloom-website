@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import FAQ from '../pages/FAQ';
-import Services from '../pages/Services';
+import Pricing from '../pages/Pricing';
 import Gallery from '../pages/Gallery';
 import GalleryCategory from '../pages/GalleryCategory';
 import Contact from '../pages/Contact';
@@ -68,7 +68,7 @@ export function AppRoutes() {
             <FAQ />
           </motion.div>
         } />
-        <Route path="/services" element={
+        <Route path="/pricing" element={
           <motion.div
             initial="initial"
             animate="in"
@@ -76,7 +76,7 @@ export function AppRoutes() {
             variants={pageVariants}
             transition={pageTransition}
           >
-            <Services />
+            <Pricing />
           </motion.div>
         } />
         <Route path="/gallery" element={

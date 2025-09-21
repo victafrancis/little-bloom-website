@@ -4,7 +4,7 @@ Every life is a little bloom.
 
 ## About
 
-This is the website for Little Bloom Photography, capturing authentic moments for families, babies, couples, and more. The site features galleries, services, contact forms, and more.
+This is the website for Little Bloom Photography, capturing authentic moments for families, babies, couples, and more. The site features galleries, pricing, contact forms, and more.
 
 ## Getting Started
 

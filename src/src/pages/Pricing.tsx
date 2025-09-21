@@ -3,11 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import { Button } from '../components/Button';
 import { CTABand } from '../components/CTABand';
 import { meta } from '../data/siteMeta';
-export default function Services() {
+export default function Pricing() {
   return <>
       <Helmet>
-        <title>{meta.services.title}</title>
-        <meta name="description" content={meta.services.description} />
+        <title>{meta.pricing.title}</title>
+        <meta name="description" content={meta.pricing.description} />
       </Helmet>
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
