@@ -59,7 +59,7 @@ export default function About() {
               </p>
             </div>
             <div className="text-center mt-8">
-              <Button className='bg-sage/50' to="/contact">Book Your Session Today</Button>
+              <Button className='bg-mustard/10' to="/contact">Book Your Session Today</Button>
             </div>
           </div>
         </section>
