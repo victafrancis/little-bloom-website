@@ -62,7 +62,8 @@ export default function Note() {
             <div className="bg-sage/10 pt-8 pb-4 border-t border-gray-200">
               <div className="text-center">
                 <p className="text-text/70 mb-6">
-                  Ready to capture your beautiful moments? Let's create something special together.
+                  Ready to capture your beautiful moments?<br />
+                  Let's create something special together.
                 </p>
                 <Button to="/contact">Book a Session</Button>
               </div>

@@ -38,14 +38,11 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl md:text-4xl font-display mb-6">
-                Little Moments<br />
+                Little Moments,<br />
                 Big Memories
               </h2>
               <p className="text-text/60 text-base lg:text-lg leading-relaxed md:leading-normal">
-                Becoming a mother showed me how quickly time passes and how precious each memory is. My firstborn inspired me to see beauty in the everyday and to capture it before it slips away.
-              </p><br />
-              <p className="text-text/60 text-base lg:text-lg leading-relaxed md:leading-normal">
-                That’s what I want for you — relaxed, natural photos where you can laugh, play, and simply be yourselves, knowing your family’s authentic moments are being preserved forever.
+                Motherhood showed me how quickly the little things pass. One day it’s baby giggles and cuddles, the next it’s new milestones. <br />I want to hold onto those moments, and help you do the same with photos that feel real and natural.
               </p>
               <div className="flex justify-center pt-8">
                 <img

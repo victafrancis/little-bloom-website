@@ -18,7 +18,7 @@ export default function Notes() {
               Notes
             </h1>
             <p className="text-text/70 text-center">
-              Tips, inspiration, and guides to help you prepare for your photography session and capture beautiful moments with your loved ones.
+              Tips, inspiration, and guides to help you prepare for your photo shoot.
             </p>
           </div>
 

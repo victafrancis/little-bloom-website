@@ -54,7 +54,8 @@ export default function Pricing() {
                     Newborn Session (Bumps & Beginnings clients only)
                   </h3>
                   <p className="text-text/70">
-                    +$100 — a 45-minute session dedicated to your little one, to be scheduled once they arrive.
+                    +$150 — a 1-hour session dedicated to your little one, to be scheduled once they arrive
+                    (50% discount off the regular price.)
                   </p>
                 </div>
                 <div>
@@ -62,7 +63,7 @@ export default function Pricing() {
                     Studio Access
                   </h3>
                   <p className="text-text/70">
-                    +$150 — capture your photos in a beautiful, controlled indoor studio environment. (Scheduled based on studio availability. View the studio here: <a href="https://www.instagram.com/nerastudios/" className="underline" target='_blank'>Nera Studios</a>)
+                    +$150 — capture your photos in a beautiful, controlled indoor studio environment. (Scheduled based on studio availability. View the studio <a href="https://www.instagram.com/nerastudios/" className="text-mustard" target='_blank'>here</a>).
                   </p>
                 </div>
               </div>

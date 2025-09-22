@@ -80,7 +80,7 @@ export function ContactForm() {
         <input type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
       <div className="flex justify-center">
-        <Button type="submit" className="w-full md:w-auto bg-sage/20">
+        <Button type="submit" className="w-full md:w-auto">
           Send Message
         </Button>
       </div>

@@ -20,10 +20,10 @@ export default function About() {
                 <div className="py-6 px-4 rounded-lg">
                   <h2 className="text-2xl font-light mb-4">Hello! I'm Ayi, and I'm so glad you're here!</h2>
                   <p>
-                    Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.
+                    I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.
                   </p>
                 </div>
-                <div className="bg-cream py-6 px-4 rounded-lg">
+                <div className="bg-mustard/10 py-6 px-4 rounded-lg">
                   <h2 className="text-2xl font-light mb-4">The Heart Behind “Little Bloom”</h2>
                   <p className="mb-4">
                     When my firstborn arrived, I began to see the world through a new lens, one filled with wonder, gratitude, and an awareness of just how quickly life moves. Every smile, every milestone, every tiny moment feels like a precious bloom.
@@ -59,14 +59,14 @@ export default function About() {
               </p>
             </div>
             <div className="text-center mt-8">
-              <Button className='bg-mustard/10' to="/contact">Book Your Session Today</Button>
+              <Button className="bg-mustard/10" to="/contact">Book Your Session Today</Button>
             </div>
           </div>
         </section>
         <img
           src="/assets/flowers.png"
           alt="Decorative image"
-          className="w-max h-max object-cover mx-auto"
+          className="w-max max-h-32 mx-auto"
         />
       </main>
     </>;
