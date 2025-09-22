@@ -26,14 +26,14 @@ export default function Pricing() {
                 <img
                   src="/assets/budding bloom.png"
                   alt="Decorative image"
-                  className="w-max h-max object-cover mx-auto"
+                  className="w-max h-max object-contain mx-auto"
               />
               </div>
               <div className="bg-cream p-8 rounded-xl">
                 <img
                   src="/assets/flourishing bloom.png"
                   alt="Decorative image"
-                  className="w-max h-max object-cover mx-auto"
+                  className="w-max h-max object-contain mx-auto"
               />
               </div>
             </div>
