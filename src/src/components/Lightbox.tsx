@@ -154,9 +154,7 @@ export function Lightbox({
   return (
     <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center" onClick={onClose}>
       <div className="relative w-full h-full flex items-center justify-center">
-        <button className="absolute top-4 right-4 md:top-8 md:right-8 text-white hover:text-gray-300 focus:outline-none z-10 hidden md:block" onClick={onClose} aria-label="Close lightbox">
-          <XIcon className="w-8 h-8" />
-        </button>
+
         <button className="absolute left-4 md:left-8 text-white hover:text-gray-300 focus:outline-none z-10 hidden md:block" onClick={handlePrevious} aria-label="Previous image">
           <ChevronLeftIcon className="w-10 h-10" />
         </button>
@@ -175,19 +173,33 @@ export function Lightbox({
               transition: isDragging || disableTransition ? 'none' : 'transform 0.3s ease',
             }}
           >
-            <div className="flex items-center justify-center p-4 md:p-12" style={{ width: `${containerWidth}px` }}>
-              <img src={images[prevIndex]} alt="" className="w-full h-auto object-contain" onClick={e => e.stopPropagation()} />
+            <div className="flex items-center justify-center p-4 md:p-6" style={{ width: `${containerWidth}px` }}>
+              <img src={images[prevIndex]} alt="" className="w-full h-auto max-h-[80vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} />
             </div>
-            <div className="flex items-center justify-center p-4 md:p-12" style={{ width: `${containerWidth}px` }}>
-              <img src={images[currentIndex]} alt="" className="w-full h-auto object-contain" onClick={e => e.stopPropagation()} />
+            <div className="flex items-center justify-center p-4 md:p-6" style={{ width: `${containerWidth}px` }}>
+              <img src={images[currentIndex]} alt="" className="w-full h-auto max-h-[80vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} />
             </div>
-            <div className="flex items-center justify-center p-4 md:p-12" style={{ width: `${containerWidth}px` }}>
-              <img src={images[nextIndex]} alt="" className="w-full h-auto object-contain" onClick={e => e.stopPropagation()} />
+            <div className="flex items-center justify-center p-4 md:p-6" style={{ width: `${containerWidth}px` }}>
+              <img src={images[nextIndex]} alt="" className="w-full h-auto max-h-[80vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} />
             </div>
           </div>
         </div>
         <button className="absolute right-4 md:right-8 text-white hover:text-gray-300 focus:outline-none z-10 hidden md:block" onClick={handleNext} aria-label="Next image">
           <ChevronRightIcon className="w-10 h-10" />
+        </button>
+        <button
+          className="absolute bottom-16 md:bottom-20 left-1/2 transform -translate-x-1/2 border-2 border-white hover:bg-white/10 rounded-full p-3 text-white focus:outline-none z-10 transition-colors duration-200 md:hidden"
+          onClick={onClose}
+          aria-label="Close lightbox"
+        >
+          <XIcon className="w-6 h-6" />
+        </button>
+        <button
+          className="hidden md:block absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none z-10"
+          onClick={onClose}
+          aria-label="Close lightbox"
+        >
+          <XIcon className="w-8 h-8" />
         </button>
         <div className="absolute bottom-4 md:bottom-8 left-0 right-0 text-center text-white">
           {currentIndex + 1} / {images.length}
