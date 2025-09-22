@@ -22,14 +22,14 @@ export default function Pricing() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="bg-mustard/10 p-8 rounded-xl">
+              <div className="bg-cream p-8 rounded-xl">
                 <img
                   src="/assets/budding bloom.png"
                   alt="Decorative image"
                   className="w-max h-max object-cover mx-auto"
               />
               </div>
-              <div className="bg-mustard/10 p-8 rounded-xl">
+              <div className="bg-cream p-8 rounded-xl">
                 <img
                   src="/assets/flourishing bloom.png"
                   alt="Decorative image"
@@ -37,7 +37,7 @@ export default function Pricing() {
               />
               </div>
             </div>
-            <div className="bg-mustard/10 p-8 rounded-xl mb-8">
+            <div className="bg-cream p-8 rounded-xl mb-8">
               <h2 className="text-xl font-display mb-4">Both packages include:</h2>
               <ul className="list-disc list-inside text-text/70">
                 <li>Unlimited shots (no cap on the best moments, I am a trigger-happy type of photographer)</li>
