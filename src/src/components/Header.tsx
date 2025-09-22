@@ -40,11 +40,11 @@ export function Header() {
     name: 'Gallery',
     path: '/gallery'
   }, {
-    name: 'Notes',
-    path: '/notes'
-  }, {
     name: 'Pricing',
     path: '/pricing'
+  }, {
+    name: 'Notes',
+    path: '/notes'
   }, {
   //   name: 'FAQ',
   //   path: '/faq'
