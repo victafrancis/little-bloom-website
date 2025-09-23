@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         <p style="color: #111111; font-size: 14px;">
           This message was sent from your Little Bloom Photography contact form.
         </p>
-        <img src="https://www.littlebloomphotography.com/assets/logo-email.png" alt="Little Bloom Logo" style="max-width: 200px; height: auto;">
+        <img src="https://www.littlebloomphotography.com/assets/logo-nav.png" alt="Little Bloom Logo" style="max-width: 200px; height: auto;">
       </div>
     `;
 
@@ -64,7 +64,7 @@ export default async function handler(req, res) {
             ${message.replace(/\n/g, '<br>')}
           </div>
           <p>I'm excited to learn more about your photography needs!</p>
-          <p style="margin-top: 30px;">Best regards,<br>Ayi<br><img src="https://www.littlebloomphotography.com/assets/logo-email.png" alt="Little Bloom Logo" style="max-width: 200px; height: auto;"></p>
+          <p style="margin-top: 30px;">Best regards,<br>Ayi, Little Bloom Photography<br><img src="https://www.littlebloomphotography.com/assets/logo-nav.png" alt="Little Bloom Logo" style="max-width: 200px; height: auto;"></p>
         </div>
       </div>
     `;
