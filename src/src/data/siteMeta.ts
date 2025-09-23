@@ -9,7 +9,7 @@ export const site = {
 };
 export const meta = {
   home: {
-    title: 'Little Bloom Photography | Every life is a little bloom.',
+    title: 'Little Bloom Photography | Little moments, big memories.',
     description: 'Family and kids photography with heart. Natural light sessions for bumps, babies, couples, and families.',
     hero: {
       headline: 'Capturing moments that last a lifetime',
