@@ -39,19 +39,19 @@ export const meta = {
     featured: [{
       title: 'Bumps & Beginnings',
       to: '/gallery/bumps-and-beginnings',
-      cover: '/img/bumps-and-beginnings/cover.jpg'
+      cover: '/img/bumps-and-beginnings/bumps1.jpg'
     }, {
       title: 'Little Blooms',
       to: '/gallery/little-blooms',
-      cover: '/img/little-blooms/cover.jpg'
+      cover: '/img/little-blooms/blooms1.jpg'
     }, {
       title: 'Love & Connections',
       to: '/gallery/love-and-connections',
-      cover: '/img/love-and-connections/cover.jpg'
+      cover: '/img/love-and-connections/lc1.jpg'
     }, {
       title: 'Personal Portraits',
       to: '/gallery/personal-portraits',
-      cover: '/img/personal-portraits/cover.jpg'
+      cover: '/img/personal-portraits/lc1.jpg'
     }]
   },
   about: {

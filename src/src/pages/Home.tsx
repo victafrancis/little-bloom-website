@@ -22,9 +22,22 @@ export default function Home() {
       <Helmet>
         <title>{meta.home.title}</title>
         <meta name="description" content={meta.home.description} />
+
+        {/* Open Graph tags for Facebook, WhatsApp, LinkedIn, etc. */}
         <meta property="og:title" content={meta.home.title} />
         <meta property="og:description" content={meta.home.description} />
         <meta property="og:image" content={meta.home.hero.images.desktop} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://www.littlebloomphotography.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Little Bloom Photography" />
+
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.home.title} />
+        <meta name="twitter:description" content={meta.home.description} />
+        <meta name="twitter:image" content={meta.home.hero.images.desktop} />
       </Helmet>
       <main>
         <Hero
