@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Button } from '../components/Button';
 import { CTABand } from '../components/CTABand';
 import { meta } from '../data/siteMeta';
+import { MapPin } from 'lucide-react';
 export default function Pricing() {
   return <>
       <Helmet>
@@ -22,6 +23,14 @@ export default function Pricing() {
               </p>
             </div>
             
+            <div className="bg-cream p-8 rounded-xl mb-8">
+              <h2 className="text-xl font-display mb-4">Both packages below include:</h2>
+              <ul className="list-disc list-inside text-text/70">
+                <li>Unlimited shots (no cap on the best moments, I am a trigger-happy type of photographer)</li>
+                <li>Time-permitting outfit changes.</li>
+                <li>Full access to <b>ALL</b> edited, high-resolution photos — you’ll receive every great shot, no limits on the number because you deserve them all!</li>
+              </ul>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-cream p-8 rounded-xl">
                 <img
@@ -37,14 +46,6 @@ export default function Pricing() {
                   className="max-w-full h-auto object-contain mx-auto"
               />
               </div>
-            </div>
-            <div className="bg-cream p-8 rounded-xl mb-8">
-              <h2 className="text-xl font-display mb-4">Both packages include:</h2>
-              <ul className="list-disc list-inside text-text/70">
-                <li>Unlimited shots (no cap on the best moments, I am a trigger-happy type of photographer)</li>
-                <li>Time-permitting outfit changes.</li>
-                <li>Full access to <b>ALL</b> edited, high-resolution photos — you’ll receive every great shot, no limits on the number because you deserve them all!</li>
-              </ul>
             </div>
             
             <div className="p-8 rounded-xl mb-8 border border-solid border-gray-300">
@@ -76,6 +77,21 @@ export default function Pricing() {
                 <li>All prices include tax</li>
                 <li>Travel outside Barrie and Innisfil areas may include additional transportation fees</li>
               </ul>
+            </div>
+          </div>
+
+          {/* Location Information Section */}
+          <div className="py-2 rounded-xl border-gray-300">
+            <div className="max-w-2xl mx-auto">
+              <div className="p-4 rounded-lg border border-solid border-gray-400 text-center">
+                <div className="flex justify-center items-center mb-4">
+                  <MapPin className="w-8 h-8 text-mustard mr-3" />
+                  <h3 className="text-lg md:text-xl font-display">Service Area</h3>
+                </div>
+                <p className="text-text/70 text-sm md:text-base leading-relaxed">
+                  Currently servicing <b>Barrie</b> and <b>Innisfil</b> locations. Any other location will incur transportation fees, depending on the location and service.
+                </p>
+              </div>
             </div>
           </div>
         </section>
