@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Hero } from '../components/Hero';
 import { CTABand } from '../components/CTABand';
-import { ArrowRightIcon } from 'lucide-react';
+import { ArrowRightIcon, MapPin } from 'lucide-react';
 import { meta } from '../data/siteMeta';
 
 const archedBackgroundStyle = {
@@ -123,6 +123,23 @@ export default function Home() {
                     <ArrowRightIcon className="w-6 h-6 transform group-hover:translate-x-2 transition-transform md:mr-4" />
                   </Link>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Location Information Section */}
+        <section className="pt-8 md:pt-12">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto">
+              <div className="p-6 rounded-lg border border-solid border-gray-400 text-center">
+                <div className="flex justify-center items-center mb-4">
+                  <MapPin className="w-8 h-8 text-mustard mr-3" />
+                  <h3 className="text-lg md:text-xl font-display">Service Area</h3>
+                </div>
+                <p className="text-text/70 text-sm md:text-base leading-relaxed">
+                  Currently servicing <b>Barrie</b> and <b>Innisfil</b> locations. Any other location will incur transportation fees, depending on the location and service.
+                </p>
               </div>
             </div>
           </div>
