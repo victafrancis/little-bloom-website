@@ -1,6 +1,6 @@
 # Little Bloom Photography
 
-Every life is a little bloom.
+Little moments, big memories.
 
 ## About
 
