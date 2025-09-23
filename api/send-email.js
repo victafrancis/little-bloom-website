@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         <h2 style="color: #CCA42A; margin-bottom: 20px;">New Contact Form Submission</h2>
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
           <p style="margin: 10px 0;"><strong>Name:</strong> ${name}</p>
-          <p style="margin: 10px 0;"><strong>Email:</strong> ${email}</p>
+          <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #CCA42A; text-decoration: underline; font-weight: bold;">${email}</a></p>
           <p style="margin: 10px 0;"><strong>Message:</strong></p>
           <div style="background-color: white; padding: 15px; border-radius: 4px; border-left: 4px solid #CCA42A;">
             ${message.replace(/\n/g, '<br>')}
