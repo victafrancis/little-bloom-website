@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { meta } from '../data/siteMeta';
 import { notes } from '../data/notes';
 
 export default function Notes() {
   return (
     <>
-      <Helmet>
-        <title>{meta.notes.list.title}</title>
-        <meta name="description" content={meta.notes.list.description} />
-        <meta name="keywords" content={meta.notes.keywords} />
-      </Helmet>
+      <SEO
+        title={meta.notes.list.title}
+        description={meta.notes.list.description}
+        keywords={meta.notes.keywords}
+        image="/img/hero-desktop.jpg"
+      />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto mb-12">

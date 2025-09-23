@@ -1,14 +1,15 @@
 import React, { memo } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { meta } from '../data/siteMeta';
 export default function About() {
   return <>
-      <Helmet>
-        <title>{meta.about.title}</title>
-        <meta name="description" content={meta.about.description} />
-        <meta name="keywords" content={meta.about.keywords} />
-      </Helmet>
+      <SEO
+        title={meta.about.title}
+        description={meta.about.description}
+        keywords={meta.about.keywords}
+        image="/img/about.jpg"
+      />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">

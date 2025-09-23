@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { GalleryGrid } from '../components/GalleryGrid';
 import { Lightbox } from '../components/Lightbox';
@@ -24,10 +24,22 @@ export default function GalleryCategory() {
     return null;
   }
   return <>
-      <Helmet>
-        <title>{gallery.title} | Gallery</title>
-        <meta name="description" content={gallery.blurb} />
-      </Helmet>
+      <SEO
+        title={`${gallery.title} | Gallery | Little Bloom Photography`}
+        description={gallery.blurb}
+        image={gallery.cover}
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type':'ListItem', position:1, name:'Home', item:'https://www.littlebloomphotography.com/' },
+              { '@type':'ListItem', position:2, name:'Gallery', item:'https://www.littlebloomphotography.com/gallery' },
+              { '@type':'ListItem', position:3, name: gallery.title, item: `https://www.littlebloomphotography.com/gallery/${gallery.slug}` }
+            ]
+          }
+        ]}
+      />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-4xl mx-auto mb-12">
@@ -39,7 +51,7 @@ export default function GalleryCategory() {
             </h1>
             <p className="text-text/70 text-lg">{gallery.blurb}</p>
           </div>
-          <GalleryGrid images={gallery.images} onImageClick={openLightbox} />
+          <GalleryGrid images={gallery.images} onImageClick={openLightbox} altText={(i) => `${gallery.title} – Image ${i + 1}`} />
           <div className="mt-16 text-center">
             <Button to="/contact">Book This Service</Button>
           </div>

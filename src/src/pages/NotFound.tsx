@@ -1,14 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { meta } from '../data/siteMeta';
 export default function NotFound() {
   return <>
-      <Helmet>
-        <title>{meta.notFound.title}</title>
-        <meta name="description" content={meta.notFound.description} />
-        <meta name="keywords" content={meta.notFound.keywords} />
-      </Helmet>
+      <SEO
+        title={meta.notFound.title}
+        description={meta.notFound.description}
+        keywords={meta.notFound.keywords}
+        robots="noindex, nofollow"
+      />
       <main className="pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[60vh]">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-display my-6">404</h1>

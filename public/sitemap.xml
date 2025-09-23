@@ -1,93 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.littlebloomphotography.com/</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
+      <image:caption>Little Bloom Photography — Family, Maternity & Newborn Photographer</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/about</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/about.jpg</image:loc>
+      <image:caption>About Little Bloom Photography</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/pricing</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
+      <image:caption>Session Pricing — Little Bloom Photography</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/gallery</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
+      <image:caption>Gallery — Little Bloom Photography</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/bumps-and-beginnings</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/bumps-and-beginnings/bumps1.jpg</image:loc>
+      <image:caption>Bumps & Beginnings — Maternity</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/little-blooms</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/little-blooms/blooms1.jpg</image:loc>
+      <image:caption>Little Blooms — Babies & Kids</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/love-and-connections</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/love-and-connections/lc1.jpg</image:loc>
+      <image:caption>Love & Connections — Couples & Family</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/personal-portraits</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/personal-portraits/lc1.jpg</image:loc>
+      <image:caption>Personal Portraits — Solos</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/notes</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/assets/notes/little-bloom-photography-process.png</image:loc>
+      <image:caption>Notes & Guides — Little Bloom Photography</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/notes/5-reasons-photo-shoots-important</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/assets/notes/5-reasons-photo-shoots-important.png</image:loc>
+      <image:caption>5 Reasons Photo Shoots Are Important</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/notes/little-bloom-photography-process</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/assets/notes/little-bloom-photography-process.png</image:loc>
+      <image:caption>Little Bloom Photography Process</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/notes/maternity-photography-celebrate-journey</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/assets/notes/maternity-photography-celebrate-journey.png</image:loc>
+      <image:caption>Maternity Photography — Celebrate the Journey</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/notes/prepare-kids-photo-session</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/assets/notes/prepare-kids-photo-session.png</image:loc>
+      <image:caption>Prepare Kids for a Photo Session</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/notes/what-to-wear-for-photo-session</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/assets/notes/what-to-wear-for-photo-session.png</image:loc>
+      <image:caption>What to Wear for a Photo Session</image:caption>
+    </image:image>
   </url>
+
   <url>
     <loc>https://www.littlebloomphotography.com/contact</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
+      <image:caption>Contact — Little Bloom Photography</image:caption>
+    </image:image>
   </url>
 </urlset>

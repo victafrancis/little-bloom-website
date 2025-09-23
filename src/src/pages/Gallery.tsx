@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { meta } from '../data/siteMeta';
 import { galleries } from '../data/galleries';
 export default function Gallery() {
   return <>
-      <Helmet>
-        <title>{meta.gallery.title}</title>
-        <meta name="description" content={meta.gallery.description} />
-        <meta name="keywords" content={meta.gallery.keywords} />
-      </Helmet>
+      <SEO
+        title={meta.gallery.title}
+        description={meta.gallery.description}
+        keywords={meta.gallery.keywords}
+        image="/img/hero-desktop.jpg"
+      />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto mb-12">

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Hero } from '../components/Hero';
 import { CTABand } from '../components/CTABand';
-import { ArrowRightIcon } from 'lucide-react';
+import { ArrowRightIcon, MapPin } from 'lucide-react';
 import { meta } from '../data/siteMeta';
 
 const archedBackgroundStyle = {
@@ -19,28 +19,39 @@ const archedBackgroundStyle = {
 
 export default function Home() {
   return <>
-      <Helmet>
-        <title>{meta.home.title}</title>
-        <meta name="description" content={meta.home.description} />
-        <meta name="keywords" content={meta.home.keywords} />
-
-        {/* Open Graph tags for Facebook, WhatsApp, LinkedIn, etc. */}
-        <meta property="og:title" content={meta.home.title} />
-        <meta property="og:description" content={meta.home.description} />
-        <meta property="og:image" content={meta.home.hero.images.desktop} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:url" content="https://www.littlebloomphotography.com/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Little Bloom Photography" />
-
-        {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={meta.home.title} />
-        <meta name="twitter:description" content={meta.home.description} />
-        <meta name="twitter:image" content={meta.home.hero.images.desktop} />
-      </Helmet>
+      <SEO
+        title={meta.home.title}
+        description={meta.home.description}
+        keywords={meta.home.keywords}
+        image={meta.home.hero.images.desktop}
+        type="website"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': ['Organization','LocalBusiness'],
+            name: 'Little Bloom Photography',
+            url: 'https://www.littlebloomphotography.com',
+            image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',
+            logo: 'https://www.littlebloomphotography.com/assets/logo.png',
+            sameAs: [
+              'https://instagram.com/littlebloom.photos',
+              'https://facebook.com/yourstudio'
+            ],
+            address: { '@type':'PostalAddress', addressLocality: 'Barrie', addressRegion: 'ON', addressCountry: 'CA' },
+            areaServed: ['Ontario','Barrie','Innisfil','Simcoe County','Orillia','Collingwood','Wasaga Beach','Midland','Alliston','Bradford','Vaughan','Toronto','York Region','Newmarket','Aurora','Richmond Hill','Markham','Mississauga','Brampton','Keswick','Georgina'],
+            priceRange: '$$'
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type':'ListItem', position:1, name:'Home', item:'https://www.littlebloomphotography.com/' }
+            ]
+          }
+        ]}
+      />
       <main>
+        <h1 className="sr-only">Little Bloom Photography — Family, Maternity, Newborn Photographer in Barrie, Innisfil and across Ontario</h1>
         <Hero
           headline={meta.home.hero.headline}
           kicker={meta.home.hero.kicker}

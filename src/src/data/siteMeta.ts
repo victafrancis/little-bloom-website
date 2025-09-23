@@ -1,6 +1,6 @@
 export const site = {
   name: 'Little Bloom Photography',
-  domain: 'littlebloomphotography.com',
+  domain: 'www.littlebloomphotography.com',
   socials: {
     instagram: 'https://instagram.com/littlebloom.photos',
     facebook: 'https://facebook.com/yourstudio',
@@ -11,7 +11,7 @@ export const meta = {
   home: {
     title: 'Little Bloom Photography | Little moments, big memories.',
     description: 'Family and kids photography with heart. Natural light sessions for bumps, babies, couples, and families.',
-    keywords: 'photography, barrie photography, innisfil photography, family photographer barrie, family photographer innisfil, maternity photography barrie, newborn photography barrie, kids photography barrie, couples photography barrie, professional photographer barrie ontario',
+    keywords: 'family photographer Ontario, maternity photographer Ontario, newborn photographer Ontario, lifestyle photography, natural light photographer, Barrie photographer, Innisfil photographer, Simcoe County photographer, Orillia photographer, Collingwood photographer, Wasaga Beach photographer, Midland photographer, Alliston photographer, Bradford photographer, Vaughan photographer, Toronto photographer, York Region photographer, Newmarket photographer, Aurora photographer, Richmond Hill photographer, Markham photographer, Mississauga photographer, Brampton photographer, couples photographer, kids photographer, portrait photographer',
     hero: {
       headline: 'Capturing moments that last a lifetime',
       kicker: 'Authentic. Warm. Timeless.',
@@ -58,12 +58,12 @@ export const meta = {
   about: {
     title: 'About Me | Little Bloom Photography',
     description: "Hello, I am Ayi, I am glad you are here! Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.",
-    keywords: 'about little bloom photography, photographer barrie, ayi photographer, barrie ontario photographer, professional photographer barrie, family photographer barrie ontario'
+    keywords: 'about little bloom photography, professional photographer Ontario, photographer Barrie, photographer Innisfil, family photographer Ontario, maternity photographer Ontario, newborn photographer Ontario'
   },
   faq: {
     title: 'Frequently Asked Questions | Little Bloom Photography',
     description: 'Everything you need to know for a smooth, joyful session.',
-    keywords: 'photography faq barrie, barrie photographer questions, family photography faq, maternity photography questions, newborn photography barrie faq',
+    keywords: 'photography faq Ontario, barrie photographer questions, family photography faq, maternity photography questions, newborn photography faq Ontario',
     items: [{
       q: 'What should we wear?',
       a: "Coordinate but don't match, neutrals work best."
@@ -81,7 +81,7 @@ export const meta = {
   pricing: {
     title: 'Sessions & Pricing | Little Bloom Photography',
     description: 'Your experience should be stress-free. My pricing is simple and transparent, with no hidden fees.',
-    keywords: 'photography pricing barrie, barrie photographer prices, family photography cost barrie, maternity photography pricing, newborn photography prices barrie ontario',
+    keywords: 'photography prices Ontario, family photography cost Barrie, maternity photography pricing Ontario, newborn photography prices Ontario, Barrie photographer prices',
     packages: [{
       name: 'The Budding Bloom',
       price: '$200',
@@ -99,12 +99,12 @@ export const meta = {
   gallery: {
     title: 'Gallery | Little Bloom Photography',
     description: 'Explore our galleries by category.',
-    keywords: 'photography gallery barrie, barrie photographer portfolio, family photography gallery, maternity photography portfolio barrie, newborn photography gallery ontario'
+    keywords: 'photography portfolio Ontario, family photography gallery, maternity photography gallery, newborn photography gallery, Barrie photographer portfolio, Innisfil photographer portfolio'
   },
   notes: {
     title: 'Notes | Little Bloom Photography',
     description: 'Photography tips, inspiration, and guides to help you prepare for your session.',
-    keywords: 'photography tips barrie, barrie photographer blog, family photography tips, maternity photography guide, newborn photography advice barrie ontario',
+    keywords: 'photography tips Ontario, family photography tips, maternity photography guide, newborn photography advice, Barrie photographer blog, Simcoe County photography blog',
     list: {
       title: 'Notes | Little Bloom Photography',
       description: 'Photography tips, inspiration, and guides from Little Bloom Photography'
@@ -113,7 +113,7 @@ export const meta = {
   contact: {
     title: 'Contact & Booking | Little Bloom Photography',
     description: "Tell me about your family and the kind of session you're dreaming of.",
-    keywords: 'contact barrie photographer, book photography session barrie, barrie photography booking, family photographer contact barrie ontario',
+    keywords: 'book photography session Ontario, contact family photographer Barrie, photographer availability Innisfil, Ontario photography booking',
     successMessage: "Thanks for reaching out. I'll get back to you within one business day."
   },
   notFound: {

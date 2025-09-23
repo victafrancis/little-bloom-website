@@ -1,16 +1,17 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { CTABand } from '../components/CTABand';
 import { meta } from '../data/siteMeta';
 import { MapPin } from 'lucide-react';
 export default function Pricing() {
   return <>
-      <Helmet>
-        <title>{meta.pricing.title}</title>
-        <meta name="description" content={meta.pricing.description} />
-        <meta name="keywords" content={meta.pricing.keywords} />
-      </Helmet>
+      <SEO
+        title={meta.pricing.title}
+        description={meta.pricing.description}
+        keywords={meta.pricing.keywords}
+        image="/img/hero-desktop.jpg"
+      />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">

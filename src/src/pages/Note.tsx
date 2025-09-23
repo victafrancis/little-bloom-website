@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ArrowLeftIcon } from 'lucide-react';
 import { getNoteBySlug } from '../data/notes';
 import { Button } from '../components/Button';
@@ -22,11 +22,34 @@ export default function Note() {
 
   return (
     <>
-      <Helmet>
-        <title>{note.title} | Notes | Little Bloom Photography</title>
-        <meta name="description" content={note.excerpt} />
-        <meta name="keywords" content="photography tips barrie, barrie photographer blog, family photography tips, maternity photography guide, newborn photography advice barrie ontario" />
-      </Helmet>
+      <SEO
+        title={`${note.title} | Notes | Little Bloom Photography`}
+        description={note.excerpt}
+        keywords="photography tips Ontario, family photography tips, maternity photography guide, newborn photography advice"
+        image="/img/hero-desktop.jpg"
+        type="article"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: note.title,
+            description: note.excerpt,
+            mainEntityOfPage: `https://www.littlebloomphotography.com/notes/${note.slug}`,
+            image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',
+            author: { '@type': 'Organization', name: 'Little Bloom Photography' },
+            publisher: { '@type': 'Organization', name: 'Little Bloom Photography', logo: { '@type': 'ImageObject', url: 'https://www.littlebloomphotography.com/assets/logo.png' } }
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type':'ListItem', position:1, name:'Home', item:'https://www.littlebloomphotography.com/' },
+              { '@type':'ListItem', position:2, name:'Notes', item:'https://www.littlebloomphotography.com/notes' },
+              { '@type':'ListItem', position:3, name: note.title, item: `https://www.littlebloomphotography.com/notes/${note.slug}` }
+            ]
+          }
+        ]}
+      />
 
       <main className="pt-24 md:pt-32">
         {/* Back Navigation */}

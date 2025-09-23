@@ -1,14 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ContactForm } from '../components/ContactForm';
 import { meta, site } from '../data/siteMeta';
 export default function Contact() {
   return <>
-      <Helmet>
-        <title>{meta.contact.title}</title>
-        <meta name="description" content={meta.contact.description} />
-        <meta name="keywords" content={meta.contact.keywords} />
-      </Helmet>
+      <SEO
+        title={meta.contact.title}
+        description={meta.contact.description}
+        keywords={meta.contact.keywords}
+        image="/img/hero-desktop.jpg"
+      />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-3xl mx-auto">

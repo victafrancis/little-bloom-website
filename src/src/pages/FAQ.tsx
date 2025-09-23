@@ -1,14 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { meta } from '../data/siteMeta';
 export default function FAQ() {
   return <>
-      <Helmet>
-        <title>{meta.faq.title}</title>
-        <meta name="description" content={meta.faq.description} />
-        <meta name="keywords" content={meta.faq.keywords} />
-      </Helmet>
+      <SEO
+        title={meta.faq.title}
+        description={meta.faq.description}
+        keywords={meta.faq.keywords}
+        image="/assets/flowers.png"
+      />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
           <div className="max-w-3xl mx-auto">
