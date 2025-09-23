@@ -8,6 +8,7 @@ export default function Pricing() {
       <Helmet>
         <title>{meta.pricing.title}</title>
         <meta name="description" content={meta.pricing.description} />
+        <meta name="keywords" content={meta.pricing.keywords} />
       </Helmet>
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

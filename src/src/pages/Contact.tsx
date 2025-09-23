@@ -7,6 +7,7 @@ export default function Contact() {
       <Helmet>
         <title>{meta.contact.title}</title>
         <meta name="description" content={meta.contact.description} />
+        <meta name="keywords" content={meta.contact.keywords} />
       </Helmet>
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

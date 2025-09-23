@@ -7,6 +7,7 @@ export default function FAQ() {
       <Helmet>
         <title>{meta.faq.title}</title>
         <meta name="description" content={meta.faq.description} />
+        <meta name="keywords" content={meta.faq.keywords} />
       </Helmet>
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

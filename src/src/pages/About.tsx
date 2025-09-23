@@ -7,6 +7,7 @@ export default function About() {
       <Helmet>
         <title>{meta.about.title}</title>
         <meta name="description" content={meta.about.description} />
+        <meta name="keywords" content={meta.about.keywords} />
       </Helmet>
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

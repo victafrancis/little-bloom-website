@@ -7,6 +7,7 @@ export default function NotFound() {
       <Helmet>
         <title>{meta.notFound.title}</title>
         <meta name="description" content={meta.notFound.description} />
+        <meta name="keywords" content={meta.notFound.keywords} />
       </Helmet>
       <main className="pt-24 md:pt-32 flex flex-col items-center justify-center min-h-[60vh]">
         <div className="container mx-auto px-4 text-center">

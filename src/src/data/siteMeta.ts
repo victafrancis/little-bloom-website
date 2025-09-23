@@ -11,6 +11,7 @@ export const meta = {
   home: {
     title: 'Little Bloom Photography | Little moments, big memories.',
     description: 'Family and kids photography with heart. Natural light sessions for bumps, babies, couples, and families.',
+    keywords: 'photography, barrie photography, innisfil photography, family photographer barrie, family photographer innisfil, maternity photography barrie, newborn photography barrie, kids photography barrie, couples photography barrie, professional photographer barrie ontario',
     hero: {
       headline: 'Capturing moments that last a lifetime',
       kicker: 'Authentic. Warm. Timeless.',
@@ -56,11 +57,13 @@ export const meta = {
   },
   about: {
     title: 'About Me | Little Bloom Photography',
-    description: "Hello, I am Ayi, I am glad you are here! Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom."
+    description: "Hello, I am Ayi, I am glad you are here! Photography has always been my passion. I picked up my first camera over 20 years ago, not knowing it would become such a big part of my creative side. Through the years, I’ve captured many stories, but the one that changed everything was my own: becoming a mom.",
+    keywords: 'about little bloom photography, photographer barrie, ayi photographer, barrie ontario photographer, professional photographer barrie, family photographer barrie ontario'
   },
   faq: {
     title: 'Frequently Asked Questions | Little Bloom Photography',
     description: 'Everything you need to know for a smooth, joyful session.',
+    keywords: 'photography faq barrie, barrie photographer questions, family photography faq, maternity photography questions, newborn photography barrie faq',
     items: [{
       q: 'What should we wear?',
       a: "Coordinate but don't match, neutrals work best."
@@ -78,6 +81,7 @@ export const meta = {
   pricing: {
     title: 'Sessions & Pricing | Little Bloom Photography',
     description: 'Your experience should be stress-free. My pricing is simple and transparent, with no hidden fees.',
+    keywords: 'photography pricing barrie, barrie photographer prices, family photography cost barrie, maternity photography pricing, newborn photography prices barrie ontario',
     packages: [{
       name: 'The Budding Bloom',
       price: '$200',
@@ -94,11 +98,13 @@ export const meta = {
   },
   gallery: {
     title: 'Gallery | Little Bloom Photography',
-    description: 'Explore our galleries by category.'
+    description: 'Explore our galleries by category.',
+    keywords: 'photography gallery barrie, barrie photographer portfolio, family photography gallery, maternity photography portfolio barrie, newborn photography gallery ontario'
   },
   notes: {
     title: 'Notes | Little Bloom Photography',
     description: 'Photography tips, inspiration, and guides to help you prepare for your session.',
+    keywords: 'photography tips barrie, barrie photographer blog, family photography tips, maternity photography guide, newborn photography advice barrie ontario',
     list: {
       title: 'Notes | Little Bloom Photography',
       description: 'Photography tips, inspiration, and guides from Little Bloom Photography'
@@ -107,10 +113,12 @@ export const meta = {
   contact: {
     title: 'Contact & Booking | Little Bloom Photography',
     description: "Tell me about your family and the kind of session you're dreaming of.",
+    keywords: 'contact barrie photographer, book photography session barrie, barrie photography booking, family photographer contact barrie ontario',
     successMessage: "Thanks for reaching out. I'll get back to you within one business day."
   },
   notFound: {
     title: 'Page Not Found | Little Bloom Photography',
-    description: 'This page has moved or no longer exists.'
+    description: 'This page has moved or no longer exists.',
+    keywords: '404 error, page not found, barrie photography'
   }
 };

@@ -22,6 +22,7 @@ export default function Home() {
       <Helmet>
         <title>{meta.home.title}</title>
         <meta name="description" content={meta.home.description} />
+        <meta name="keywords" content={meta.home.keywords} />
 
         {/* Open Graph tags for Facebook, WhatsApp, LinkedIn, etc. */}
         <meta property="og:title" content={meta.home.title} />

@@ -25,6 +25,7 @@ export default function Note() {
       <Helmet>
         <title>{note.title} | Notes | Little Bloom Photography</title>
         <meta name="description" content={note.excerpt} />
+        <meta name="keywords" content="photography tips barrie, barrie photographer blog, family photography tips, maternity photography guide, newborn photography advice barrie ontario" />
       </Helmet>
 
       <main className="pt-24 md:pt-32">
