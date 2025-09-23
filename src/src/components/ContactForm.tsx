@@ -8,6 +8,8 @@ export function ContactForm() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -15,21 +17,58 @@ export function ContactForm() {
       [name]: value
     }));
   };
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    // In a real implementation, you would send this data to your backend
+
+    // Check honeypot field for spam
+    const honeypot = (e.target as HTMLFormElement).website?.value;
+    if (honeypot) {
+      console.log('Spam detected');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Send form data to our API route
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send email');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Error sending email:', err);
+      setError(err instanceof Error ? err.message : 'Sorry, there was an error sending your message. Please try again or contact us directly at hello@littlebloomphotography.com');
+    } finally {
+      setIsLoading(false);
+    }
   };
   if (submitted) {
     return <div className="bg-sage/10 p-8 rounded-lg text-center">
         <h3 className="text-xl font-display mb-4">
           Thank you for reaching out!
         </h3>
-        <p>I'll get back to you within one business day.</p>
+        <p>I've received your message and will get back to you within one business day.</p>
+        <p className="text-sm text-text/70 mt-2">You'll also receive a confirmation email shortly.</p>
       </div>;
   }
   return <form onSubmit={handleSubmit} className="space-y-6">
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          {error}
+        </div>
+      )}
       <div>
         <label htmlFor="name" className="block mb-2 font-medium">
           Name <span className="text-mauve">*</span>
@@ -41,7 +80,8 @@ export function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full border-b border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage"
+          disabled={isLoading}
+          className="w-full border-b border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage disabled:opacity-50"
           placeholder="Your name"
         />
       </div>
@@ -56,7 +96,8 @@ export function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full border-b border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage"
+          disabled={isLoading}
+          className="w-full border-b border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage disabled:opacity-50"
           placeholder="Your email"
         />
       </div>
@@ -71,7 +112,8 @@ export function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          className="w-full border border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage rounded-lg"
+          disabled={isLoading}
+          className="w-full border border-text/20 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage rounded-lg disabled:opacity-50"
           placeholder="Tell me about your session"
         />
       </div>
@@ -80,8 +122,8 @@ export function ContactForm() {
         <input type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
       <div className="flex justify-center">
-        <Button type="submit" className="w-full md:w-auto">
-          Send Message
+        <Button type="submit" disabled={isLoading} className="w-full md:w-auto disabled:opacity-50">
+          {isLoading ? 'Sending...' : 'Send Message'}
         </Button>
       </div>
     </form>;
