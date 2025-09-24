@@ -97,7 +97,7 @@ export default function Pricing() {
         <img
           src="/assets/flowers.png"
           alt="Decorative image"
-          className="w-max h-max object-cover mx-auto"
+          className="w-max max-h-48 mx-auto"
         />
       </main>
     </>;
