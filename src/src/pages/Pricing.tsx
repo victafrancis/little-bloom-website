@@ -94,11 +94,6 @@ export default function Pricing() {
         </section>
 
         <CTABand headline="Ready to book your session?" subheading="Check availability and secure your date." buttonText="Contact Me" buttonLink="/contact" />
-        <img
-          src="/assets/flowers.png"
-          alt="Decorative image"
-          className="w-max max-h-48 mx-auto"
-        />
       </main>
     </>;
 }

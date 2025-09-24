@@ -4,7 +4,13 @@ import { InstagramIcon, FacebookIcon, MailIcon } from 'lucide-react';
 import { site } from '../data/siteMeta';
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  return <footer className="bg-cream py-8">
+  return <>
+    <img
+      src="/assets/flowers.png"
+      alt="Decorative image"
+      className="w-max max-h-48 mx-auto"
+    />
+    <footer className="bg-cream py-8">
       <div className="container mx-auto px-4">
         <p className="border-b border-text/20 pb-6 font-light italic text-center text-xs md:text-base">
           "And above all these put on love, which binds everything
@@ -29,5 +35,6 @@ export function Footer() {
           <p className="mt-4 text-center text-sm">©{currentYear}</p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  </>;
 }

@@ -157,13 +157,7 @@ export default function Home() {
           </div>
         </section>
 
-
         <CTABand headline="Your story is beautiful, I’d be honored to capture it." buttonText="Contact Me" buttonLink="/contact" />
-        <img
-          src="/assets/flowers.png"
-          alt="Decorative image"
-          className="w-max max-h-48 mx-auto"
-        />
       </main>
     </>;
 }

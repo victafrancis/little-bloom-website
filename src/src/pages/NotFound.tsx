@@ -21,11 +21,6 @@ export default function NotFound() {
           </p>
           <Button to="/">Return Home</Button>
         </div>
-        <img
-          src="/assets/flowers.png"
-          alt="Decorative image"
-          className="w-max max-h-48 mx-auto"
-        />
       </main>
     </>;
 }
