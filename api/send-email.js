@@ -34,6 +34,10 @@ export default async function handler(req, res) {
     }
 
     // Email template for business owner
+    const subjectForReply = `Re: Inquiry from ${name}`;
+    const bodyForReply = `On ${new Date().toLocaleString('en-CA', { timeZone: 'America/Toronto' })}, ${name} <${email}> wrote:\n\n${message}`;
+    const safeMailto = `mailto:${email}?subject=${encodeURIComponent(subjectForReply)}`;
+
     const businessEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <h2 style="color: #CCA42A; margin-bottom: 20px;">New Contact Form Submission</h2>
@@ -44,6 +48,11 @@ export default async function handler(req, res) {
           <div style="background-color: white; padding: 15px; border-radius: 4px; border-left: 4px solid #CCA42A;">
             ${message.replace(/\n/g, '<br>')}
           </div>
+          <p style="margin:16px 0;">
+            <a href="${safeMailto}" style="background:#CCA42A;color:#111;padding:10px 14px;border-radius:6px;text-decoration:none;font-weight:bold;">
+              Reply to ${name}
+            </a>
+          </p>
         </div>
         <p style="color: #111111; font-size: 14px;">
           This message was sent from your Little Bloom Photography contact form.
@@ -73,8 +82,9 @@ export default async function handler(req, res) {
     const businessEmail = await resend.emails.send({
       from: 'Little Bloom Photography <hello@littlebloomphotography.com>',
       to: ['hello@littlebloomphotography.com'],
-      reply_to: email,
-      subject: `New Message from ${name}`,
+      reply_to: `${name} <${email}>`,
+      headers: { 'Reply-To': `${name} <${email}>` },
+      subject: `New Inquiry from ${name}`,
       html: businessEmailHtml,
     });
 
