@@ -40,7 +40,6 @@ export default async function handler(req, res) {
 
     const businessEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h2 style="color: #CCA42A; margin-bottom: 20px;">New Contact Form Submission</h2>
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
           <p style="margin: 10px 0;"><strong>Name:</strong> ${name}</p>
           <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #CCA42A; text-decoration: underline; font-weight: bold;">${email}</a></p>
@@ -80,7 +79,7 @@ export default async function handler(req, res) {
 
     // Send email to our business email
     const businessEmail = await resend.emails.send({
-      from: 'Little Bloom Photography <hello@littlebloomphotography.com>',
+      from: 'Contact Form Submission <forms@littlebloomphotography.com>',
       to: ['hello@littlebloomphotography.com'],
       reply_to: `${name} <${email}>`,
       headers: { 'Reply-To': `${name} <${email}>` },
