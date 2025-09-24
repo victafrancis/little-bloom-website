@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import { ArrowLeftIcon } from 'lucide-react';
 import { getNoteBySlug } from '../data/notes';
 import { Button } from '../components/Button';
+import { CTABand } from '../components/CTABand';
 
 export default function Note() {
   const { slug } = useParams<{ slug: string }>();
@@ -83,15 +84,12 @@ export default function Note() {
             </div>
 
             {/* Call to Action */}
-            <div className="bg-sage/10 pt-8 pb-4 border-t border-gray-200">
-              <div className="text-center">
-                <p className="text-text/70 mb-6">
-                  Ready to capture your beautiful moments?<br />
-                  Let's create something special together.
-                </p>
-                <Button to="/contact">Book a Session</Button>
-              </div>
-            </div>
+            <CTABand 
+              headline="Ready to capture your beautiful moments?" 
+              subheading="Let's create something special together."
+              buttonText="Book a Session" 
+              buttonLink="/contact" 
+            />
           </article>
         </section>
       </main>
