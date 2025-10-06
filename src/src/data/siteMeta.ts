@@ -3,7 +3,7 @@ export const site = {
   domain: 'www.littlebloomphotography.com',
   socials: {
     instagram: 'https://instagram.com/littlebloom.photos',
-    facebook: 'https://facebook.com/yourstudio',
+    facebook: 'https://www.facebook.com/people/Little-Bloom-Photography/61581269589318/',
     email: 'hello@littlebloomphotography.com'
   }
 };

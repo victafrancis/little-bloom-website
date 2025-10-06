@@ -22,9 +22,9 @@ export function Footer() {
             <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-text/70 hover:text-sage transition-colors" aria-label="Instagram">
               <InstagramIcon className="h-5 w-5" />
             </a>
-            {/* <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="text-text/70 hover:text-sage transition-colors" aria-label="Facebook">
+            <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="text-text/70 hover:text-sage transition-colors" aria-label="Facebook">
               <FacebookIcon className="h-5 w-5" />
-            </a> */}
+            </a>
             <a href={`mailto:${site.socials.email}`} className="text-text/70 hover:text-sage transition-colors" aria-label="Email">
               <MailIcon className="h-5 w-5" />
             </a>
