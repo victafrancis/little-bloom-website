@@ -27,7 +27,7 @@ export function Lightbox({
   const prevIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
   const nextIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
 
-  const handleTransitionEnd = useCallback(() => {
+  const finalizePendingTransition = useCallback(() => {
     setDisableTransition(true);
     if (transitionDirection === 'left') {
       setCurrentIndex(nextIndex);
@@ -41,6 +41,10 @@ export function Lightbox({
     // Re-enable transition after a brief moment
     setTimeout(() => setDisableTransition(false), 0);
   }, [transitionDirection, nextIndex, prevIndex, containerWidth]);
+
+  const handleTransitionEnd = useCallback(() => {
+    finalizePendingTransition();
+  }, [finalizePendingTransition]);
 
   const handlePrevious = useCallback((e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -76,9 +80,12 @@ export function Lightbox({
   }, [isOpen, isDragging, handlePrevious, handleNext, onClose]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (isAnimating) {
+      finalizePendingTransition();
+    }
     setIsDragging(true);
     setStartX(e.touches[0].clientX);
-  }, []);
+  }, [isAnimating, finalizePendingTransition]);
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
     if (!isDragging) return;
