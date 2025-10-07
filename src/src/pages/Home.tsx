@@ -28,18 +28,66 @@ export default function Home() {
         jsonLd={[
           {
             '@context': 'https://schema.org',
-            '@type': ['Organization','LocalBusiness'],
+            '@type': ['Organization','LocalBusiness','PhotographyStudio'],
             name: 'Little Bloom Photography',
             url: 'https://www.littlebloomphotography.com',
             image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',
             logo: 'https://www.littlebloomphotography.com/assets/logo.png',
             sameAs: [
               'https://instagram.com/littlebloom.photos',
-              'https://facebook.com/yourstudio'
+              'https://www.facebook.com/people/Little-Bloom-Photography/61581269589318/'
             ],
             address: { '@type':'PostalAddress', addressLocality: 'Barrie', addressRegion: 'ON', addressCountry: 'CA' },
+            geo: { '@type': 'GeoCoordinates', latitude: 44.3894, longitude: -79.6903 },
             areaServed: ['Ontario','Barrie','Innisfil','Simcoe County','Orillia','Collingwood','Wasaga Beach','Midland','Alliston','Bradford','Vaughan','Toronto','York Region','Newmarket','Aurora','Richmond Hill','Markham','Mississauga','Brampton','Keswick','Georgina'],
-            priceRange: '$$'
+            priceRange: '$$',
+            description: 'Family and kids photography with heart. Natural light sessions for bumps, babies, couples, and families.',
+            knowsAbout: ['Family Photography', 'Maternity Photography', 'Newborn Photography', 'Kids Photography', 'Couples Photography', 'Portrait Photography']
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Family Photography',
+            description: 'Natural light family portrait sessions capturing authentic moments and connections',
+            provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
+            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            serviceType: 'Photography'
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Maternity Photography',
+            description: 'Beautiful maternity portrait sessions celebrating the journey of motherhood',
+            provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
+            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            serviceType: 'Photography'
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Newborn Photography',
+            description: 'Gentle newborn portrait sessions capturing precious early moments',
+            provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
+            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            serviceType: 'Photography'
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Kids Photography',
+            description: 'Fun and natural children\'s portrait sessions for babies, toddlers, and kids',
+            provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
+            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            serviceType: 'Photography'
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Couples Photography',
+            description: 'Romantic couples portrait sessions capturing love and connection',
+            provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
+            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            serviceType: 'Photography'
           },
           {
             '@context': 'https://schema.org',

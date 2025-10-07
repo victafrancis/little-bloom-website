@@ -9,6 +9,20 @@ export default function FAQ() {
         description={meta.faq.description}
         keywords={meta.faq.keywords}
         image="/assets/flowers.png"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: meta.faq.items.map((item, index) => ({
+              '@type': 'Question',
+              name: item.q,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.a
+              }
+            }))
+          }
+        ]}
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

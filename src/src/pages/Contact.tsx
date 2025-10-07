@@ -9,6 +9,26 @@ export default function Contact() {
         description={meta.contact.description}
         keywords={meta.contact.keywords}
         image="/img/hero-desktop.jpg"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': ['Organization','LocalBusiness','PhotographyStudio'],
+            name: 'Little Bloom Photography',
+            url: 'https://www.littlebloomphotography.com',
+            image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',
+            logo: 'https://www.littlebloomphotography.com/assets/logo.png',
+            sameAs: [
+              'https://instagram.com/littlebloom.photos',
+              'https://www.facebook.com/people/Little-Bloom-Photography/61581269589318/'
+            ],
+            address: { '@type':'PostalAddress', addressLocality: 'Barrie', addressRegion: 'ON', addressCountry: 'CA' },
+            geo: { '@type': 'GeoCoordinates', latitude: 44.3894, longitude: -79.6903 },
+            areaServed: ['Ontario','Barrie','Innisfil','Simcoe County','Orillia','Collingwood','Wasaga Beach','Midland','Alliston','Bradford','Vaughan','Toronto','York Region','Newmarket','Aurora','Richmond Hill','Markham','Mississauga','Brampton','Keswick','Georgina'],
+            priceRange: '$$',
+            description: 'Family and kids photography with heart. Natural light sessions for bumps, babies, couples, and families.',
+            knowsAbout: ['Family Photography', 'Maternity Photography', 'Newborn Photography', 'Kids Photography', 'Couples Photography', 'Portrait Photography']
+          }
+        ]}
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
