@@ -67,7 +67,7 @@ export default function Pricing() {
                     Studio Access
                   </h3>
                   <p className="text-text/70">
-                    +$150 — capture your photos in a beautiful, controlled indoor studio environment. (Scheduled based on studio availability. View the studio <a href="https://www.instagram.com/nerastudios/" className="text-mustard" target='_blank'>here</a>).
+                    Capture your photos in a beautiful, controlled indoor studio environment. (Scheduled based on studio availability. Ask me for more details!)
                   </p>
                 </div>
               </div>
@@ -87,10 +87,7 @@ export default function Pricing() {
                 </div>
               </div>
             </div>
-
           </div>
-
-
         </section>
 
         <CTABand headline="Ready to book your session?" subheading="Check availability and secure your date." buttonText="Contact Me" buttonLink="/contact" />
