@@ -41,7 +41,7 @@ export const galleries: Gallery[] = [{
   slug: 'love-and-connections',
   title: 'Love & Connections',
   subtitle: `Couples, Families & Friends`,
-  blurb: 'Whether it’s a quiet moment with your partner, laughter with your family, or adventures with friends — we’ll capture the bonds that matter most',
+  blurb: 'Whether it’s a quiet moment with your partner, laughter with your family, or adventures with friends, we’ll capture the bonds that matter most',
   cover: '/img/love-and-connections/lc1.jpg',
   images: getGalleryImages('love-and-connections')
 }, {
