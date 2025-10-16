@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { meta } from '../data/siteMeta';
-import { galleries } from '../data/galleries';
+import { getGalleries, type Gallery } from '../data/galleries';
+
 export default function Gallery() {
+  const [galleries, setGalleries] = useState<Gallery[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadGalleries = async () => {
+      try {
+        const galleryData = await getGalleries();
+        setGalleries(galleryData);
+      } catch (error) {
+        console.error('Error loading galleries:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadGalleries();
+  }, []);
   return <>
       <SEO
         title={meta.gallery.title}

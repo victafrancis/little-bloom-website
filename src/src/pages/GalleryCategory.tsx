@@ -1,24 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { GalleryGrid } from '../components/GalleryGrid';
 import { Lightbox } from '../components/Lightbox';
-import { galleries } from '../data/galleries';
+import { getGalleries, type Gallery } from '../data/galleries';
+
 export default function GalleryCategory() {
-  const {
-    slug
-  } = useParams<{
-    slug: string;
-  }>();
+  const { slug } = useParams<{ slug: string; }>();
   const navigate = useNavigate();
-  const gallery = galleries.find(g => g.slug === slug);
+  const [galleries, setGalleries] = useState<Gallery[]>([]);
+  const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const loadGalleries = async () => {
+      try {
+        const galleryData = await getGalleries();
+        setGalleries(galleryData);
+      } catch (error) {
+        console.error('Error loading galleries:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadGalleries();
+  }, []);
+
+  const gallery = galleries.find(g => g.slug === slug);
+
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
+
+  if (loading) {
+    return (
+      <main className="pt-24 md:pt-32">
+        <section className="container mx-auto px-4 py-12 md:py-16">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="text-xl">Loading gallery...</div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   if (!gallery) {
     navigate('/gallery');
     return null;

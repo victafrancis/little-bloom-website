@@ -1,17 +1,17 @@
 // Utility function to get all images from a gallery folder
-const getGalleryImages = (slug: string): string[] => {
-  const imageModules = import.meta.glob([
-    '/public/img/*/*.{jpg,jpeg,png,webp,gif}',
-    '/public/img/*/*.{JPG,JPEG,PNG,WEBP,GIF}'
-  ], {
-    eager: true,
-    as: 'url'
-  }) as Record<string, string>;
+import { getGalleryImages as getSupabaseGalleryImages, getCoverImageUrl } from '../lib/supabase';
 
-  return Object.keys(imageModules)
-    .filter(path => path.includes(`/${slug}/`))
-    .map(path => imageModules[path])
-    .sort(); // Sort for consistent ordering
+// Cache for gallery images to avoid repeated API calls
+const galleryCache = new Map<string, string[]>();
+
+const getGalleryImages = async (slug: string): Promise<string[]> => {
+  if (galleryCache.has(slug)) {
+    return galleryCache.get(slug)!;
+  }
+
+  const images = await getSupabaseGalleryImages(slug);
+  galleryCache.set(slug, images);
+  return images;
 };
 
 export type Gallery = {
@@ -23,32 +23,40 @@ export type Gallery = {
   images: string[];
 };
 
-export const galleries: Gallery[] = [{
+export const galleryConfigs = [{
   slug: 'bumps-and-beginnings',
   title: 'Bumps & Beginnings',
   subtitle: `Maternity`,
   blurb: "Ready to celebrate? Let’s capture your growing bump and the joy of what’s to come.",
-  cover: '/img/bumps-and-beginnings/bumps1.jpg',
-  images: getGalleryImages('bumps-and-beginnings')
+  coverFilename: '00.jpg'
 }, {
   slug: 'little-blooms',
   title: 'Little Blooms',
   subtitle: `Babies & Kids`,
   blurb: 'Childhood moves fast. Let’s pause time with playful, joy-filled portraits of your little ones as they grow.',
-  cover: '/img/little-blooms/blooms1.jpg',
-  images: getGalleryImages('little-blooms')
+  coverFilename: '00.jpg'
 }, {
   slug: 'love-and-connections',
   title: 'Love & Connections',
   subtitle: `Couples, Families & Friends`,
   blurb: 'Whether it’s a quiet moment with your partner, laughter with your family, or adventures with friends, we’ll capture the bonds that matter most',
-  cover: '/img/love-and-connections/lc1.jpg',
-  images: getGalleryImages('love-and-connections')
+  coverFilename: '00.jpg'
 }, {
   slug: 'personal-portraits',
   title: 'Personal Portraits',
-  subtitle: `Solos`,  
+  subtitle: `Solos`,
   blurb: "From personal branding to just-because sessions, this is all about you.",
-  cover: '/img/personal-portraits/lc1.jpg',
-  images: getGalleryImages('personal-portraits')
+  coverFilename: '00.jpg'
 }];
+
+export const getGalleries = async (): Promise<Gallery[]> => {
+  const galleries = await Promise.all(
+    galleryConfigs.map(async (config) => ({
+      ...config,
+      cover: getCoverImageUrl(config.slug, config.coverFilename),
+      images: await getGalleryImages(config.slug)
+    }))
+  );
+
+  return galleries;
+};
