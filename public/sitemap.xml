@@ -8,7 +8,7 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
-      <image:caption>Little Bloom Photography — Family, Maternity & Newborn Photographer</image:caption>
+      <image:caption>Little Bloom Photography - Family, Maternity &amp; Newborn Photographer</image:caption>
     </image:image>
   </url>
 
@@ -30,62 +30,62 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
-      <image:caption>Session Pricing — Little Bloom Photography</image:caption>
+      <image:caption>Session Pricing - Little Bloom Photography</image:caption>
     </image:image>
   </url>
 
   <url>
     <loc>https://www.littlebloomphotography.com/gallery</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
-      <image:caption>Gallery — Little Bloom Photography</image:caption>
+      <image:caption>Gallery - Little Bloom Photography</image:caption>
     </image:image>
   </url>
 
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/bumps-and-beginnings</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/bumps-and-beginnings/bumps1.jpg</image:loc>
-      <image:caption>Bumps & Beginnings — Maternity</image:caption>
+      <image:caption>Bumps &amp; Beginnings - Maternity</image:caption>
     </image:image>
   </url>
 
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/little-blooms</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/little-blooms/blooms1.jpg</image:loc>
-      <image:caption>Little Blooms — Babies & Kids</image:caption>
+      <image:caption>Little Blooms - Babies &amp; Kids</image:caption>
     </image:image>
   </url>
 
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/love-and-connections</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/love-and-connections/lc1.jpg</image:loc>
-      <image:caption>Love & Connections — Couples & Family</image:caption>
+      <image:caption>Love &amp; Connections - Couples &amp; Family</image:caption>
     </image:image>
   </url>
 
   <url>
     <loc>https://www.littlebloomphotography.com/gallery/personal-portraits</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2025-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/personal-portraits/lc1.jpg</image:loc>
-      <image:caption>Personal Portraits — Solos</image:caption>
+      <image:caption>Personal Portraits - Solos</image:caption>
     </image:image>
   </url>
 
@@ -96,7 +96,7 @@
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/assets/notes/little-bloom-photography-process.png</image:loc>
-      <image:caption>Notes & Guides — Little Bloom Photography</image:caption>
+      <image:caption>Notes &amp; Guides - Little Bloom Photography</image:caption>
     </image:image>
   </url>
 
@@ -129,7 +129,7 @@
     <priority>0.6</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/assets/notes/maternity-photography-celebrate-journey.png</image:loc>
-      <image:caption>Maternity Photography — Celebrate the Journey</image:caption>
+      <image:caption>Maternity Photography - Celebrate the Journey</image:caption>
     </image:image>
   </url>
 
@@ -162,7 +162,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://www.littlebloomphotography.com/img/hero-desktop.jpg</image:loc>
-      <image:caption>Contact — Little Bloom Photography</image:caption>
+      <image:caption>Contact - Little Bloom Photography</image:caption>
     </image:image>
   </url>
 </urlset>
