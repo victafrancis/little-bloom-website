@@ -34,8 +34,9 @@ export default function Home() {
             image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',
             logo: 'https://www.littlebloomphotography.com/assets/logo.png',
             sameAs: [
-              'https://instagram.com/littlebloom.photos',
-              'https://www.facebook.com/people/Little-Bloom-Photography/61581269589318/'
+              'https://www.instagram.com/littlebloom.photos',
+              'https://www.facebook.com/people/Little-Bloom-Photography/61581269589318/',
+              'https://g.page/r/CT9Kr6mwFHDjEAE'
             ],
             address: { '@type':'PostalAddress', addressLocality: 'Barrie', addressRegion: 'ON', addressCountry: 'CA' },
             geo: { '@type': 'GeoCoordinates', latitude: 44.3894, longitude: -79.6903 },
