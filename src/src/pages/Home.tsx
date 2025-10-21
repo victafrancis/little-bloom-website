@@ -28,7 +28,7 @@ export default function Home() {
         jsonLd={[
           {
             '@context': 'https://schema.org',
-            '@type': ['Organization','LocalBusiness','PhotographyStudio'],
+            '@type': ['LocalBusiness','ProfessionalService'],
             name: 'Little Bloom Photography',
             url: 'https://www.littlebloomphotography.com',
             image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',

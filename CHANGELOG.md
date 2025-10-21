@@ -2,6 +2,8 @@
 ## [1.2.1] - 2025-10-21
 - Fixed sitemap issues replacing `em dashes` with `regular dashes`, and replacing `&` to `&amp;`
 - Updated Last modified dates for all galleries where new images were added
+- Removed duplicate SEO `jsonLd` property and updated schema.org business `@type`
+- Added Google ID to `sameAs` in structured data
 ## [1.2.0] - 2025-10-16
 - Migrated all gallery images from local storage to Supabase storage for better performance and reduced repo size
 - Implemented dynamic image loading from Supabase 'albums' bucket with automatic folder discovery
