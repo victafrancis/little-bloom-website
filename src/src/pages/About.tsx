@@ -57,7 +57,7 @@ export default function About() {
                 Working with me feels less like a photoshoot and more like spending time with a friend. I’ll guide you when you need it, but I’ll also step back and let the natural magic happen. My goal is to make the experience stress-free from start to finish.
               </p>
               <p>
-                And when it’s all done? You’ll receive a <b>full</b> gallery of edited, high-resolution photos — no limits, no extra charges for more photos. Because every single memory deserves to be yours.
+                And when it’s all done? You’ll receive a <b>full</b> gallery of edited, high-resolution photos! No limits and no extra charges for more photos. Because every single memory deserves to be yours.
               </p>
             </div>
             <div className="text-center mt-8">

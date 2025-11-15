@@ -29,7 +29,7 @@ export default function Pricing() {
               <ul className="list-disc list-inside text-text/70">
                 <li>Unlimited shots (no cap on the best moments, I am a trigger-happy type of photographer)</li>
                 <li>Time-permitting outfit changes.</li>
-                <li>Full access to <b>ALL</b> edited, high-resolution photos — you’ll receive every great shot, no limits on the number because you deserve them all!</li>
+                <li>Full access to <b>ALL</b> edited, high-resolution photos. You’ll receive every great shot, no limits on the number because you deserve them all!</li>
                 <li>Applicable taxes</li>
               </ul>
             </div>

@@ -100,7 +100,7 @@ export default function Home() {
         ]}
       />
       <main>
-        <h1 className="sr-only">Little Bloom Photography — Family, Maternity, Newborn Photographer in Barrie, Innisfil and across Ontario</h1>
+        <h1 className="sr-only">Little Bloom Photography | Family, Maternity, Newborn Photographer in Barrie, Innisfil and across Ontario</h1>
         <Hero
           headline={meta.home.hero.headline}
           kicker={meta.home.hero.kicker}
