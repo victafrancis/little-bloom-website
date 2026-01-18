@@ -1,4 +1,7 @@
 # Changelog
+## [1.2.2] - 2026-01-18
+- Added Sentry monitoring for proper error logging
+- Added `.clinerules` file and `sentry-rules.md` doc
 ## [1.2.1] - 2025-10-21
 - Fixed sitemap issues replacing `em dashes` with `regular dashes`, and replacing `&` to `&amp;`
 - Updated Last modified dates for all galleries where new images were added

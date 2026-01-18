@@ -1,0 +1,44 @@
+# Little Bloom Photography Website - Code Style Rules
+
+## General
+- Use single quotes for all string literals
+- Use named exports for components and utilities (e.g., `export function Component()`)
+- Prefer const over let, avoid var
+- Use arrow functions for functional components and event handlers
+
+## TypeScript
+- Enable strict type checking
+- Define explicit types for component props using interfaces or type aliases
+- Use type assertions sparingly, prefer proper typing
+- Avoid any type, use unknown or specific types instead
+
+## React/JSX
+- Use multi-line JSX for elements with multiple props or nested children; keep simple elements on one line.
+- Place closing tags on new lines with proper indentation
+- Use descriptive prop names and values
+- Destructure props in function parameters when possible
+
+## Styling
+- Use Tailwind CSS with the project's custom color palette
+- Reference colors by name (e.g., `text-mustard`, `bg-sage`) rather than hex values
+- Use semantic class names when extending Tailwind
+- Group related classes logically in className strings
+
+## File Organization
+- Keep components in src/components/ with .tsx extension
+- Use src/data/ for static data and configuration
+- Place pages in src/pages/ with routing in src/routes/
+- Use src/lib/ for utility functions and external service integrations
+
+## Naming Conventions
+- Use PascalCase for component names
+- Use camelCase for variables, functions, and props
+- Use UPPER_SNAKE_CASE for constants
+- Prefix boolean props with "is" or "has" (e.g., isOpen, hasError)
+
+## Imports
+- Group imports: React first, then third-party libraries, then local imports
+- Prefer named imports over default imports where possible
+
+## Documentation & workflows (Lazy Load)
+* **Sentry/Errors:** Ref `docs/sentry-rules.md` when implementing error handling.

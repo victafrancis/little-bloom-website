@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import * as Sentry from '@sentry/react';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -11,36 +12,55 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export const getGalleryImages = async (slug: string): Promise<string[]> => {
   try {
-    const { data, error } = await supabase.storage
-      .from('albums')
-      .list(slug, {
-        limit: 100,
-        offset: 0
-      });
+    return await Sentry.startSpan(
+      {
+        op: 'http.client',
+        name: `GET /storage/albums/${slug}`,
+      },
+      async (span) => {
+        span.setAttribute('gallery_slug', slug);
 
-    if (error) {
-      console.error('Error fetching gallery images:', error);
-      return [];
-    }
+        const { data, error } = await supabase.storage
+          .from('albums')
+          .list(slug, {
+            limit: 100,
+            offset: 0
+          });
 
-    if (!data) {
-      return [];
-    }
+        if (error) {
+          Sentry.captureException(error, {
+            tags: { gallery_slug: slug, operation: 'list_images' },
+            extra: { slug }
+          });
+          return [];
+        }
 
-    // Filter to get only image files (not folders)
-    const imageFiles = data
-      .filter(item => /\.(jpg|jpeg|png|webp|gif)$/i.test(item.name))
-      .sort((a, b) => a.name.localeCompare(b.name));
+        if (!data) {
+          return [];
+        }
 
-    return imageFiles.map(file => {
-      const { data: urlData } = supabase.storage
-        .from('albums')
-        .getPublicUrl(`${slug}/${file.name}`);
+        // Filter to get only image files (not folders)
+        const imageFiles = data
+          .filter(item => /\.(jpg|jpeg|png|webp|gif)$/i.test(item.name))
+          .sort((a, b) => a.name.localeCompare(b.name));
 
-      return urlData.publicUrl;
-    });
+        const urls = imageFiles.map(file => {
+          const { data: urlData } = supabase.storage
+            .from('albums')
+            .getPublicUrl(`${slug}/${file.name}`);
+
+          return urlData.publicUrl;
+        });
+
+        span.setAttribute('image_count', imageFiles.length);
+        return urls;
+      }
+    );
   } catch (error) {
-    console.error('Error in getGalleryImages:', error);
+    Sentry.captureException(error, {
+      tags: { gallery_slug: slug, operation: 'get_gallery_images' },
+      extra: { slug }
+    });
     return [];
   }
 };
