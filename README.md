@@ -9,10 +9,11 @@ This is the website for Little Bloom Photography, capturing authentic moments fo
 ## Getting Started
 
 1. Install dependencies: `npm install`
-2. Start development server: `npm run dev`
-3. Build for production: `npm run build`
-4. Preview production build: `npm run preview`
-5. Lint code: `npm run lint`
+2. Set up environment variables: Copy `.env.example` to `.env` and add missing env variables.
+3. Start development server: `npm run dev`
+4. Build for production: `npm run build`
+5. Preview production build: `npm run preview`
+6. Lint code: `npm run lint`
 
 ## Tech Stack
 
