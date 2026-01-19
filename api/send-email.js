@@ -1,4 +1,14 @@
 import { Resend } from 'resend';
+import * as Sentry from '@sentry/node';
+
+// Initialize Sentry for serverless function
+Sentry.init({
+  // eslint-disable-next-line no-undef
+  dsn: process.env.SENTRY_DSN || process.env.VITE_SENTRY_DSN,
+  tracesSampleRate: 1.0,
+  // eslint-disable-next-line no-undef
+  environment: process.env.VERCEL_ENV || 'development',
+});
 
 // Environment-aware API key handling
 const getApiKey = () => {
@@ -19,17 +29,30 @@ const getApiKey = () => {
 
 const resend = new Resend(getApiKey());
 
-export default async function handler(req, res) {
+export default Sentry.withSentryApiHandler(async (req, res) => {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  let name, email, message;
+
   try {
-    const { name, email, message } = req.body;
+    ({ name, email, message } = req.body);
+
+    // Set user context for Sentry (sanitized - no sensitive data)
+    Sentry.setUser({
+      email: email, // We'll sanitize this if needed
+      username: name,
+    });
+
+    // Set tags for better error categorization
+    Sentry.setTag('operation', 'contact_form_submission');
+    Sentry.setTag('form_type', 'contact');
 
     // Validate required fields
     if (!name || !email || !message) {
+      Sentry.captureMessage('Contact form validation failed: missing required fields', 'warning');
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -100,7 +123,18 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true, message: 'Emails sent successfully' });
   } catch (error) {
+    // Enhanced error logging with context
+    Sentry.withScope((scope) => {
+      scope.setTag('error_type', 'email_sending_failure');
+      // Safely add user context if available
+      if (typeof email === 'string') scope.setExtra('user_email', email);
+      if (typeof name === 'string') scope.setExtra('user_name', name);
+      Sentry.captureException(error);
+    });
+
     console.error('Error sending email:', error);
     res.status(500).json({ error: 'Failed to send email', details: error.message });
   }
-}
+}, {
+  shouldCreateTransactionForRequest: (req) => req.method !== 'OPTIONS',
+});

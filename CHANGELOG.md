@@ -1,4 +1,8 @@
 # Changelog
+## [1.2.3] - 2026-01-19
+- Ran `npm audit fix` to fix critical issues
+- Fixed project architecture by removing nested `src` folders
+- Added Sentry monitoring for email contact form submission errors
 ## [1.2.2] - 2026-01-18
 - Added Sentry monitoring for proper error logging
 - Added `.clinerules` file and `sentry-rules.md` doc

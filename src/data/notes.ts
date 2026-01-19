@@ -1,7 +1,7 @@
 // Utility function to get all notes from the notes folder
 const getNotes = (): any[] => {
   const noteModules = import.meta.glob([
-    '/src/src/data/notes/*.html'
+    '/src/data/notes/*.html'
   ], {
     eager: true,
     query: '?raw',

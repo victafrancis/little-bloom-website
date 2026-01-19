@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Sentry from '@sentry/react';
+import SpeedInsights from '@vercel/speed-insights';
 import './index.css';
 import { render } from 'react-dom';
 import { App } from './App';
@@ -13,3 +14,5 @@ Sentry.init({
 });
 
 render(<App />, document.getElementById('root'));
+
+SpeedInsights.injectSpeedInsights();
