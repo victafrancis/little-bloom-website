@@ -49,7 +49,7 @@ export function ContactForm() {
       setSubmitted(true);
     } catch (err) {
       console.error('Error sending email:', err);
-      setError(err instanceof Error ? err.message : 'Sorry, there was an error sending your message. Please try again or contact us directly at hello@littlebloomphotography.com');
+      setError(err instanceof Error ? err.message : 'Sorry, there was an error sending your message. The dev has just been notified of this issue. In the meantime, please contact us directly at hello@littlebloomphotography.com or via Instagram: https://www.instagram.com/littlebloom.photos');
     } finally {
       setIsLoading(false);
     }
