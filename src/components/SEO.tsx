@@ -30,7 +30,7 @@ export function SEO({
     ? image.startsWith('http')
       ? image
       : `${BASE}${image}`
-    : `${BASE}/img/social-default.jpg`;
+    : `${BASE}/img/social-default.webp`;
 
   const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 

@@ -31,7 +31,7 @@ export default function Home() {
             '@type': ['LocalBusiness','ProfessionalService'],
             name: 'Little Bloom Photography',
             url: 'https://www.littlebloomphotography.com',
-            image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',
+            image: 'https://www.littlebloomphotography.com/img/hero-desktop.webp',
             logo: 'https://www.littlebloomphotography.com/assets/logo.png',
             sameAs: [
               'https://www.instagram.com/littlebloom.photos',
