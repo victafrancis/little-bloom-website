@@ -6,12 +6,17 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @layer base {
+  :root {
+    color-scheme: light;
+  }
   html {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
+    color-scheme: light;
   }
   body {
     @apply font-body text-text bg-white;
+    background-color: #ffffff !important;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
