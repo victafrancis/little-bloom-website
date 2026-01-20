@@ -23,7 +23,7 @@ export default function Home() {
         title={meta.home.title}
         description={meta.home.description}
         keywords={meta.home.keywords}
-        image={meta.home.hero.images.desktop}
+        image={meta.home.hero.images.desktop.replace('.webp', '.jpg')}
         type="website"
         jsonLd={[
           {

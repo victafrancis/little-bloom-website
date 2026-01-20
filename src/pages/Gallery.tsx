@@ -27,7 +27,7 @@ export default function Gallery() {
         title={meta.gallery.title}
         description={meta.gallery.description}
         keywords={meta.gallery.keywords}
-        image="/img/hero-desktop.jpg"
+        image="/img/hero-desktop.webp"
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

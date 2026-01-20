@@ -27,7 +27,7 @@ export default function Note() {
         title={`${note.title} | Notes | Little Bloom Photography`}
         description={note.excerpt}
         keywords="photography tips Ontario, family photography tips, maternity photography guide, newborn photography advice"
-        image="/img/hero-desktop.jpg"
+        image="/img/hero-desktop.webp"
         type="article"
         jsonLd={[
           {
@@ -36,7 +36,7 @@ export default function Note() {
             headline: note.title,
             description: note.excerpt,
             mainEntityOfPage: `https://www.littlebloomphotography.com/notes/${note.slug}`,
-            image: 'https://www.littlebloomphotography.com/img/hero-desktop.jpg',
+            image: 'https://www.littlebloomphotography.com/img/hero-desktop.webp',
             author: { '@type': 'Organization', name: 'Little Bloom Photography' },
             publisher: { '@type': 'Organization', name: 'Little Bloom Photography', logo: { '@type': 'ImageObject', url: 'https://www.littlebloomphotography.com/assets/logo.png' } }
           },
