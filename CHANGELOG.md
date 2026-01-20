@@ -1,4 +1,8 @@
 # Changelog
+## [1.2.4] - 2026-01-20
+- Fixed issue where dark mode is being forced on the site by cetain mobile browsers like DuckDuckGo
+- Updated hero images from jpg to webp for faster loading
+- Optimized font-loading and pre-loaded hero image for faster loading
 ## [1.2.3] - 2026-01-19
 - Ran `npm audit fix` to fix critical issues
 - Fixed project architecture by removing nested `src` folders

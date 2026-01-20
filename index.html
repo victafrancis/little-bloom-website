@@ -14,8 +14,8 @@
     <!-- Default Open Graph / Twitter (overridden per-page by React) -->
     <meta property="og:site_name" content="Little Bloom Photography" />
     <meta property="og:locale" content="en_CA" />
-    <meta property="og:image" content="https://www.littlebloomphotography.com/img/hero-desktop.jpg" />
-    <meta name="twitter:image" content="https://www.littlebloomphotography.com/img/hero-desktop.jpg" />
+    <meta property="og:image" content="https://www.littlebloomphotography.com/img/hero-desktop.webp" />
+    <meta name="twitter:image" content="https://www.littlebloomphotography.com/img/hero-desktop.webp" />
     <title>Little Bloom Photography | Little moments, big memories.</title>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7CJ0TSLLS"></script>
@@ -25,6 +25,9 @@
       gtag('js', new Date());
       gtag('config', 'G-J7CJ0TSLLS');
     </script>
+    <!-- Preload critical resources for better FCP -->
+    <link rel="preload" as="image" href="/img/hero-desktop.webp" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="/img/hero-mobile.webp" media="(max-width: 767px)">
   </head>
   <body>
     <div id="root"></div>

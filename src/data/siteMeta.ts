@@ -22,8 +22,8 @@ export const meta = {
         to: '/contact'
       },
       images: {
-        desktop: '/img/hero-desktop.jpg',
-        mobile: '/img/hero-mobile.jpg'
+        desktop: '/img/hero-desktop.webp',
+        mobile: '/img/hero-mobile.webp'
       }
     },
     quickLinks: [{

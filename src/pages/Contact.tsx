@@ -8,7 +8,7 @@ export default function Contact() {
         title={meta.contact.title}
         description={meta.contact.description}
         keywords={meta.contact.keywords}
-        image="/img/hero-desktop.jpg"
+        image="/img/hero-desktop.webp"
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

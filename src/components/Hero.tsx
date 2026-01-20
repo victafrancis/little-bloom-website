@@ -30,12 +30,12 @@ export function Hero({
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  const backgroundImage = isDesktop ? backgroundImageDesktop : backgroundImageMobile;
+  const heroImage = isDesktop ? backgroundImageDesktop : backgroundImageMobile;
 
   return <section
     className="relative min-h-[80vh] flex items-center justify-center"
     style={{
-      backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${heroImage})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center'
     }}

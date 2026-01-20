@@ -11,7 +11,7 @@ export default function Notes() {
         title={meta.notes.list.title}
         description={meta.notes.list.description}
         keywords={meta.notes.keywords}
-        image="/img/hero-desktop.jpg"
+        image="/img/hero-desktop.webp"
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

@@ -10,7 +10,7 @@ export default function Pricing() {
         title={meta.pricing.title}
         description={meta.pricing.description}
         keywords={meta.pricing.keywords}
-        image="/img/hero-desktop.jpg"
+        image="/img/hero-desktop.webp"
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
