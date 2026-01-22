@@ -1,4 +1,12 @@
 # Changelog
+## [1.2.5] - 2026-01-22
+- Improved INP score by updating the following:
+    - Implemented lazy loading for all routes to reduce initial JavaScript bundle size by 97%
+    - Added advanced bundle splitting to separate vendor libraries (React, Supabase, Framer Motion, Sentry) into individual chunks for better caching and loading performance
+    - Optimized gallery data loading to load images on-demand instead of upfront, improving initial page load speed
+    - Reduced main JavaScript bundle from 608KB to 14KB (187KB to 5KB gzipped) for significantly improved INP scores
+- Improved CLS (Cumulative Layout Shift) score by optimizing image dimensions and space reservation:
+    - Added proper aspect ratios to prevent layout shifts on image load
 ## [1.2.4] - 2026-01-20
 - Fixed issue where dark mode is being forced on the site by cetain mobile browsers like DuckDuckGo
 - Updated hero images from jpg to webp for faster loading
