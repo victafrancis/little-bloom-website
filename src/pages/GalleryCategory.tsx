@@ -14,6 +14,8 @@ export default function GalleryCategory() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const gallery = galleries.find(g => g.slug === slug);
+
   useEffect(() => {
     const loadGalleries = async () => {
       try {
@@ -29,7 +31,23 @@ export default function GalleryCategory() {
     loadGalleries();
   }, []);
 
-  const gallery = galleries.find(g => g.slug === slug);
+  // Load images only when gallery is found
+  useEffect(() => {
+    if (gallery && gallery.images.length === 0) {
+      const loadImages = async () => {
+        try {
+          const { getGalleryImages } = await import('../lib/supabase');
+          const images = await getGalleryImages(gallery.slug);
+          setGalleries(prev => prev.map(g =>
+            g.slug === gallery.slug ? { ...g, images } : g
+          ));
+        } catch (error) {
+          console.error('Error loading gallery images:', error);
+        }
+      };
+      loadImages();
+    }
+  }, [gallery]);
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);

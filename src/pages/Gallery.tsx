@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { meta } from '../data/siteMeta';
-import { getGalleries, type Gallery } from '../data/galleries';
+import { galleryConfigs, type Gallery } from '../data/galleries';
+import { getCoverImageUrl } from '../lib/supabase';
 
 export default function Gallery() {
   const [galleries, setGalleries] = useState<Gallery[]>([]);
@@ -11,7 +12,12 @@ export default function Gallery() {
   useEffect(() => {
     const loadGalleries = async () => {
       try {
-        const galleryData = await getGalleries();
+        // Load gallery configs synchronously, images lazily
+        const galleryData = galleryConfigs.map(config => ({
+          ...config,
+          cover: getCoverImageUrl(config.slug, config.coverFilename),
+          images: [] // Load images only when needed
+        }));
         setGalleries(galleryData);
       } catch (error) {
         console.error('Error loading galleries:', error);
