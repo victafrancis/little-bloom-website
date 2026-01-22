@@ -122,7 +122,7 @@ export default function Home() {
                 <img
                   src="/assets/butterfly.png"
                   alt="Decorative image"
-                  className="w-20 h-20 object-cover"
+                  className="w-20 h-20 aspect-square object-cover"
                 />
               </div>
             </div>
