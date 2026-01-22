@@ -8,7 +8,7 @@ export function Footer() {
     <img
       src="/assets/flowers.png"
       alt="Decorative image"
-      className="w-max max-h-48 aspect-[16/9] mx-auto"
+      className="w-max max-h-48 aspect-[557/192] mx-auto"
     />
     <footer className="bg-cream py-8">
       <div className="container mx-auto px-4">
