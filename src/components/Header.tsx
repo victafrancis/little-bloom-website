@@ -79,7 +79,7 @@ export function Header() {
           <img
             src="/assets/butterflies.png"
             alt="Decorative image"
-            className="w-64 max-h-48 object-cover mx-auto"
+            className="w-64 max-h-48 aspect-[16/9] object-cover mx-auto"
           />
         </div>
       </div>

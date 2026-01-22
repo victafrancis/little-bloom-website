@@ -16,7 +16,7 @@ export default function About() {
             <h1 className="text-center text-3xl md:text-4xl font-light mb-8">About Me</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mb-4">
               <div>
-                <img src="/img/about.jpg" alt="Photographer portrait" className="rounded-lg w-full" />
+                <img src="/img/about.jpg" alt="Photographer portrait" className="rounded-lg w-full aspect-[3/4] object-cover" />
               </div>
               <div>
                 <div className="py-6 px-4 rounded-lg">
