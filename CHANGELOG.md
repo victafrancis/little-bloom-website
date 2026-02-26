@@ -1,4 +1,8 @@
 # Changelog
+## [1.2.6] - 2026-02-26
+- Fixed contact form API stability by adding a safe fallback when [`Sentry.withSentryApiHandler`](api/send-email.js:146) is unavailable in the current [`@sentry/node`](package.json:13) runtime.
+- Improved contact form error handling in [`handleSubmit`](src/components/ContactForm.tsx:20) to safely parse non-JSON API responses and avoid UI crashes like `Unexpected token ... is not valid JSON`.
+- Added temporary diagnostics for API response metadata and server module initialization to speed up email form and Sentry troubleshooting.
 ## [1.2.5] - 2026-01-22
 - Improved INP score by updating the following:
     - Implemented lazy loading for all routes to reduce initial JavaScript bundle size by 97%

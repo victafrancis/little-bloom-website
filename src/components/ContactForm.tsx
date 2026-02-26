@@ -40,7 +40,27 @@ export function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      console.log('[ContactForm] /api/send-email response metadata', {
+        status: response.status,
+        ok: response.ok,
+        contentType: response.headers.get('content-type'),
+      });
+
+      const responseText = await response.text();
+      let result: { error?: string; message?: string } = {};
+
+      try {
+        result = responseText ? JSON.parse(responseText) : {};
+      } catch (parseError) {
+        console.error('[ContactForm] Failed to parse API response as JSON', {
+          parseError,
+          responseTextPreview: responseText.slice(0, 200),
+        });
+
+        if (!response.ok) {
+          throw new Error(responseText || 'Failed to send email');
+        }
+      }
 
       if (!response.ok) {
         throw new Error(result.error || 'Failed to send email');

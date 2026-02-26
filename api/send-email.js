@@ -29,7 +29,13 @@ const getApiKey = () => {
 
 const resend = new Resend(getApiKey());
 
-export default Sentry.withSentryApiHandler(async (req, res) => {
+console.log('[api/send-email] module init diagnostics', {
+  hasWithSentryApiHandler: typeof Sentry.withSentryApiHandler,
+  hasCaptureException: typeof Sentry.captureException,
+  hasInit: typeof Sentry.init,
+});
+
+const contactFormHandler = async (req, res) => {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -135,6 +141,16 @@ export default Sentry.withSentryApiHandler(async (req, res) => {
     console.error('Error sending email:', error);
     res.status(500).json({ error: 'Failed to send email', details: error.message });
   }
-}, {
-  shouldCreateTransactionForRequest: (req) => req.method !== 'OPTIONS',
-});
+};
+
+const supportsApiWrapper = typeof Sentry.withSentryApiHandler === 'function';
+
+if (!supportsApiWrapper) {
+  console.warn('[api/send-email] Sentry.withSentryApiHandler is unavailable. Falling back to direct handler export.');
+}
+
+export default supportsApiWrapper
+  ? Sentry.withSentryApiHandler(contactFormHandler, {
+      shouldCreateTransactionForRequest: (req) => req.method !== 'OPTIONS',
+    })
+  : contactFormHandler;
