@@ -1,4 +1,10 @@
 # Changelog
+## [1.2.7] - 2026-03-11
+- Added client-side chunk/module load recovery in [`safelyReloadAfterChunkError()`](src/index.tsx:38) to auto-refresh once when browsers hit stale hashed assets (for errors like `Importing a module script failed`).
+- Added targeted Sentry diagnostics for chunk-load failures in [`Sentry.captureMessage()`](src/index.tsx:48) with request context (`pathname`, `userAgent`, source event type, and reload-attempt state).
+- Added Vercel cache headers in [`vercel.json`](vercel.json) so [`index.html`](index.html) is not cached while hashed files under [`/assets`](vercel.json:12) stay long-lived immutable, reducing stale HTML → missing-chunk mismatches after deploys.
+- Removed server-only/manual chunk entries from [`manualChunks`](vite.config.ts:10): dropped [`@sentry/node`](package.json:13) from browser vendor chunking and removed unused `vendor-resend` browser chunk to reduce noisy build externals and avoid empty client chunks.
+
 ## [1.2.6] - 2026-02-26
 - Fixed contact form API stability by adding a safe fallback when [`Sentry.withSentryApiHandler`](api/send-email.js:146) is unavailable in the current [`@sentry/node`](package.json:13) runtime.
 - Improved contact form error handling in [`handleSubmit`](src/components/ContactForm.tsx:20) to safely parse non-JSON API responses and avoid UI crashes like `Unexpected token ... is not valid JSON`.
