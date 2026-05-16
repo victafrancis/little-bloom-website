@@ -19,3 +19,11 @@ jobs:
           echo "✅ Supabase ping OK"
         env:
           PING_URL: ${{ secrets.PING_URL }}
+
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/keepalive-workflow@v2
