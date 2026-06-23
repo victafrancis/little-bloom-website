@@ -9,8 +9,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           // Separate vendor libraries
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-router': ['react-router-dom'],
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-motion': ['framer-motion'],
           'vendor-icons': ['lucide-react'],
           'vendor-supabase': ['@supabase/supabase-js'],
