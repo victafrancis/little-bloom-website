@@ -1,4 +1,8 @@
 # Changelog
+
+## [1.2.8] - 2026-07-11
+- Updated content on pricing page
+
 ## [1.2.7] - 2026-03-11
 - Added client-side chunk/module load recovery in [`safelyReloadAfterChunkError()`](src/index.tsx:38) to auto-refresh once when browsers hit stale hashed assets (for errors like `Importing a module script failed`).
 - Added targeted Sentry diagnostics for chunk-load failures in [`Sentry.captureMessage()`](src/index.tsx:48) with request context (`pathname`, `userAgent`, source event type, and reload-attempt state).
