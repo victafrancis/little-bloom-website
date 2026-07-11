@@ -51,17 +51,8 @@ export default function Pricing() {
             </div>
             
             <div className="p-8 rounded-xl mb-8 border border-solid border-gray-300">
-              <h2 className="text-xl font-display mb-4">Optional Add-ons</h2>
+              <h2 className="text-xl font-display mb-4">Optional Add-on</h2>
               <div className="space-y-6">
-                <div>
-                  <h3 className="font-medium mb-2">
-                    Newborn Session (Bumps & Beginnings clients only)
-                  </h3>
-                  <p className="text-text/70">
-                    +$150 — a 1-hour session dedicated to your little one, to be scheduled once they arrive
-                    (50% discount off the regular price.)
-                  </p>
-                </div>
                 <div>
                   <h3 className="font-medium mb-2">
                     Studio Access
@@ -82,7 +73,7 @@ export default function Pricing() {
                     <h3 className="text-lg md:text-xl font-display">Service Area</h3>
                   </div>
                   <p className="text-text/70 text-sm md:text-base leading-relaxed">
-                    Currently servicing <b>Barrie</b> and <b>Innisfil</b> locations. Any other location will incur transportation fees, depending on the location and service.
+                    Currently servicing <b>Barrie</b> location. Any other location will incur transportation fees, depending on the location and service.
                   </p>
                 </div>
               </div>
