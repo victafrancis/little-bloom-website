@@ -65,7 +65,14 @@ function makeButterflies(): Butterfly[] {
  * butterflies for prefers-reduced-motion, and pauses whenever it is
  * offscreen or the tab is hidden.
  */
-export function ButterfliesAnimation({ className = '' }: { className?: string }) {
+export function ButterfliesAnimation({
+  className = '',
+  spriteScale = 1,
+}: {
+  className?: string;
+  /** Multiplier on the width-proportional sprite size, for small containers */
+  spriteScale?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -111,7 +118,7 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
       return { x, y };
     };
 
-    const spriteSize = (b: Butterfly) => b.size * Math.min(1, width / SIZE_REFERENCE_WIDTH);
+    const spriteSize = (b: Butterfly) => b.size * Math.min(1, width / SIZE_REFERENCE_WIDTH) * spriteScale;
 
     const drawButterfly = (b: Butterfly, t: number) => {
       const { x, y } = pathPoint(b, t);
@@ -206,7 +213,7 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
       intersectionObserver.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, []);
+  }, [spriteScale]);
 
   return (
     <canvas

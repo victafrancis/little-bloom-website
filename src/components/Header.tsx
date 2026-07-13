@@ -77,7 +77,7 @@ export function Header() {
                 </Link>)}
             </nav>
           </div>
-          <ButterfliesAnimation className="w-64 aspect-[16/9] mx-auto" />
+          <ButterfliesAnimation spriteScale={1.9} className="w-full max-w-[320px] aspect-[4/3] mx-auto" />
         </div>
       </div>
     </header>;
