@@ -2,14 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { InstagramIcon, FacebookIcon, MailIcon } from 'lucide-react';
 import { site } from '../data/siteMeta';
+import { FooterFlowers } from './FooterFlowers';
 export function Footer() {
   const currentYear = new Date().getFullYear();
   return <>
-    <img
-      src="/assets/flowers.png"
-      alt="Decorative image"
-      className="w-max max-h-48 aspect-[557/192] mx-auto"
-    />
+    <FooterFlowers className="w-max max-h-48 aspect-[557/192] mx-auto" />
     <footer className="bg-cream py-8">
       <div className="container mx-auto px-4">
         <p className="border-b border-text/20 pb-6 font-light italic text-center text-xs md:text-base">
