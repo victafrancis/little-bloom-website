@@ -32,8 +32,12 @@ type Butterfly = {
 // Golden fairy dust palette, anchored on the site's mustard (#CCA42A)
 const DUST_COLORS = ['#CCA42A', '#DDBB4E', '#EDD684', '#F9EDBB'];
 
-const MAX_PARTICLES = 150;
+// Trail sparkles stay within this budget; explosions may use the full cap
+const TRAIL_PARTICLE_LIMIT = 150;
+const MAX_PARTICLES = 420;
 
+// Both x sinusoids start at a -sin/+sin extreme (phase ∓π/2) so at t=0 the
+// butterflies sit at opposite ends of the canvas and drift inward from there.
 function makeButterflies(): Butterfly[] {
   return [
     {
@@ -42,10 +46,10 @@ function makeButterflies(): Butterfly[] {
       spanX: 0.26,
       spanY: 0.3,
       freq: [0.19, 0.43, 0.16, 0.37],
-      phase: [0.2, 1.7, 2.4, 0.8],
+      phase: [-Math.PI / 2, -Math.PI / 2, 2.4, 0.8],
       flapSpeed: 7.2,
       size: 96,
-      facing: -1,
+      facing: 1,
       prevX: 0,
       prevY: 0,
     },
@@ -55,20 +59,29 @@ function makeButterflies(): Butterfly[] {
       spanX: 0.26,
       spanY: 0.28,
       freq: [0.16, 0.36, 0.22, 0.29],
-      phase: [3.4, 0.4, 5.2, 2.9],
+      phase: [Math.PI / 2, Math.PI / 2, 5.2, 2.9],
       flapSpeed: 6.1,
       size: 84,
-      facing: 1,
+      facing: -1,
       prevX: 0,
       prevY: 0,
     },
   ];
 }
 
+function randomFairyColor() {
+  const hue = Math.floor(Math.random() * 360);
+  const sat = 70 + Math.floor(Math.random() * 30);
+  const light = 55 + Math.floor(Math.random() * 20);
+  return `hsl(${hue}, ${sat}%, ${light}%)`;
+}
+
 /**
- * Two of the brand's line-art butterflies fluttering along gentle looping
- * paths while sprinkling golden fairy dust. Drawn on a transparent canvas so
- * it blends into whatever background it sits on. Falls back to the static
+ * Two of the brand's line-art butterflies start at opposite ends and flutter
+ * along gentle looping paths while sprinkling golden fairy dust. Pressing a
+ * butterfly sets off an explosion of randomly colored dust (a tap nearby
+ * gives a smaller burst). Drawn on a transparent canvas so it blends into
+ * whatever background it sits on. Falls back to the static
  * butterflies when the visitor prefers reduced motion, and pauses whenever
  * it is offscreen or the tab is hidden.
  */
@@ -96,6 +109,10 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
     let running = false;
     let inView = true;
     let lastTime = 0;
+    // Accumulated animation time: only advances while frames actually render,
+    // so the butterflies hold their opposite-ends starting pose until the
+    // section first scrolls into view.
+    let animTime = 0;
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -143,8 +160,27 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
       return { x, y: y + bob };
     };
 
+    const explode = (x: number, y: number, count: number) => {
+      for (let i = 0; i < count && particles.length < MAX_PARTICLES; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 30 + Math.random() * 160;
+        particles.push({
+          x: x + (Math.random() - 0.5) * 8,
+          y: y + (Math.random() - 0.5) * 8,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 25,
+          life: 0,
+          maxLife: 0.7 + Math.random() * 1.2,
+          size: 1.2 + Math.random() * 2.6,
+          color: randomFairyColor(),
+          twinkle: Math.random() * Math.PI * 2,
+          star: Math.random() < 0.35,
+        });
+      }
+    };
+
     const emitDust = (x: number, y: number, facing: number) => {
-      if (particles.length >= MAX_PARTICLES) return;
+      if (particles.length >= TRAIL_PARTICLE_LIMIT) return;
       // Sprinkle from just behind and below the body
       particles.push({
         x: x - facing * (8 + Math.random() * 14),
@@ -169,6 +205,9 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
           continue;
         }
         p.vy += 14 * dt; // light gravity so the dust drifts down
+        const drag = Math.max(0, 1 - 1.4 * dt); // lets explosions bloom, then float
+        p.vx *= drag;
+        p.vy *= drag;
         p.x += p.vx * dt;
         p.y += p.vy * dt;
 
@@ -179,7 +218,7 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
         ctx.save();
         ctx.globalAlpha = alpha;
         ctx.fillStyle = p.color;
-        ctx.shadowColor = '#E9CF6B';
+        ctx.shadowColor = p.color;
         ctx.shadowBlur = p.size * 3;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * fade + 0.4, 0, Math.PI * 2);
@@ -203,9 +242,10 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
     const frame = (now: number) => {
       rafId = 0;
       if (!running) return;
-      const t = now / 1000;
-      const dt = Math.min(0.05, lastTime ? t - lastTime : 0.016);
-      lastTime = t;
+      const dt = Math.min(0.05, lastTime ? (now - lastTime) / 1000 : 0.016);
+      lastTime = now;
+      animTime += dt;
+      const t = animTime;
 
       ctx.clearRect(0, 0, width, height);
       drawDust(dt, t);
@@ -258,6 +298,32 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
     const onVisibility = () => updateRunning();
     document.addEventListener('visibilitychange', onVisibility);
 
+    const hitButterfly = (x: number, y: number) =>
+      butterflies.find((b) => Math.hypot(x - b.prevX, y - b.prevY) < Math.max(44, b.size * 0.65));
+
+    const pointerPos = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (reducedMotion || !running) return;
+      const { x, y } = pointerPos(e);
+      const b = hitButterfly(x, y);
+      // Pressing a butterfly sets off a big burst from it; pressing the air
+      // around them still rewards the tap with a smaller sparkle pop.
+      if (b) explode(b.prevX, b.prevY, 90);
+      else explode(x, y, 28);
+    };
+    canvas.addEventListener('pointerdown', onPointerDown);
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (reducedMotion || !running) return;
+      const { x, y } = pointerPos(e);
+      canvas.style.cursor = hitButterfly(x, y) ? 'pointer' : 'default';
+    };
+    canvas.addEventListener('pointermove', onPointerMove);
+
     if (!reducedMotion) {
       if (sprite.complete && sprite.naturalWidth > 0) updateRunning();
       else sprite.addEventListener('load', updateRunning, { once: true });
@@ -269,6 +335,8 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
+      canvas.removeEventListener('pointerdown', onPointerDown);
+      canvas.removeEventListener('pointermove', onPointerMove);
     };
   }, []);
 
@@ -276,7 +344,7 @@ export function ButterfliesAnimation({ className = '' }: { className?: string })
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className={`pointer-events-none select-none ${className}`}
+      className={`select-none ${className}`}
     />
   );
 }
