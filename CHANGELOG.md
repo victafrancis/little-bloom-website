@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.0] - 2026-07-13
+- Added animated butterflies in [`ButterfliesAnimation`](src/components/ButterfliesAnimation.tsx): the brand's line-art butterflies flutter along gentle looping paths on the Home page and in the mobile hamburger menu, starting at 25% and 75% of the canvas facing each other
+- Added living footer in [`FooterFlowers`](src/components/FooterFlowers.tsx): the footer flowers sway in a travelling wind wave with gusts (stems rooted, tops swaying) while a small bee periodically flies in, lands on a random flower head, rides its sway, and leaves out the other side
+- Animations are canvas-based with transparent backgrounds (no GIFs), scale responsively to viewport width, pause when offscreen or the tab is hidden, and fall back to the original static artwork for users with reduced motion enabled
+
 ## [1.2.8] - 2026-07-11
 - Updated content on pricing page
 

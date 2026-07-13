@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { Hero } from '../components/Hero';
 import { CTABand } from '../components/CTABand';
+import { ButterfliesAnimation } from '../components/ButterfliesAnimation';
 import { ArrowRightIcon, MapPin } from 'lucide-react';
 import { meta } from '../data/siteMeta';
 
@@ -118,12 +119,8 @@ export default function Home() {
               <p className="text-text/60 text-base lg:text-lg leading-relaxed md:leading-normal">
                 Motherhood showed me how quickly the little things pass. One day it’s baby giggles and cuddles, the next it’s new milestones. <br />I want to hold onto those moments, and help you do the same with photos that feel real and natural.
               </p>
-              <div className="flex justify-center pt-8">
-                <img
-                  src="/assets/butterfly.png"
-                  alt="Decorative image"
-                  className="w-20 h-20 aspect-square object-cover"
-                />
+              <div className="pt-6">
+                <ButterfliesAnimation className="w-full h-48 md:h-56" />
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { site } from '../data/siteMeta';
+import { ButterfliesAnimation } from './ButterfliesAnimation';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,11 +77,7 @@ export function Header() {
                 </Link>)}
             </nav>
           </div>
-          <img
-            src="/assets/butterflies.png"
-            alt="Decorative image"
-            className="w-64 max-h-48 aspect-[16/9] object-cover mx-auto"
-          />
+          <ButterfliesAnimation spriteScale={1.9} className="w-full max-w-[320px] aspect-[4/3] mx-auto" />
         </div>
       </div>
     </header>;
