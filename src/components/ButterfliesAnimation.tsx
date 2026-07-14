@@ -141,7 +141,11 @@ export function ButterfliesAnimation({
       ctx.rotate(tilt);
       // The sprite faces left; mirror it when flying right
       ctx.scale(b.facing === 1 ? -flap : flap, 1);
-      ctx.drawImage(sprite, -size / 2, -size / 2, size, size);
+      // Guard against the sprite being unavailable/broken: drawImage throws an
+      // InvalidStateError on a broken HTMLImageElement.
+      if (sprite.complete && sprite.naturalWidth > 0) {
+        ctx.drawImage(sprite, -size / 2, -size / 2, size, size);
+      }
       ctx.restore();
     };
 
@@ -175,7 +179,12 @@ export function ButterfliesAnimation({
     };
 
     const updateRunning = () => {
-      const shouldRun = !reducedMotion && inView && document.visibilityState === 'visible';
+      const shouldRun =
+        !reducedMotion &&
+        inView &&
+        document.visibilityState === 'visible' &&
+        sprite.complete &&
+        sprite.naturalWidth > 0;
       if (shouldRun && !running) {
         running = true;
         lastTime = 0;
