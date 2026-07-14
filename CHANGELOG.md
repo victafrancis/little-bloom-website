@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.1] - 2026-07-14
+- Fixed a bug in the butterfly sprite animation where an unhandled `InvalidStateError` could be thrown (and reported to Sentry) if the sprite image failed to load. Added a guard so the animation only draws once the sprite has successfully loaded, preventing `drawImage` from running on a broken image.
+
 ## [1.3.0] - 2026-07-13
 - Added animated butterflies in [`ButterfliesAnimation`](src/components/ButterfliesAnimation.tsx): the brand's line-art butterflies flutter along gentle looping paths on the Home page and in the mobile hamburger menu, starting at 25% and 75% of the canvas facing each other
 - Added living footer in [`FooterFlowers`](src/components/FooterFlowers.tsx): the footer flowers sway in a travelling wind wave with gusts (stems rooted, tops swaying) while a small bee periodically flies in, lands on a random flower head, rides its sway, and leaves out the other side
