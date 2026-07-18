@@ -1,17 +1,20 @@
-import React, { useEffect, Suspense, lazy } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-// Lazy-loaded Pages
-const Home = lazy(() => import('../pages/Home'));
-const About = lazy(() => import('../pages/About'));
-const FAQ = lazy(() => import('../pages/FAQ'));
-const Pricing = lazy(() => import('../pages/Pricing'));
-const Gallery = lazy(() => import('../pages/Gallery'));
-const GalleryCategory = lazy(() => import('../pages/GalleryCategory'));
-const Notes = lazy(() => import('../pages/Notes'));
-const Note = lazy(() => import('../pages/Note'));
-const Contact = lazy(() => import('../pages/Contact'));
-const NotFound = lazy(() => import('../pages/NotFound'));
+// Pages are imported eagerly. The route chunks total ~10 KB gzipped, so code
+// splitting them saved almost nothing while making every navigation depend on a
+// network fetch for a hashed chunk -- which fails outright once a deploy has
+// replaced those files under a long-lived tab (Sentry LITTLE-BLOOM-PHOTOGRAPHY-7).
+import Home from '../pages/Home';
+import About from '../pages/About';
+import FAQ from '../pages/FAQ';
+import Pricing from '../pages/Pricing';
+import Gallery from '../pages/Gallery';
+import GalleryCategory from '../pages/GalleryCategory';
+import Notes from '../pages/Notes';
+import Note from '../pages/Note';
+import Contact from '../pages/Contact';
+import NotFound from '../pages/NotFound';
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -32,18 +35,10 @@ export function AppRoutes() {
   }, [location.pathname]);
 
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sage mx-auto mb-4"></div>
-          <p className="text-text/70">Loading...</p>
-        </div>
-      </div>
-    }>
-      <AnimatePresence
-        mode="wait"
-        onExitComplete={() => window.scrollTo(0, 0)}
-      >
+    <AnimatePresence
+      mode="wait"
+      onExitComplete={() => window.scrollTo(0, 0)}
+    >
         <Routes location={location} key={location.pathname}>
         <Route path="/" element={
           <motion.div
@@ -157,6 +152,5 @@ export function AppRoutes() {
         } />
       </Routes>
     </AnimatePresence>
-    </Suspense>
   );
 }
