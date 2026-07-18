@@ -81,8 +81,21 @@ Sentry.init({
     Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] }),
   ],
   enableLogs: true,
+  // Extension errors reach our global handlers but are not our code.
+  ignoreErrors: [
+    /Invalid call to runtime\.sendMessage/,
+    /runtime\.sendMessage/,
+  ],
+  denyUrls: [
+    /^safari-(web-)?extension:\/\//i,
+    /^chrome-extension:\/\//i,
+    /^moz-extension:\/\//i,
+  ],
 })
 
 render(<App />, document.getElementById('root'))
+
+// Clear on boot, else a stuck flag blocks the next chunk error's reload.
+sessionStorage.removeItem(CHUNK_RELOAD_KEY)
 
 SpeedInsights.injectSpeedInsights()
