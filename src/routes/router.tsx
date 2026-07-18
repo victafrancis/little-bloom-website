@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-// Pages are imported eagerly. The route chunks total ~10 KB gzipped, so code
-// splitting them saved almost nothing while making every navigation depend on a
-// network fetch for a hashed chunk -- which fails outright once a deploy has
-// replaced those files under a long-lived tab (Sentry LITTLE-BLOOM-PHOTOGRAPHY-7).
+// Imported eagerly on purpose: lazy route chunks 404 after a deploy.
 import Home from '../pages/Home';
 import About from '../pages/About';
 import FAQ from '../pages/FAQ';

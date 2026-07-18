@@ -81,8 +81,7 @@ Sentry.init({
     Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] }),
   ],
   enableLogs: true,
-  // Browser extensions inject scripts into the page, so their failures reach our
-  // global handlers even though none of it is our code and we cannot fix any of it.
+  // Extension errors reach our global handlers but are not our code.
   ignoreErrors: [
     /Invalid call to runtime\.sendMessage/,
     /runtime\.sendMessage/,
@@ -96,10 +95,7 @@ Sentry.init({
 
 render(<App />, document.getElementById('root'))
 
-// Reaching this point means every chunk this document needs was fetched
-// successfully, so the reload guard has served its purpose. Clearing it keeps the
-// guard scoped to a single boot attempt -- otherwise the flag stays set for the
-// rest of the session and a later chunk failure would skip its one recovery reload.
+// Clear on boot, else a stuck flag blocks the next chunk error's reload.
 sessionStorage.removeItem(CHUNK_RELOAD_KEY)
 
 SpeedInsights.injectSpeedInsights()
