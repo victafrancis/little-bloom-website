@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import SEO from '../components/SEO';
 import { Button } from '../components/Button';
-import { meta } from '../data/siteMeta';
+import { meta, site, serviceArea } from '../data/siteMeta';
 export default function About() {
   return <>
       <SEO
@@ -9,6 +9,44 @@ export default function About() {
         description={meta.about.description}
         keywords={meta.about.keywords}
         image="/img/about.jpg"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ProfilePage',
+            mainEntity: {
+              '@type': 'Person',
+              '@id': `${site.url}/about#ayi`,
+              name: site.photographer.name,
+              jobTitle: site.photographer.jobTitle,
+              description: site.photographer.description,
+              image: `${site.url}/img/about.jpg`,
+              email: site.socials.email,
+              knowsAbout: [
+                'Family Photography',
+                'Maternity Photography',
+                'Newborn Photography',
+                'Kids Photography',
+                'Couples Photography',
+                'Portrait Photography'
+              ],
+              homeLocation: { '@type': 'Place', name: `${serviceArea.primary}, Ontario, Canada` },
+              sameAs: [site.socials.instagram, site.socials.facebook],
+              worksFor: {
+                '@type': 'LocalBusiness',
+                name: site.name,
+                url: site.url
+              }
+            }
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+              { '@type': 'ListItem', position: 2, name: 'About Me', item: `${site.url}/about` }
+            ]
+          }
+        ]}
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">

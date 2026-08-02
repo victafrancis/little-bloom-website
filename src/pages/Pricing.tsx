@@ -2,15 +2,53 @@ import React from 'react';
 import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { CTABand } from '../components/CTABand';
-import { meta } from '../data/siteMeta';
+import { meta, site, serviceArea } from '../data/siteMeta';
 import { MapPin } from 'lucide-react';
 export default function Pricing() {
+  const travelList = serviceArea.travel.join(', ');
   return <>
       <SEO
         title={meta.pricing.title}
         description={meta.pricing.description}
         keywords={meta.pricing.keywords}
         image="/img/hero-desktop.webp"
+        jsonLd={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'OfferCatalog',
+            name: 'Photography Session Packages',
+            url: `${site.url}/pricing`,
+            provider: { '@type': 'LocalBusiness', name: site.name, url: site.url },
+            itemListElement: meta.pricing.packages.map(pkg => ({
+              '@type': 'Offer',
+              name: pkg.name,
+              price: String(pkg.amount),
+              priceCurrency: 'CAD',
+              // Taxes are stated as included in the package inclusions.
+              valueAddedTaxIncluded: true,
+              availability: 'https://schema.org/InStock',
+              description: `${pkg.durationLabel} photo session. ${pkg.details.join('. ')}.`,
+              areaServed: [serviceArea.primary, ...serviceArea.travel].map(name => ({
+                '@type': 'Place',
+                name: `${name}, Ontario`
+              })),
+              itemOffered: {
+                '@type': 'Service',
+                name: pkg.name,
+                serviceType: 'Photography session',
+                provider: { '@type': 'LocalBusiness', name: site.name, url: site.url }
+              }
+            }))
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+              { '@type': 'ListItem', position: 2, name: 'Sessions & Pricing', item: `${site.url}/pricing` }
+            ]
+          }
+        ]}
       />
       <main className="pt-24 md:pt-32">
         <section className="container mx-auto px-4 py-8">
@@ -21,6 +59,13 @@ export default function Pricing() {
             <div className="pb-6 px-4">
               <p>
                 Your experience should be simple and stress-free. That’s why my pricing is <b>transparent, with no hidden fees.</b>
+              </p>
+              <p className="mt-3">
+                Sessions in {serviceArea.primary} start at{' '}
+                {meta.pricing.packages[0].price} for {meta.pricing.packages[0].durationLabel}, or{' '}
+                {meta.pricing.packages[1].price} for {meta.pricing.packages[1].durationLabel}. Every
+                package includes all of your edited, high-resolution photos with no limit on the
+                number of images.
               </p>
             </div>
             
@@ -33,21 +78,18 @@ export default function Pricing() {
                 <li>Applicable taxes</li>
               </ul>
             </div>
+            {/* The package name, price and duration are set inside these
+                images, so the alt text carries the same facts as real text. */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="bg-cream p-8 rounded-xl">
-                <img
-                  src="/assets/budding bloom.png"
-                  alt="Decorative image"
-                  className="max-w-full h-auto aspect-square object-contain mx-auto"
-              />
-              </div>
-              <div className="bg-cream p-8 rounded-xl">
-                <img
-                  src="/assets/flourishing bloom.png"
-                  alt="Decorative image"
-                  className="max-w-full h-auto aspect-square object-contain mx-auto"
-              />
-              </div>
+              {meta.pricing.packages.map(pkg => (
+                <div key={pkg.name} className="bg-cream p-8 rounded-xl">
+                  <img
+                    src={pkg.image}
+                    alt={`${pkg.name} — ${pkg.price}, ${pkg.durationLabel} photo session`}
+                    className="max-w-full h-auto aspect-square object-contain mx-auto"
+                  />
+                </div>
+              ))}
             </div>
             
             <div className="p-8 rounded-xl mb-8 border border-solid border-gray-300">
@@ -73,7 +115,10 @@ export default function Pricing() {
                     <h3 className="text-lg md:text-xl font-display">Service Area</h3>
                   </div>
                   <p className="text-text/70 text-sm md:text-base leading-relaxed">
-                    Currently servicing <b>Barrie</b> location. Any other location will incur transportation fees, depending on the location and service.
+                    Sessions in <b>{serviceArea.primary}</b> are included in the package price with
+                    no travel fee. I also travel across {serviceArea.region} and the surrounding
+                    area, including {travelList}, with a travel fee that depends on the distance and
+                    the type of session. Not sure whether you are in range? Just ask.
                   </p>
                 </div>
               </div>

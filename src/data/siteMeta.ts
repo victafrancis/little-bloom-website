@@ -3,11 +3,45 @@ import { getCoverImageUrl } from '../lib/supabase';
 export const site = {
   name: 'Little Bloom Photography',
   domain: 'www.littlebloomphotography.com',
+  url: 'https://www.littlebloomphotography.com',
+  photographer: {
+    name: 'Ayi',
+    jobTitle: 'Photographer',
+    // Drives the Person schema on /about; keep in step with the page copy.
+    description:
+      'Barrie-based family, maternity and newborn photographer with over 20 years behind the camera. Ayi founded Little Bloom Photography after becoming a mom.'
+  },
   socials: {
     instagram: 'https://instagram.com/littlebloom.photos',
     facebook: 'https://www.facebook.com/people/Little-Bloom-Photography/61581269589318/',
+    googleBusiness: 'https://g.page/r/CT9Kr6mwFHDjEAE',
     email: 'hello@littlebloomphotography.com'
   }
+};
+
+/**
+ * Single source of truth for where sessions happen.
+ *
+ * Barrie is the only location covered with no travel fee, so it is stated
+ * separately from the travel tier. Both the visible copy and the areaServed
+ * schema read from here, which keeps the page and the markup from
+ * contradicting each other.
+ */
+export const serviceArea = {
+  primary: 'Barrie',
+  region: 'Simcoe County',
+  travel: [
+    'Innisfil',
+    'Oro-Medonte',
+    'Springwater',
+    'Angus',
+    'Alliston',
+    'Bradford',
+    'Orillia',
+    'Wasaga Beach',
+    'Collingwood',
+    'Midland'
+  ]
 };
 export const meta = {
   home: {
@@ -84,13 +118,23 @@ export const meta = {
     title: 'Sessions & Pricing | Little Bloom Photography',
     description: 'Your experience should be stress-free. My pricing is simple and transparent, with no hidden fees.',
     keywords: 'photography prices Ontario, family photography cost Barrie, maternity photography pricing Ontario, newborn photography prices Ontario, Barrie photographer prices',
+    // `price` is for display; `amount`/`duration` feed the Offer schema, which
+    // needs a bare number and an ISO 8601 duration.
     packages: [{
       name: 'The Budding Bloom',
       price: '$200',
+      amount: 200,
+      durationLabel: '30 minutes',
+      duration: 'PT30M',
+      image: '/assets/budding bloom.png',
       details: ['30-Minute Photo Session', 'Unlimited Shots', 'Full Access to Edited Images', 'Online gallery']
     }, {
       name: 'The Flourishing Bloom',
       price: '$300',
+      amount: 300,
+      durationLabel: '1 hour',
+      duration: 'PT1H',
+      image: '/assets/flourishing bloom.png',
       details: ['1-Hour Photo Session', 'Unlimited Shots', 'Full Access to Edited Images', 'Online gallery']
     }],
     cta: {

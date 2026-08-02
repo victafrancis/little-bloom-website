@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { InstagramIcon, FacebookIcon, MailIcon } from 'lucide-react';
-import { site } from '../data/siteMeta';
+import { site, serviceArea } from '../data/siteMeta';
 import { FooterFlowers } from './FooterFlowers';
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,7 +29,17 @@ export function Footer() {
           <Link to="/" className="text-xl md:text-2xl font-display font-semibold">
             <img src="/assets/logo.png" alt="Little Bloom Photography" className="h-32 w-auto" />
           </Link>
-          <p className="mt-4 text-center text-sm">©{currentYear}</p>
+          {/* Business name, location and contact as text on every page. */}
+          <p className="mt-4 text-center text-sm">
+            {site.name} — family, maternity and newborn photography in {serviceArea.primary},
+            Ontario, and across {serviceArea.region}.
+          </p>
+          <p className="mt-2 text-center text-sm">
+            <a href={`mailto:${site.socials.email}`} className="hover:text-sage transition-colors">
+              {site.socials.email}
+            </a>
+          </p>
+          <p className="mt-4 text-center text-sm">©{currentYear} {site.name}</p>
         </div>
       </div>
     </footer>

@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.littlebloomphotography.com/</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -14,7 +14,7 @@
 
   <url>
     <loc>https://www.littlebloomphotography.com/about</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -25,7 +25,7 @@
 
   <url>
     <loc>https://www.littlebloomphotography.com/pricing</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -157,7 +157,7 @@
 
   <url>
     <loc>https://www.littlebloomphotography.com/contact</loc>
-    <lastmod>2025-09-23</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>

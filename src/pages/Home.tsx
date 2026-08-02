@@ -5,7 +5,7 @@ import { Hero } from '../components/Hero';
 import { CTABand } from '../components/CTABand';
 import { ButterfliesAnimation } from '../components/ButterfliesAnimation';
 import { ArrowRightIcon, MapPin } from 'lucide-react';
-import { meta } from '../data/siteMeta';
+import { meta, site, serviceArea } from '../data/siteMeta';
 
 const archedBackgroundStyle = {
   clipPath: 'ellipse(80% 80% at 50% 80%)',
@@ -35,16 +35,47 @@ export default function Home() {
             image: 'https://www.littlebloomphotography.com/img/hero-desktop.webp',
             logo: 'https://www.littlebloomphotography.com/assets/logo.png',
             sameAs: [
-              'https://www.instagram.com/littlebloom.photos',
-              'https://www.facebook.com/people/Little-Bloom-Photography/61581269589318/',
-              'https://g.page/r/CT9Kr6mwFHDjEAE'
+              site.socials.instagram,
+              site.socials.facebook,
+              site.socials.googleBusiness
             ],
+            // No storefront customers visit, so no streetAddress: the locality
+            // plus areaServed is the correct shape for a service-area business.
             address: { '@type':'PostalAddress', addressLocality: 'Barrie', addressRegion: 'ON', addressCountry: 'CA' },
             geo: { '@type': 'GeoCoordinates', latitude: 44.3894, longitude: -79.6903 },
-            areaServed: ['Ontario','Barrie','Innisfil','Simcoe County','Orillia','Collingwood','Wasaga Beach','Midland','Alliston','Bradford','Vaughan','Toronto','York Region','Newmarket','Aurora','Richmond Hill','Markham','Mississauga','Brampton','Keswick','Georgina'],
-            priceRange: '$$',
+            // Email-only business; telephone is deliberately omitted rather than
+            // filled with a placeholder.
+            email: site.socials.email,
+            contactPoint: {
+              '@type': 'ContactPoint',
+              contactType: 'customer service',
+              email: site.socials.email,
+              areaServed: 'CA',
+              availableLanguage: 'English'
+            },
+            // Scoped to the area actually served. Sessions are by appointment,
+            // so no openingHoursSpecification: that would imply drop-in hours.
+            areaServed: [
+              { '@type': 'City', name: `${serviceArea.primary}, Ontario` },
+              { '@type': 'AdministrativeArea', name: `${serviceArea.region}, Ontario` },
+              ...serviceArea.travel.map(name => ({ '@type': 'City', name: `${name}, Ontario` }))
+            ],
+            priceRange: '$200-$300',
+            currenciesAccepted: 'CAD',
+            founder: { '@type': 'Person', name: site.photographer.name },
             description: 'Family and kids photography with heart. Natural light sessions for bumps, babies, couples, and families.',
-            knowsAbout: ['Family Photography', 'Maternity Photography', 'Newborn Photography', 'Kids Photography', 'Couples Photography', 'Portrait Photography']
+            knowsAbout: ['Family Photography', 'Maternity Photography', 'Newborn Photography', 'Kids Photography', 'Couples Photography', 'Portrait Photography'],
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'Photography Session Packages',
+              url: 'https://www.littlebloomphotography.com/pricing',
+              itemListElement: meta.pricing.packages.map(pkg => ({
+                '@type': 'Offer',
+                name: pkg.name,
+                price: String(pkg.amount),
+                priceCurrency: 'CAD'
+              }))
+            }
           },
           {
             '@context': 'https://schema.org',
@@ -52,7 +83,7 @@ export default function Home() {
             name: 'Family Photography',
             description: 'Natural light family portrait sessions capturing authentic moments and connections',
             provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
-            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            areaServed: { '@type': 'Place', name: `${serviceArea.primary}, Ontario` },
             serviceType: 'Photography'
           },
           {
@@ -61,7 +92,7 @@ export default function Home() {
             name: 'Maternity Photography',
             description: 'Beautiful maternity portrait sessions celebrating the journey of motherhood',
             provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
-            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            areaServed: { '@type': 'Place', name: `${serviceArea.primary}, Ontario` },
             serviceType: 'Photography'
           },
           {
@@ -70,7 +101,7 @@ export default function Home() {
             name: 'Newborn Photography',
             description: 'Gentle newborn portrait sessions capturing precious early moments',
             provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
-            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            areaServed: { '@type': 'Place', name: `${serviceArea.primary}, Ontario` },
             serviceType: 'Photography'
           },
           {
@@ -79,7 +110,7 @@ export default function Home() {
             name: 'Kids Photography',
             description: 'Fun and natural children\'s portrait sessions for babies, toddlers, and kids',
             provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
-            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            areaServed: { '@type': 'Place', name: `${serviceArea.primary}, Ontario` },
             serviceType: 'Photography'
           },
           {
@@ -88,7 +119,7 @@ export default function Home() {
             name: 'Couples Photography',
             description: 'Romantic couples portrait sessions capturing love and connection',
             provider: { '@type': 'Organization', name: 'Little Bloom Photography' },
-            areaServed: { '@type': 'Place', name: 'Barrie, Ontario' },
+            areaServed: { '@type': 'Place', name: `${serviceArea.primary}, Ontario` },
             serviceType: 'Photography'
           },
           {
