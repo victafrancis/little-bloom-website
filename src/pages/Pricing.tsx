@@ -85,7 +85,7 @@ export default function Pricing() {
                 <div key={pkg.name} className="bg-cream p-8 rounded-xl">
                   <img
                     src={pkg.image}
-                    alt={`${pkg.name} — ${pkg.price}, ${pkg.durationLabel} photo session`}
+                    alt={`${pkg.name}: ${pkg.price}, ${pkg.durationLabel} photo session`}
                     className="max-w-full h-auto aspect-square object-contain mx-auto"
                   />
                 </div>

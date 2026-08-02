@@ -31,7 +31,7 @@ export function Footer() {
           </Link>
           {/* Business name, location and contact as text on every page. */}
           <p className="mt-4 text-center text-sm">
-            {site.name} — family, maternity and newborn photography in {serviceArea.primary},
+            {site.name}. Family, maternity and newborn photography in {serviceArea.primary},
             Ontario, and across {serviceArea.region}.
           </p>
           <p className="mt-2 text-center text-sm">
