@@ -58,21 +58,6 @@ export default function Contact() {
                 <ContactForm />
               </div>
             </div>
-            {/* States the booking basics as text: previously the only contact
-                detail on the page was the form itself. */}
-            <div className="bg-cream rounded-lg p-6 mt-12 text-sm md:text-base text-text/70 space-y-2">
-              <p>
-                Prefer email? Reach me at{' '}
-                <a href={`mailto:${site.socials.email}`} className="text-mustard hover:underline">
-                  {site.socials.email}
-                </a>
-                . I reply within one business day.
-              </p>
-              <p>
-                All sessions are by appointment. I am based in {serviceArea.primary}, Ontario, and
-                also travel across {serviceArea.region} and the surrounding area for a travel fee.
-              </p>
-            </div>
           </div>
         </section>
       </main>

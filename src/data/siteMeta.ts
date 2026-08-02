@@ -100,18 +100,57 @@ export const meta = {
     title: 'Frequently Asked Questions | Little Bloom Photography',
     description: 'Everything you need to know for a smooth, joyful session.',
     keywords: 'photography faq Ontario, barrie photographer questions, family photography faq, maternity photography questions, newborn photography faq Ontario',
+    // Ordered by how often people ask before booking: money, deliverables and
+    // timing first. Each answer is written to stand on its own, so it still
+    // makes sense read in isolation.
     items: [{
-      q: 'What should we wear?',
-      a: "Coordinate but don't match, neutrals work best."
+      q: 'How much does a photo session cost?',
+      a: 'Sessions start at $200 for The Budding Bloom, a 30-minute session, and $300 for The Flourishing Bloom, a one-hour session. Both packages include unlimited shots, time-permitting outfit changes, every edited high-resolution photo, an online gallery, and applicable taxes.',
+      link: { to: '/pricing', label: 'See sessions and pricing' }
     }, {
-      q: 'How long are sessions?',
-      a: '60–90 minutes.'
+      q: 'How many photos will I receive?',
+      a: 'Every good shot from your session, with no cap on the number. All of them are edited and delivered in high resolution, and there is no extra charge for receiving more photos.'
+    }, {
+      q: 'When will I get my photos?',
+      a: 'Usually within two weeks. The exact timing depends on how busy the season is, and I will let you know what to expect when we book your date.'
+    }, {
+      q: 'How long is a session?',
+      a: 'Either 30 minutes or a full hour, depending on which package you choose.'
+    }, {
+      q: 'Where are you based, and do you travel?',
+      a: `I am based in ${serviceArea.primary}, Ontario. Sessions in ${serviceArea.primary} have no travel fee. I also travel across ${serviceArea.region} and the surrounding area, including ${serviceArea.travel.join(', ')}, for a travel fee that depends on the distance and the type of session.`
+    }, {
+      q: 'What kinds of sessions do you offer?',
+      a: 'Maternity, newborn, babies and kids, couples and family, and personal portraits.'
+    }, {
+      q: 'Do you photograph newborns?',
+      a: 'Yes. Newborn sessions are welcome, and we keep the pace gentle and unhurried so your baby can set the schedule.'
+    }, {
+      q: 'Is a deposit required to hold my date?',
+      a: 'Yes. A deposit is required to save your date, and your booking is confirmed once it is received.'
+    }, {
+      q: 'What is your cancellation policy?',
+      a: 'You are welcome to cancel your session, but the deposit is non-refundable.'
+    }, {
+      q: 'What happens if it rains?',
+      a: 'We reschedule at no cost. Weather is never something you need to worry about.'
+    }, {
+      q: 'What should we wear?',
+      a: 'Coordinate rather than match. Neutral tones and simple patterns photograph best, and outfits you feel comfortable moving in will always look the most natural.',
+      link: { to: '/notes/what-to-wear-for-photo-session', label: 'Read the full guide' }
+    }, {
+      q: 'Do you offer indoor or studio sessions?',
+      a: 'Studio access is available as an optional add-on, scheduled around studio availability. Just ask when you enquire and I will let you know what is possible for your date.'
     }, {
       q: 'Do you provide prints?',
       a: 'Yes, through a professional lab.'
     }, {
-      q: 'What if it rains?',
-      a: 'We reschedule at no cost.'
+      q: 'What is your photography style?',
+      a: 'Natural light and unposed. Sessions feel less like a photoshoot and more like spending time with a friend: I will guide you when you need it, and step back when a moment is happening on its own.'
+    }, {
+      q: 'How do I book a session?',
+      a: 'Send a message through the contact form with a little about your family and the kind of session you have in mind. I reply within one business day.',
+      link: { to: '/contact', label: 'Get in touch' }
     }]
   },
   pricing: {

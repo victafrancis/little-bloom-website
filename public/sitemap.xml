@@ -24,6 +24,17 @@
   </url>
 
   <url>
+    <loc>https://www.littlebloomphotography.com/faq</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.littlebloomphotography.com/assets/flowers.png</image:loc>
+      <image:caption>Frequently Asked Questions - Little Bloom Photography</image:caption>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://www.littlebloomphotography.com/pricing</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { Button } from '../components/Button';
-import { meta } from '../data/siteMeta';
+import { meta, site } from '../data/siteMeta';
 export default function FAQ() {
   return <>
       <SEO
@@ -13,7 +14,7 @@ export default function FAQ() {
           {
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            mainEntity: meta.faq.items.map((item, index) => ({
+            mainEntity: meta.faq.items.map(item => ({
               '@type': 'Question',
               name: item.q,
               acceptedAnswer: {
@@ -21,6 +22,14 @@ export default function FAQ() {
                 text: item.a
               }
             }))
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+              { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${site.url}/faq` }
+            ]
           }
         ]}
       />
@@ -34,7 +43,14 @@ export default function FAQ() {
             <dl className="space-y-4">
               {meta.faq.items.map((item, index) => <div key={index} className="border border-text/30 p-6 rounded-lg">
                   <dt className="text-xl font-display mb-3">{item.q}</dt>
-                  <dd className="text-text/70">{item.a}</dd>
+                  <dd className="text-text/70">
+                    {item.a}
+                    {'link' in item && item.link && (
+                      <Link to={item.link.to} className="block mt-3 text-mustard hover:underline">
+                        {item.link.label} →
+                      </Link>
+                    )}
+                  </dd>
                 </div>)}
             </dl>
             <div className="bg-mustard/10 p-6 mt-10 rounded-lg text-center">

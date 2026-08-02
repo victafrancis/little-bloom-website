@@ -17,11 +17,11 @@ function gallerySlugs() {
   return [...source.matchAll(/slug:\s*'([^']+)'/g)].map(match => match[1]);
 }
 
-// /faq is intentionally absent: the route is commented out in router.tsx.
 export function getRoutes() {
   return [
     '/',
     '/about',
+    '/faq',
     '/pricing',
     '/gallery',
     ...gallerySlugs().map(slug => `/gallery/${slug}`),
