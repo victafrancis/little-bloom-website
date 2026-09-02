@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.3] - 2026-09-01
+- Updated pricing png files
+
 ## [1.3.2] - 2026-07-18
 - Fixed `Importing a module script failed` errors on mobile Safari by replacing the lazy-loaded routes in [`AppRoutes`](src/routes/router.tsx:26) with eager imports. Returning to a tab left open across a deploy meant fetching route chunks that no longer existed. The ten route chunks were only ~10 KB gzipped against a ~170 KB vendor baseline, so this partially reverses the route splitting from 1.2.5 for ~9 KB of first-load weight, and removes the network round trip on every navigation. The `Suspense` fallback was removed with them.
 - Fixed the reload guard in [`safelyReloadAfterChunkError()`](src/index.tsx:38) added in 1.2.7, which was only cleared after a second failure. One recovered reload left the flag set for the rest of the session, so any later chunk error skipped its recovery attempt. It is now cleared once the document boots.

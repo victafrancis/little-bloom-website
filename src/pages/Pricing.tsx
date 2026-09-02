@@ -36,14 +36,14 @@ export default function Pricing() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-cream p-8 rounded-xl">
                 <img
-                  src="/assets/budding bloom.png"
+                  src="/assets/30 mins.png"
                   alt="Decorative image"
                   className="max-w-full h-auto aspect-square object-contain mx-auto"
               />
               </div>
               <div className="bg-cream p-8 rounded-xl">
                 <img
-                  src="/assets/flourishing bloom.png"
+                  src="/assets/1 hour.png"
                   alt="Decorative image"
                   className="max-w-full h-auto aspect-square object-contain mx-auto"
               />
