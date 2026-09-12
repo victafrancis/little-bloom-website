@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.4] - 2026-09-12
+- Removed the browser's "Install Little Bloom Photography" prompt on mobile by changing `display` from `standalone` to `browser` in [`site.webmanifest`]
+
 ## [1.3.3] - 2026-09-01
 - Updated pricing png files
 
