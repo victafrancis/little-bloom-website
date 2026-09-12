@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.4] - 2026-09-12
+- Removed the browser's "Install Little Bloom Photography" prompt on mobile by changing `display` from `standalone` to `browser` in [`site.webmanifest`](public/site.webmanifest). The standalone display mode met Chrome's PWA installability criteria, so Chrome offered the site as an installable app on its own. This is a marketing site rather than an app, so the banner was confusing and covered the top of the hero image. The manifest is kept for its name, icons, and `theme_color`, and visitors can still use "Add to Home screen" from the browser menu.
+
 ## [1.3.3] - 2026-09-01
 - Updated pricing png files
 
