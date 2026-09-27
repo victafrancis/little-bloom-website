@@ -62,7 +62,12 @@ const listGalleryImageFiles = (slug: string): Promise<StorageFile[]> => {
 export const getGalleryImages = async (slug: string): Promise<string[]> => {
   try {
     const imageFiles = await listGalleryImageFiles(slug);
-    return imageFiles.map(file => getCoverImageUrl(slug, file.name));
+    // Show the current cover first, followed by the rest in filename order
+    const cover = findCoverFile(imageFiles);
+    const orderedFiles = cover
+      ? [cover, ...imageFiles.filter(file => file !== cover)]
+      : imageFiles;
+    return orderedFiles.map(file => getCoverImageUrl(slug, file.name));
   } catch (error) {
     Sentry.captureException(error, {
       tags: { gallery_slug: slug, operation: 'get_gallery_images' },
@@ -83,16 +88,22 @@ export const getCoverImageUrl = (slug: string, filename: string): string => {
 // The cover is any image whose name starts with "cover" (e.g. cover-2.jpg).
 // Use a new name each time the cover changes so the CDN never serves a stale copy.
 // If several exist, the most recently uploaded wins; with none, fall back to 00.jpg.
+const findCoverFile = (imageFiles: StorageFile[]): StorageFile | undefined => {
+  const uploadedAt = (file: StorageFile) =>
+    Date.parse(file.updated_at ?? file.created_at ?? '') || 0;
+  const [latestCover] = imageFiles
+    .filter(file => file.name.toLowerCase().startsWith('cover'))
+    .sort((a, b) => uploadedAt(b) - uploadedAt(a));
+
+  return latestCover ?? imageFiles.find(file => file.name === DEFAULT_COVER_FILENAME);
+};
+
 export const getGalleryCoverUrl = async (slug: string): Promise<string> => {
   try {
     const imageFiles = await listGalleryImageFiles(slug);
-    const uploadedAt = (file: StorageFile) =>
-      Date.parse(file.updated_at ?? file.created_at ?? '') || 0;
-    const [latestCover] = imageFiles
-      .filter(file => file.name.toLowerCase().startsWith('cover'))
-      .sort((a, b) => uploadedAt(b) - uploadedAt(a));
+    const cover = findCoverFile(imageFiles);
 
-    return getCoverImageUrl(slug, latestCover?.name ?? DEFAULT_COVER_FILENAME);
+    return getCoverImageUrl(slug, cover?.name ?? DEFAULT_COVER_FILENAME);
   } catch (error) {
     Sentry.captureException(error, {
       tags: { gallery_slug: slug, operation: 'get_gallery_cover' },

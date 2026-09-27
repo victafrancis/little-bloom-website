@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.4.1] - 2026-09-27
+- The current gallery cover is now shown first in its gallery, followed by the other photos in filename order, in [`getGalleryImages()`](src/lib/supabase.ts). Galleries without a `cover…` file are unchanged, since `00.jpg` already sorts first.
+
 ## [1.4.0] - 2026-09-27
 - Gallery covers can now be set by uploading an image whose name starts with `cover` (e.g. `cover-2.jpg`) to the gallery's folder in the `albums` bucket, resolved in [`getGalleryCoverUrl()`](src/lib/supabase.ts). The cover stays in the gallery with the other photos. If several `cover…` files exist, the most recently uploaded wins; with none, the cover falls back to `00.jpg`. Using a new filename for each cover avoids the Supabase CDN serving a stale copy after overwriting a file.
 - Home and Gallery page tiles now render their covers through [`GalleryCover`](src/components/GalleryCover.tsx), and the cover lookup shares one cached folder listing with the gallery images.
