@@ -1,5 +1,3 @@
-import { getCoverImageUrl } from '../lib/supabase';
-
 export const site = {
   name: 'Little Bloom Photography',
   domain: 'www.littlebloomphotography.com',
@@ -42,19 +40,19 @@ export const meta = {
     featured: [{
       title: 'Bumps & Beginnings',
       to: '/gallery/bumps-and-beginnings',
-      cover: getCoverImageUrl('bumps-and-beginnings', '00.jpg')
+      slug: 'bumps-and-beginnings'
     }, {
       title: 'Little Blooms',
       to: '/gallery/little-blooms',
-      cover: getCoverImageUrl('little-blooms', '00.jpg')
+      slug: 'little-blooms'
     }, {
       title: 'Love & Connections',
       to: '/gallery/love-and-connections',
-      cover: getCoverImageUrl('love-and-connections', '00.jpg')
+      slug: 'love-and-connections'
     }, {
       title: 'Personal Portraits',
       to: '/gallery/personal-portraits',
-      cover: getCoverImageUrl('personal-portraits', '00.jpg')
+      slug: 'personal-portraits'
     }]
   },
   about: {

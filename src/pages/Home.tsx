@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import { Hero } from '../components/Hero';
 import { CTABand } from '../components/CTABand';
 import { ButterfliesAnimation } from '../components/ButterfliesAnimation';
+import { GalleryCover } from '../components/GalleryCover';
 import { ArrowRightIcon, MapPin } from 'lucide-react';
 import { meta } from '../data/siteMeta';
 
@@ -195,7 +196,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {meta.home.featured.map(item => <Link key={item.to} to={item.to} className="group">
                   <div className="relative overflow-hidden rounded-lg aspect-square mb-4 max-w-96 mx-auto">
-                    <img src={item.cover} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <GalleryCover slug={item.slug} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <h3 className="text-center text-base md:text-xl font-light">{item.title}</h3>
                 </Link>)}

@@ -1,33 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { meta } from '../data/siteMeta';
-import { galleryConfigs, type Gallery } from '../data/galleries';
-import { getCoverImageUrl } from '../lib/supabase';
+import { galleryConfigs } from '../data/galleries';
+import { GalleryCover } from '../components/GalleryCover';
 
 export default function Gallery() {
-  const [galleries, setGalleries] = useState<Gallery[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadGalleries = async () => {
-      try {
-        // Load gallery configs synchronously, images lazily
-        const galleryData = galleryConfigs.map(config => ({
-          ...config,
-          cover: getCoverImageUrl(config.slug, config.coverFilename),
-          images: [] // Load images only when needed
-        }));
-        setGalleries(galleryData);
-      } catch (error) {
-        console.error('Error loading galleries:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadGalleries();
-  }, []);
   return <>
       <SEO
         title={meta.gallery.title}
@@ -47,9 +25,9 @@ export default function Gallery() {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {galleries.map(gallery => <Link key={gallery.slug} to={`/gallery/${gallery.slug}`} className="group">
+            {galleryConfigs.map(gallery => <Link key={gallery.slug} to={`/gallery/${gallery.slug}`} className="group">
                 <div className="relative aspect-square overflow-hidden rounded-lg mb-4">
-                  <img src={gallery.cover} alt={gallery.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <GalleryCover slug={gallery.slug} alt={gallery.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <h3 className="text-center text-base md:text-xl font-light">{gallery.title}</h3>
               </Link>)}

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.0] - 2026-09-27
+- Gallery covers can now be set by uploading an image whose name starts with `cover` (e.g. `cover-2.jpg`) to the gallery's folder in the `albums` bucket, resolved in [`getGalleryCoverUrl()`](src/lib/supabase.ts). The cover stays in the gallery with the other photos. If several `cover…` files exist, the most recently uploaded wins; with none, the cover falls back to `00.jpg`. Using a new filename for each cover avoids the Supabase CDN serving a stale copy after overwriting a file.
+- Home and Gallery page tiles now render their covers through [`GalleryCover`](src/components/GalleryCover.tsx), and the cover lookup shares one cached folder listing with the gallery images.
+
 ## [1.3.4] - 2026-09-12
 - Removed the browser's "Install Little Bloom Photography" prompt on mobile by changing `display` from `standalone` to `browser` in [`site.webmanifest`]
 
