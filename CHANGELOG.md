@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.4.2] - 2026-10-01
+- Gallery photo listings now retry once after a second when the connection drops (`Failed to fetch`, or `Load failed` on Safari), in [`listGalleryImageFiles()`](src/lib/supabase.ts). These were the `StorageUnknownError` reports in Sentry, caused by visitors' flaky mobile connections rather than by Supabase.
+- Gallery errors caused by a dropped connection are now reported to Sentry as warnings instead of errors, via [`reportGalleryError()`](src/lib/supabase.ts). Other storage errors are still reported as errors.
+- A gallery whose photos failed to load is no longer cached as empty in [`getGalleryImages()`](src/data/galleries.ts), so it can load again later in the same visit without a refresh.
+
 ## [1.4.1] - 2026-09-27
 - The current gallery cover is now shown first in its gallery, followed by the other photos in filename order, in [`getGalleryImages()`](src/lib/supabase.ts). Galleries without a `cover…` file are unchanged, since `00.jpg` already sorts first.
 

@@ -10,7 +10,10 @@ const getGalleryImages = async (slug: string): Promise<string[]> => {
   }
 
   const images = await getSupabaseGalleryImages(slug);
-  galleryCache.set(slug, images);
+  // An empty list may be a failed request, so leave it uncached to retry next time
+  if (images.length > 0) {
+    galleryCache.set(slug, images);
+  }
   return images;
 };
 

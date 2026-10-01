@@ -14,6 +14,37 @@ type StorageFile = { name: string; created_at?: string | null; updated_at?: stri
 
 const IMAGE_FILE_PATTERN = /\.(jpg|jpeg|png|webp|gif)$/i;
 const DEFAULT_COVER_FILENAME = '00.jpg';
+const NETWORK_RETRY_DELAY_MS = 1000;
+
+// Browsers word a dropped connection differently: Chrome, Safari, Firefox
+const NETWORK_ERROR_PATTERN = /Failed to fetch|Load failed|NetworkError when attempting to fetch resource/i;
+
+const isNetworkError = (error: unknown): boolean =>
+  error instanceof Error && NETWORK_ERROR_PATTERN.test(error.message);
+
+// A dropped connection on the visitor's side is not a bug, so report it as a warning
+const reportGalleryError = (error: unknown, slug: string, operation: string) => {
+  Sentry.captureException(error, {
+    level: isNetworkError(error) ? 'warning' : 'error',
+    tags: { gallery_slug: slug, operation },
+    extra: { slug }
+  });
+};
+
+const listAlbumFolder = async (slug: string) => {
+  const { data, error } = await supabase.storage
+    .from('albums')
+    .list(slug, {
+      limit: 100,
+      offset: 0
+    });
+
+  if (error) {
+    throw error;
+  }
+
+  return data ?? [];
+};
 
 // Cache folder listings so the cover lookup and the gallery images share one request
 const galleryFilesCache = new Map<string, Promise<StorageFile[]>>();
@@ -32,19 +63,21 @@ const listGalleryImageFiles = (slug: string): Promise<StorageFile[]> => {
     async (span) => {
       span.setAttribute('gallery_slug', slug);
 
-      const { data, error } = await supabase.storage
-        .from('albums')
-        .list(slug, {
-          limit: 100,
-          offset: 0
-        });
-
-      if (error) {
-        throw error;
+      let files: StorageFile[];
+      try {
+        files = await listAlbumFolder(slug);
+      } catch (error) {
+        if (!isNetworkError(error)) {
+          throw error;
+        }
+        // Retry once, since flaky mobile connections usually recover quickly
+        span.setAttribute('retried', true);
+        await new Promise(resolve => setTimeout(resolve, NETWORK_RETRY_DELAY_MS));
+        files = await listAlbumFolder(slug);
       }
 
       // Filter to get only image files (not folders)
-      const imageFiles = (data ?? [])
+      const imageFiles = files
         .filter(item => IMAGE_FILE_PATTERN.test(item.name))
         .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -69,10 +102,7 @@ export const getGalleryImages = async (slug: string): Promise<string[]> => {
       : imageFiles;
     return orderedFiles.map(file => getCoverImageUrl(slug, file.name));
   } catch (error) {
-    Sentry.captureException(error, {
-      tags: { gallery_slug: slug, operation: 'get_gallery_images' },
-      extra: { slug }
-    });
+    reportGalleryError(error, slug, 'get_gallery_images');
     return [];
   }
 };
@@ -105,10 +135,7 @@ export const getGalleryCoverUrl = async (slug: string): Promise<string> => {
 
     return getCoverImageUrl(slug, cover?.name ?? DEFAULT_COVER_FILENAME);
   } catch (error) {
-    Sentry.captureException(error, {
-      tags: { gallery_slug: slug, operation: 'get_gallery_cover' },
-      extra: { slug }
-    });
+    reportGalleryError(error, slug, 'get_gallery_cover');
     return getCoverImageUrl(slug, DEFAULT_COVER_FILENAME);
   }
 };
