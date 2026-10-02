@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0] - 2026-10-02
+- Added a "Follow Along on Instagram" section above the footer on every page, in [`InstagramFeed`](src/components/InstagramFeed.tsx). It shows the latest posts from @littlebloom.photos (up to 50) in a looping carousel that glides one post at a time. Visitors can swipe it on mobile or use the arrows on desktop. It pauses on hover, keyboard focus, offscreen, and for reduced motion, and stops once the visitor takes over. Reels and multi-photo posts get Instagram's small corner icons.
+- The feed comes from the Instagram API through [`api/instagram.js`](api/instagram.js), cached at Vercel's edge for an hour. Images are served from our own domain by [`api/instagram-image.js`](api/instagram-image.js), because Instagram's CDN can block them on other sites. That endpoint only serves URLs the feed signed.
+- The access token is kept alive by a daily Vercel cron calling [`api/instagram-refresh.js`](api/instagram-refresh.js), which refreshes it weekly and stores it in a new Supabase `instagram_token` table.
+- Until Instagram is connected, or if it fails, the section shows photos from the four galleries instead, via [`getInstagramFeed()`](src/lib/instagram.ts).
+- Setup steps (Instagram token, Supabase table, Vercel env vars) are in [`docs/instagram-feed.md`](docs/instagram-feed.md).
+
 ## [1.4.2] - 2026-10-01
 - Gallery photo listings now retry once after a second when the connection drops (`Failed to fetch`, or `Load failed` on Safari), in [`listGalleryImageFiles()`](src/lib/supabase.ts). These were the `StorageUnknownError` reports in Sentry, caused by visitors' flaky mobile connections rather than by Supabase.
 - Gallery errors caused by a dropped connection are now reported to Sentry as warnings instead of errors, via [`reportGalleryError()`](src/lib/supabase.ts). Other storage errors are still reported as errors.

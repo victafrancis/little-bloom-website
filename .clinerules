@@ -42,3 +42,4 @@
 
 ## Documentation & workflows (Lazy Load)
 * **Sentry/Errors:** Ref `docs/sentry-rules.md` when implementing error handling.
+* **Instagram feed:** Ref `docs/instagram-feed.md` when changing the Instagram section or its API functions.
