@@ -6,6 +6,7 @@
 - The access token is kept alive by a daily Vercel cron calling [`api/instagram-refresh.js`](api/instagram-refresh.js), which refreshes it weekly and stores it in a new Supabase `instagram_token` table.
 - Until Instagram is connected, or if it fails, the section shows photos from the four galleries instead, via [`getInstagramFeed()`](src/lib/instagram.ts).
 - Setup steps (Instagram token, Supabase table, Vercel env vars) are in [`docs/instagram-feed.md`](docs/instagram-feed.md).
+- Replaced `.clinerules` with [`CLAUDE.md`](CLAUDE.md), so Claude Code picks up the project's code style rules.
 
 ## [1.4.2] - 2026-10-01
 - Gallery photo listings now retry once after a second when the connection drops (`Failed to fetch`, or `Load failed` on Safari), in [`listGalleryImageFiles()`](src/lib/supabase.ts). These were the `StorageUnknownError` reports in Sentry, caused by visitors' flaky mobile connections rather than by Supabase.
