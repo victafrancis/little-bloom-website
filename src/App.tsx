@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { InstagramFeed } from './components/InstagramFeed';
 import { AppRoutes } from './routes/router';
 export function App() {
   return <HelmetProvider>
@@ -12,6 +13,7 @@ export function App() {
           <div className="flex-grow">
             <AppRoutes />
           </div>
+          <InstagramFeed />
           <Footer />
         </div>
       </BrowserRouter>
