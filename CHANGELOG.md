@@ -1,8 +1,8 @@
 # Changelog
 
 ## [1.6.0] - 2026-10-06
-- Links that leave the site now ask first, so a stray tap can't throw a visitor into the Instagram app. Clicking one shows an "Open Instagram?" card with **Stay here** (the default) and **Open Instagram**, in [`ExternalLinkGuard`](src/components/ExternalLinkGuard.tsx). It covers the footer icons and every link in the Instagram section, and is named after where the link goes ("Open Facebook?", or the site's name for anything else).
-- One listener on the document catches every link to another site, including ones added later or inside the notes, via [`getExternalLinkTarget()`](src/lib/externalLink.ts). Email links, links within the site, and Ctrl/Cmd/Shift or middle clicks (which are deliberate) skip the question.
+- Links that leave the site now ask first, so a stray tap can't throw a visitor into the Instagram app. Clicking one shows an "Open Instagram?" card with **Stay here** (the default) and **Open Instagram**, in [`ExternalLinkGuard`](src/components/ExternalLinkGuard.tsx). It covers the footer icons and every link in the Instagram section, and is named after where the link goes ("Open Facebook?", or the site's name for anything else). Email links ask too ("Open email?"), naming the address it will write to.
+- One listener on the document catches every link to another site, including ones added later or inside the notes, via [`getExternalLinkTarget()`](src/lib/externalLink.ts). Links within the site, and Ctrl/Cmd/Shift or middle clicks (which are deliberate), skip the question.
 - The card is a native modal dialog, so Escape or a click outside cancels, the page behind it can't be scrolled or tabbed into, and focus returns to the link afterwards. It starts on **Stay here** so a stray Enter keeps the visitor on the site.
 
 ## [1.5.1] - 2026-10-05

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from 'lucide-react';
+import { ExternalLinkIcon, FacebookIcon, InstagramIcon, MailIcon } from 'lucide-react';
 import { ExternalLinkTarget, getExternalLinkTarget } from '../lib/externalLink';
 
 const DIALOG_SELECTOR = '[data-external-link-dialog]';
-const BRAND_ICONS = { instagram: InstagramIcon, facebook: FacebookIcon };
+const BRAND_ICONS = { instagram: InstagramIcon, facebook: FacebookIcon, email: MailIcon };
 
 const supportsModalDialog = () =>
   typeof HTMLDialogElement !== 'undefined' && typeof HTMLDialogElement.prototype.showModal === 'function';
@@ -17,6 +17,12 @@ function ConfirmDialog({ target, onClose }: ConfirmDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const stayButtonRef = useRef<HTMLButtonElement>(null);
   const Icon = target.brand ? BRAND_ICONS[target.brand] : ExternalLinkIcon;
+  const isEmail = target.brand === 'email';
+  const description = !isEmail
+    ? "You're about to leave Little Bloom Photography."
+    : target.emailAddress
+      ? `This opens your email app to write to ${target.emailAddress}.`
+      : 'This opens your email app.';
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -55,8 +61,8 @@ function ConfirmDialog({ target, onClose }: ConfirmDialogProps) {
         <h2 id="external-link-title" className="mt-4 text-xl font-display">
           Open {target.name}?
         </h2>
-        <p id="external-link-description" className="mt-2 text-sm text-text/60">
-          You're about to leave Little Bloom Photography.
+        <p id="external-link-description" className="mt-2 break-words text-sm text-text/60">
+          {description}
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <button
@@ -69,8 +75,8 @@ function ConfirmDialog({ target, onClose }: ConfirmDialogProps) {
           </button>
           <a
             href={target.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={isEmail ? undefined : '_blank'}
+            rel={isEmail ? undefined : 'noopener noreferrer'}
             className="btn bg-mustard/10"
             onClick={closeDialog}
           >
@@ -83,10 +89,11 @@ function ConfirmDialog({ target, onClose }: ConfirmDialogProps) {
 }
 
 /**
- * Asks "Open Instagram?" before any link that leaves the site, so a stray tap
- * can't throw the visitor into another app. One listener on the document covers
- * every link, including ones added later or inside the notes. Ctrl/Cmd/Shift
- * clicks and middle clicks are deliberate, so they go straight through.
+ * Asks "Open Instagram?" (or "Open email?") before any link that leaves the site
+ * or switches to another app, so a stray tap can't throw the visitor out of it.
+ * One listener on the document covers every link, including ones added later or
+ * inside the notes. Ctrl/Cmd/Shift clicks and middle clicks are deliberate, so
+ * they go straight through.
  */
 export function ExternalLinkGuard() {
   const [target, setTarget] = useState<ExternalLinkTarget | null>(null);

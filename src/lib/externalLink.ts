@@ -1,9 +1,10 @@
-export type ExternalLinkBrand = 'instagram' | 'facebook';
+export type ExternalLinkBrand = 'instagram' | 'facebook' | 'email';
 
 export type ExternalLinkTarget = {
   href: string;
   name: string;
   brand: ExternalLinkBrand | null;
+  emailAddress: string | null;
 };
 
 const BRANDS: Array<{ brand: ExternalLinkBrand; name: string; domain: string }> = [
@@ -11,8 +12,16 @@ const BRANDS: Array<{ brand: ExternalLinkBrand; name: string; domain: string }> 
   { brand: 'facebook', name: 'Facebook', domain: 'facebook.com' }
 ];
 
-// Returns where a link leads if it takes the visitor off this site, or null for
-// everything that stays (same-site paths, mailto:, tel:, downloads)
+const getEmailAddress = (url: URL): string | null => {
+  try {
+    return decodeURIComponent(url.pathname).trim() || null;
+  } catch {
+    return url.pathname || null;
+  }
+};
+
+// Returns where a link leads if it takes the visitor off this site or into their
+// email app, or null for everything that stays (same-site paths, tel:, downloads)
 export const getExternalLinkTarget = (anchor: HTMLAnchorElement, currentUrl: string): ExternalLinkTarget | null => {
   const href = anchor.getAttribute('href');
   if (!href || anchor.hasAttribute('download')) {
@@ -25,6 +34,9 @@ export const getExternalLinkTarget = (anchor: HTMLAnchorElement, currentUrl: str
   } catch {
     return null;
   }
+  if (url.protocol === 'mailto:') {
+    return { href: url.href, name: 'email', brand: 'email', emailAddress: getEmailAddress(url) };
+  }
   if (!/^https?:$/.test(url.protocol) || url.origin === new URL(currentUrl).origin) {
     return null;
   }
@@ -34,6 +46,7 @@ export const getExternalLinkTarget = (anchor: HTMLAnchorElement, currentUrl: str
   return {
     href: url.href,
     name: match?.name ?? host,
-    brand: match?.brand ?? null
+    brand: match?.brand ?? null,
+    emailAddress: null
   };
 };
