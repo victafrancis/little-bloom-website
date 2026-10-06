@@ -35,12 +35,34 @@ const isChunkLoadError = (message: string): boolean => {
   )
 }
 
+// Some in-app browsers block sessionStorage or set it to null, so every access is guarded
+const readReloadFlag = (): boolean => {
+  try {
+    return window.sessionStorage.getItem(CHUNK_RELOAD_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
+const writeReloadFlag = (isSet: boolean): boolean => {
+  try {
+    if (isSet) {
+      window.sessionStorage.setItem(CHUNK_RELOAD_KEY, '1')
+    } else {
+      window.sessionStorage.removeItem(CHUNK_RELOAD_KEY)
+    }
+    return true
+  } catch {
+    return false
+  }
+}
+
 const safelyReloadAfterChunkError = (message: string, source: 'error' | 'unhandledrejection') => {
   if (!isChunkLoadError(message)) {
     return
   }
 
-  const hasReloaded = sessionStorage.getItem(CHUNK_RELOAD_KEY) === '1'
+  const hasReloaded = readReloadFlag()
 
   Sentry.captureMessage('Chunk/module import failed in browser', {
     level: 'error',
@@ -57,12 +79,14 @@ const safelyReloadAfterChunkError = (message: string, source: 'error' | 'unhandl
   })
 
   if (hasReloaded) {
-    sessionStorage.removeItem(CHUNK_RELOAD_KEY)
+    writeReloadFlag(false)
     return
   }
 
-  sessionStorage.setItem(CHUNK_RELOAD_KEY, '1')
-  window.location.reload()
+  // Without a saved flag we can't tell a second failure apart, so don't risk a reload loop
+  if (writeReloadFlag(true)) {
+    window.location.reload()
+  }
 }
 
 window.addEventListener('error', (event) => {
@@ -77,6 +101,8 @@ window.addEventListener('unhandledrejection', (event) => {
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN,
+  // Vercel sets this to production or preview, so preview testing can be filtered out
+  environment: import.meta.env.VITE_VERCEL_ENV || import.meta.env.MODE,
   integrations: [
     Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] }),
   ],
@@ -87,6 +113,9 @@ Sentry.init({
     /runtime\.sendMessage/,
   ],
   denyUrls: [
+    // Vercel's comment toolbar on preview deployments
+    /\/_next-live\//i,
+    /^https:\/\/vercel\.live\//i,
     /^safari-(web-)?extension:\/\//i,
     /^chrome-extension:\/\//i,
     /^moz-extension:\/\//i,
@@ -96,6 +125,6 @@ Sentry.init({
 render(<App />, document.getElementById('root'))
 
 // Clear on boot, else a stuck flag blocks the next chunk error's reload.
-sessionStorage.removeItem(CHUNK_RELOAD_KEY)
+writeReloadFlag(false)
 
 SpeedInsights.injectSpeedInsights()

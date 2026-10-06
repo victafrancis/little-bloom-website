@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { ImageOffIcon, Loader2 } from 'lucide-react';
+import { useImageRetry } from '../lib/useImageRetry';
 type GalleryGridProps = {
   images: string[];
   onImageClick?: (index: number) => void;
@@ -15,7 +16,7 @@ const rootMargin = '200px';
 
 function GalleryImage({ src, alt, onClick }: GalleryImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const { src: imageSrc, hasFailed: hasError, handleError } = useImageRetry(src, 'gallery_grid');
   const [shouldLoad, setShouldLoad] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -84,23 +85,21 @@ function GalleryImage({ src, alt, onClick }: GalleryImageProps) {
           </div>
         )}
 
-        {shouldLoad && (
+        {shouldLoad && !hasError && (
           <img
-            src={src}
+            src={imageSrc}
             alt={alt}
             className={imageClassName}
             loading="lazy"
             onLoad={() => setIsLoaded(true)}
-            onError={() => {
-              setHasError(true);
-              setIsLoaded(true);
-            }}
+            onError={handleError}
           />
         )}
 
         {hasError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-cream text-center text-sm font-medium text-text">
-            Image unavailable
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-cream text-center text-sm text-text/60">
+            <ImageOffIcon className="h-6 w-6 text-mauve/60" aria-hidden="true" />
+            Photo unavailable
           </div>
         )}
       </div>

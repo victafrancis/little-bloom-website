@@ -26,7 +26,7 @@ export default function Gallery() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {galleryConfigs.map(gallery => <Link key={gallery.slug} to={`/gallery/${gallery.slug}`} className="group">
-                <div className="relative aspect-square overflow-hidden rounded-lg mb-4">
+                <div className="relative aspect-square overflow-hidden rounded-lg mb-4 bg-cream">
                   <GalleryCover slug={gallery.slug} alt={gallery.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <h3 className="text-center text-base md:text-xl font-light">{gallery.title}</h3>

@@ -195,7 +195,7 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {meta.home.featured.map(item => <Link key={item.to} to={item.to} className="group">
-                  <div className="relative overflow-hidden rounded-lg aspect-square mb-4 max-w-96 mx-auto">
+                  <div className="relative overflow-hidden rounded-lg aspect-square mb-4 max-w-96 mx-auto bg-cream">
                     <GalleryCover slug={item.slug} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <h3 className="text-center text-base md:text-xl font-light">{item.title}</h3>

@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.1] - 2026-10-05
+- Fixed gallery pages requesting their photo list over and over when it failed to load. The page re-ran its loader every time it got an empty list back, so a dropped connection meant a blank gallery and a request about every second (35 in 12 seconds in testing). [`GalleryCategory`](src/pages/GalleryCategory.tsx) now loads only its own gallery, shows a placeholder grid while loading, and shows a "Try Again" message if the list can't load. Unknown gallery links now redirect with `<Navigate>` instead of navigating during render.
+- Photos that fail to load are now retried once after 1.5 seconds before showing a fallback, via [`useImageRetry()`](src/lib/useImageRetry.ts). This covers the gallery grid, the lightbox, the Home and Gallery cover tiles, and the Instagram section. A photo that still fails shows a soft "Photo unavailable" tile instead of a broken image, and is reported to Sentry once as a warning (skipped when the visitor is offline), so a genuinely broken file shows up.
+- The Instagram section now gives up on a feed that takes more than 8 seconds and shows gallery photos instead, in [`getInstagramFeed()`](src/lib/instagram.ts).
+- Stopped reporting errors from Vercel's comment toolbar to Sentry, via `denyUrls` in [`Sentry.init()`](src/index.tsx). It is injected into preview deployments, so its errors (like `Cannot read properties of null (reading 'getItem')`) weren't from our code.
+- Sentry events now carry the Vercel environment (`production` or `preview`), so preview testing no longer shows up as production errors.
+- The chunk-reload guard in [`index.tsx`](src/index.tsx) no longer crashes in browsers where `sessionStorage` is blocked or `null`, and skips the reload when it can't save its flag, to avoid a reload loop.
+
+## [1.5.0] - 2026-10-02
+- Added a "Follow Along on Instagram" section above the footer on every page, in [`InstagramFeed`](src/components/InstagramFeed.tsx). It shows the latest posts from @littlebloom.photos (up to 50) in a looping carousel that glides one post at a time. Visitors can swipe it on mobile or use the arrows on desktop. It pauses on hover, keyboard focus, offscreen, and for reduced motion, and stops once the visitor takes over. Reels and multi-photo posts get Instagram's small corner icons.
+- The feed comes from the Instagram API through [`api/instagram.js`](api/instagram.js), cached at Vercel's edge for an hour. Images are served from our own domain by [`api/instagram-image.js`](api/instagram-image.js), because Instagram's CDN can block them on other sites. That endpoint only serves URLs the feed signed.
+- The access token is kept alive by a daily Vercel cron calling [`api/instagram-refresh.js`](api/instagram-refresh.js), which refreshes it weekly and stores it in a new Supabase `instagram_token` table.
+- Until Instagram is connected, or if it fails, the section shows photos from the four galleries instead, via [`getInstagramFeed()`](src/lib/instagram.ts).
+- Setup steps (Instagram token, Supabase table, Vercel env vars) are in [`docs/instagram-feed.md`](docs/instagram-feed.md).
+- Replaced `.clinerules` with [`CLAUDE.md`](CLAUDE.md), so Claude Code picks up the project's code style rules.
+
 ## [1.4.2] - 2026-10-01
 - Gallery photo listings now retry once after a second when the connection drops (`Failed to fetch`, or `Load failed` on Safari), in [`listGalleryImageFiles()`](src/lib/supabase.ts). These were the `StorageUnknownError` reports in Sentry, caused by visitors' flaky mobile connections rather than by Supabase.
 - Gallery errors caused by a dropped connection are now reported to Sentry as warnings instead of errors, via [`reportGalleryError()`](src/lib/supabase.ts). Other storage errors are still reported as errors.
