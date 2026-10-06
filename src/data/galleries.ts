@@ -1,10 +1,10 @@
 // Utility function to get all images from a gallery folder
-import { getGalleryImages as getSupabaseGalleryImages, getGalleryCoverUrl } from '../lib/supabase';
+import { getGalleryImages as getSupabaseGalleryImages } from '../lib/supabase';
 
 // Cache for gallery images to avoid repeated API calls
 const galleryCache = new Map<string, string[]>();
 
-const getGalleryImages = async (slug: string): Promise<string[]> => {
+export const getGalleryImages = async (slug: string): Promise<string[]> => {
   if (galleryCache.has(slug)) {
     return galleryCache.get(slug)!;
   }
@@ -15,15 +15,6 @@ const getGalleryImages = async (slug: string): Promise<string[]> => {
     galleryCache.set(slug, images);
   }
   return images;
-};
-
-export type Gallery = {
-  slug: string;
-  title: string;
-  subtitle: string;
-  blurb: string;
-  cover: string;
-  images: string[];
 };
 
 export const galleryConfigs = [{
@@ -47,15 +38,3 @@ export const galleryConfigs = [{
   subtitle: `Solos`,
   blurb: "From personal branding to just-because sessions, this is all about you."
 }];
-
-export const getGalleries = async (): Promise<Gallery[]> => {
-  const galleries = await Promise.all(
-    galleryConfigs.map(async (config) => ({
-      ...config,
-      cover: await getGalleryCoverUrl(config.slug),
-      images: await getGalleryImages(config.slug)
-    }))
-  );
-
-  return galleries;
-};

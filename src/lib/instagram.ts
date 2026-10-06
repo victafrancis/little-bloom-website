@@ -19,6 +19,7 @@ export type InstagramFeedData = {
 
 const FEED_ENDPOINT = '/api/instagram';
 const FALLBACK_PHOTOS_PER_GALLERY = 4;
+const FEED_TIMEOUT_MS = 8000;
 
 const isInstagramPost = (value: unknown): value is InstagramPost => {
   if (typeof value !== 'object' || value === null) {
@@ -33,8 +34,11 @@ const isInstagramPost = (value: unknown): value is InstagramPost => {
 };
 
 const fetchInstagramPosts = async (): Promise<InstagramPost[]> => {
+  // A slow feed falls back to gallery photos instead of leaving the skeleton up
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), FEED_TIMEOUT_MS);
   try {
-    const response = await fetch(FEED_ENDPOINT);
+    const response = await fetch(FEED_ENDPOINT, { signal: controller.signal });
     if (!response.ok) {
       return [];
     }
@@ -44,11 +48,12 @@ const fetchInstagramPosts = async (): Promise<InstagramPost[]> => {
   } catch {
     // The API reports its own failures; here we just fall back to gallery photos
     return [];
+  } finally {
+    window.clearTimeout(timeout);
   }
 };
 
-// Until Instagram is connected, or if it ever fails, show gallery favourites
-// instead so the section never sits empty. Covers come first in each gallery.
+// Gallery favourites stand in until Instagram is connected or whenever it fails
 const getGalleryPosts = async (): Promise<InstagramPost[]> => {
   const galleries = await Promise.all(galleryConfigs.map(async gallery => ({
     title: gallery.title,

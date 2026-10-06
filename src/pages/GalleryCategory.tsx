@@ -1,80 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { Button } from '../components/Button';
 import { GalleryGrid } from '../components/GalleryGrid';
 import { Lightbox } from '../components/Lightbox';
-import { getGalleries, type Gallery } from '../data/galleries';
+import { galleryConfigs, getGalleryImages } from '../data/galleries';
+
+type LoadStatus = 'loading' | 'ready' | 'error';
+
+const SKELETON_TILES = 6;
 
 export default function GalleryCategory() {
   const { slug } = useParams<{ slug: string; }>();
-  const navigate = useNavigate();
-  const [galleries, setGalleries] = useState<Gallery[]>([]);
-  const [loading, setLoading] = useState(true);
+  const gallery = galleryConfigs.find(g => g.slug === slug);
+  const [images, setImages] = useState<string[]>([]);
+  const [status, setStatus] = useState<LoadStatus>('loading');
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const gallery = galleries.find(g => g.slug === slug);
-
   useEffect(() => {
-    const loadGalleries = async () => {
-      try {
-        const galleryData = await getGalleries();
-        setGalleries(galleryData);
-      } catch (error) {
-        console.error('Error loading galleries:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadGalleries();
-  }, []);
-
-  // Load images only when gallery is found
-  useEffect(() => {
-    if (gallery && gallery.images.length === 0) {
-      const loadImages = async () => {
-        try {
-          const { getGalleryImages } = await import('../lib/supabase');
-          const images = await getGalleryImages(gallery.slug);
-          setGalleries(prev => prev.map(g =>
-            g.slug === gallery.slug ? { ...g, images } : g
-          ));
-        } catch (error) {
-          console.error('Error loading gallery images:', error);
-        }
-      };
-      loadImages();
+    if (!gallery) {
+      return;
     }
-  }, [gallery]);
+    let isCancelled = false;
+    setStatus('loading');
+    getGalleryImages(gallery.slug).then(galleryImages => {
+      if (isCancelled) {
+        return;
+      }
+      setImages(galleryImages);
+      // An empty list means the listing failed, since every gallery has photos
+      setStatus(galleryImages.length > 0 ? 'ready' : 'error');
+    });
+    return () => {
+      isCancelled = true;
+    };
+  }, [gallery, loadAttempt]);
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
 
-  if (loading) {
-    return (
-      <main className="pt-24 md:pt-32">
-        <section className="container mx-auto px-4 py-12 md:py-16">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="text-xl">Loading gallery...</div>
-          </div>
-        </section>
-      </main>
-    );
+  if (!gallery) {
+    return <Navigate to="/gallery" replace />;
   }
 
-  if (!gallery) {
-    navigate('/gallery');
-    return null;
-  }
   return <>
       <SEO
         title={`${gallery.title} | Gallery | Little Bloom Photography`}
         description={gallery.blurb}
-        image={gallery.cover}
+        image={images[0]}
         jsonLd={[
           {
             '@context': 'https://schema.org',
@@ -98,12 +75,28 @@ export default function GalleryCategory() {
             </h1>
             <p className="text-text/70 text-lg">{gallery.blurb}</p>
           </div>
-          <GalleryGrid images={gallery.images} onImageClick={openLightbox} altText={(i) => `${gallery.title} – Image ${i + 1}`} />
+          {status === 'loading' && (
+            <div className="grid grid-cols-1 gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-busy="true" aria-label="Loading photos">
+              {Array.from({ length: SKELETON_TILES }, (_, index) => (
+                <div key={index} className="aspect-square rounded-lg bg-cream animate-pulse" />
+              ))}
+            </div>
+          )}
+          {status === 'error' && (
+            <div className="max-w-xl mx-auto rounded-lg bg-cream px-6 py-10 text-center" role="alert">
+              <p className="text-lg font-display mb-2">These photos are taking a little longer to bloom.</p>
+              <p className="text-text/70 mb-6">Please check your connection and try again.</p>
+              <Button onClick={() => setLoadAttempt(attempt => attempt + 1)}>Try Again</Button>
+            </div>
+          )}
+          {status === 'ready' && (
+            <GalleryGrid images={images} onImageClick={openLightbox} altText={(i) => `${gallery.title} – Image ${i + 1}`} />
+          )}
           <div className="mt-16 text-center">
             <Button to="/contact">Book This Service</Button>
           </div>
         </section>
       </main>
-      <Lightbox images={gallery.images} initialIndex={currentImageIndex} isOpen={lightboxOpen} onClose={() => setLightboxOpen(false)} />
+      <Lightbox images={images} initialIndex={currentImageIndex} isOpen={lightboxOpen} onClose={() => setLightboxOpen(false)} />
     </>;
 }

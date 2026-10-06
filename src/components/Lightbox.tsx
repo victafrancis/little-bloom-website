@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { XIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { XIcon, ChevronLeftIcon, ChevronRightIcon, ImageOffIcon } from 'lucide-react';
+import { useImageRetry } from '../lib/useImageRetry';
 
 type LightboxProps = {
   images: string[];
@@ -7,6 +8,19 @@ type LightboxProps = {
   isOpen: boolean;
   onClose: () => void;
 };
+
+function LightboxImage({ src }: { src: string }) {
+  const { src: imageSrc, hasFailed, handleError } = useImageRetry(src, 'lightbox');
+  if (hasFailed) {
+    return (
+      <div className="flex flex-col items-center gap-3 text-center text-white/80" onClick={e => e.stopPropagation()}>
+        <ImageOffIcon className="h-10 w-10" aria-hidden="true" />
+        <p>This photo couldn't load. Please check your connection.</p>
+      </div>
+    );
+  }
+  return <img src={imageSrc} alt="" className="w-full h-auto max-h-[80vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} onError={handleError} />;
+}
 
 export function Lightbox({
   images,
@@ -181,13 +195,13 @@ export function Lightbox({
             }}
           >
             <div className="flex items-center justify-center p-4 md:p-6" style={{ width: `${containerWidth}px` }}>
-              <img src={images[prevIndex]} alt="" className="w-full h-auto max-h-[80vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} />
+              <LightboxImage src={images[prevIndex]} />
             </div>
             <div className="flex items-center justify-center p-4 md:p-6" style={{ width: `${containerWidth}px` }}>
-              <img src={images[currentIndex]} alt="" className="w-full h-auto max-h-[80vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} />
+              <LightboxImage src={images[currentIndex]} />
             </div>
             <div className="flex items-center justify-center p-4 md:p-6" style={{ width: `${containerWidth}px` }}>
-              <img src={images[nextIndex]} alt="" className="w-full h-auto max-h-[80vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} />
+              <LightboxImage src={images[nextIndex]} />
             </div>
           </div>
         </div>

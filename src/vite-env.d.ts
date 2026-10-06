@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string
+  readonly VITE_VERCEL_ENV?: 'production' | 'preview' | 'development'
   // add more env variables as needed
 }
 
