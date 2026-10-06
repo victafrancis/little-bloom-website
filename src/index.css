@@ -21,6 +21,11 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
   }
+  /* Freeze the page behind a modal dialog, keeping the scrollbar's space so nothing shifts */
+  html:has(dialog[open]) {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+  }
 }
 @layer components {
   .btn {
