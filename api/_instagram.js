@@ -1,5 +1,4 @@
-// Shared Instagram helpers for the api/instagram* functions.
-// Files starting with "_" are not deployed as functions by Vercel.
+// Shared helpers; Vercel doesn't deploy "_" files in api/ as functions
 import { createClient } from '@supabase/supabase-js';
 import * as Sentry from '@sentry/node';
 import { signImageUrl } from './_instagram-image-signature.js';
@@ -70,10 +69,7 @@ const graphRequest = async (url) => {
   return body;
 };
 
-// --- Access token ---------------------------------------------------------
-// INSTAGRAM_ACCESS_TOKEN seeds the feed. When SUPABASE_SERVICE_ROLE_KEY is set,
-// the token is kept in the instagram_token table and refreshed weekly by the
-// api/instagram-refresh cron, so it never reaches its 60-day expiry.
+// The env token seeds the instagram_token table, where the cron keeps it refreshed
 
 const getTokenStore = () => {
   const url = env.SUPABASE_URL || env.VITE_SUPABASE_URL;
@@ -160,14 +156,10 @@ export const refreshTokenIfDue = async () => {
   return { refreshed: true };
 };
 
-// --- Image URLs -------------------------------------------------------------
-// Instagram's CDN can refuse to serve images embedded on other sites, so the
-// feed points images at api/instagram-image, which only proxies URLs we signed.
+// Instagram's CDN can block images on other sites, so they go through our signed proxy
 
 const toProxiedImageUrl = (url) =>
   `/api/instagram-image?url=${encodeURIComponent(url)}&sig=${signImageUrl(url)}`;
-
-// --- Media ----------------------------------------------------------------
 
 const getThumbnailUrl = (media) => {
   if (media.media_type === 'VIDEO') {

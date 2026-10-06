@@ -1,5 +1,4 @@
-// Signs the Instagram image URLs the feed hands out, so api/instagram-image
-// proxies our own posts only and can't be used as an open proxy.
+// Signing keeps api/instagram-image from being used as an open proxy
 import { Buffer } from 'node:buffer';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 

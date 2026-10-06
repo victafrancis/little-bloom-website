@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { ChevronLeftIcon, ChevronRightIcon, ClapperboardIcon, CopyIcon, InstagramIcon } from 'lucide-react';
 import { site } from '../data/siteMeta';
 import { getInstagramFeed, InstagramFeedData, InstagramPost } from '../lib/instagram';
+import { useImageRetry } from '../lib/useImageRetry';
 
 // The same camera-and-flower mark as the Instagram profile picture
 const AVATAR_SRC = '/assets/Green%20and%20White%20Minimalist%20Botanical%20Logo.png';
@@ -24,7 +25,7 @@ type FeedTileProps = {
 
 function FeedTile({ post, isClone, isFromInstagram }: FeedTileProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const { src: imageSrc, hasFailed, handleError } = useImageRetry(post.imageUrl, isFromInstagram ? 'instagram_feed' : 'instagram_fallback');
   const BadgeIcon = post.type === 'carousel' ? CopyIcon : post.type === 'video' ? ClapperboardIcon : null;
 
   return (
@@ -37,15 +38,15 @@ function FeedTile({ post, isClone, isFromInstagram }: FeedTileProps) {
       className={`group relative isolate block overflow-hidden bg-cream focus:outline-none ${TILE_CLASS_NAME}`}
     >
       {!isLoaded && <InstagramIcon aria-hidden="true" className="absolute inset-0 m-auto h-8 w-8 text-mauve/40" />}
-      {!hasError && (
+      {!hasFailed && (
         <img
-          src={post.imageUrl}
+          src={imageSrc}
           alt={post.alt}
           loading="lazy"
           decoding="async"
           draggable={false}
           onLoad={() => setIsLoaded(true)}
-          onError={() => setHasError(true)}
+          onError={handleError}
           className={`relative h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
       )}
@@ -70,13 +71,7 @@ function FeedSkeleton() {
   );
 }
 
-/**
- * A swipeable strip of square posts. With enough posts it loops endlessly:
- * the posts are rendered three times and the scroll position quietly jumps
- * back to the middle copy whenever it settles near either end. It glides one
- * post at a time until the visitor takes over (swipe, wheel or arrows), and
- * pauses on hover, on keyboard focus, offscreen, and for reduced motion.
- */
+// Loops by rendering the posts three times and jumping back to the middle copy once scrolling settles
 function FeedCarousel({ feed }: { feed: InstagramFeedData }) {
   const { posts, source } = feed;
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -96,7 +91,7 @@ function FeedCarousel({ feed }: { feed: InstagramFeedData }) {
     return (tiles[1] as HTMLElement).offsetLeft - (tiles[0] as HTMLElement).offsetLeft;
   }, []);
 
-  // Keep the middle of the view inside the middle copy; the copies are identical, so the jump is invisible
+  // The copies are identical, so this jump is invisible
   const recenter = useCallback(() => {
     const scroller = scrollerRef.current;
     const loopWidth = getStep() * posts.length;

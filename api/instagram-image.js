@@ -3,8 +3,7 @@ import { isValidImageSignature } from './_instagram-image-signature.js';
 
 const ALLOWED_HOST_PATTERN = /(^|\.)(cdninstagram\.com|fbcdn\.net)$/i;
 const REQUEST_TIMEOUT_MS = 8000;
-// A signed media URL always points at the same image, so the edge can keep it
-// for a long time, even after Instagram's link expires
+// A signed URL always points at the same image, so the edge can keep it after Instagram's link expires
 const SUCCESS_CACHE = 'public, max-age=86400, s-maxage=2592000, immutable';
 const FAILURE_CACHE = 'public, s-maxage=60';
 
@@ -17,8 +16,6 @@ const parseImageUrl = (value) => {
   }
 };
 
-// Serves Instagram images from our own domain, since Instagram's CDN can block
-// them from loading directly on other sites
 export default async function handler(req, res) {
   const { url, sig } = req.query;
   const imageUrl = parseImageUrl(url);
