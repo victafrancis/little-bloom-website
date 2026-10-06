@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.6.0] - 2026-10-06
+- Links that leave the site now ask first, so a stray tap can't throw a visitor into the Instagram app. Clicking one shows an "Open Instagram?" card with **Stay here** (the default) and **Open Instagram**, in [`ExternalLinkGuard`](src/components/ExternalLinkGuard.tsx). It covers the footer icons and every link in the Instagram section, and is named after where the link goes ("Open Facebook?", or the site's name for anything else). Email links ask too ("Open email?"), naming the address it will write to.
+- One listener on the document catches every link to another site, including ones added later or inside the notes, via [`getExternalLinkTarget()`](src/lib/externalLink.ts). Links within the site, and Ctrl/Cmd/Shift or middle clicks (which are deliberate), skip the question.
+- The card is a native modal dialog, so Escape or a click outside cancels, the page behind it can't be scrolled or tabbed into, and focus returns to the link afterwards. It starts on **Stay here** so a stray Enter keeps the visitor on the site.
+
 ## [1.5.1] - 2026-10-05
 - Fixed gallery pages requesting their photo list over and over when it failed to load. The page re-ran its loader every time it got an empty list back, so a dropped connection meant a blank gallery and a request about every second (35 in 12 seconds in testing). [`GalleryCategory`](src/pages/GalleryCategory.tsx) now loads only its own gallery, shows a placeholder grid while loading, and shows a "Try Again" message if the list can't load. Unknown gallery links now redirect with `<Navigate>` instead of navigating during render.
 - Photos that fail to load are now retried once after 1.5 seconds before showing a fallback, via [`useImageRetry()`](src/lib/useImageRetry.ts). This covers the gallery grid, the lightbox, the Home and Gallery cover tiles, and the Instagram section. A photo that still fails shows a soft "Photo unavailable" tile instead of a broken image, and is reported to Sentry once as a warning (skipped when the visitor is offline), so a genuinely broken file shows up.

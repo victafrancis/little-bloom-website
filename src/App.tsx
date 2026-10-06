@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { InstagramFeed } from './components/InstagramFeed';
+import { ExternalLinkGuard } from './components/ExternalLinkGuard';
 import { AppRoutes } from './routes/router';
 export function App() {
   return <HelmetProvider>
@@ -15,6 +16,7 @@ export function App() {
           </div>
           <InstagramFeed />
           <Footer />
+          <ExternalLinkGuard />
         </div>
       </BrowserRouter>
     </HelmetProvider>;

@@ -13,6 +13,15 @@ export default {
         cream: "#FFF5F2",
         text: "#1A1A1A",
       },
+      keyframes: {
+        'dialog-in': {
+          from: { opacity: '0', transform: 'translateY(8px) scale(0.98)' },
+          to: { opacity: '1', transform: 'none' },
+        },
+      },
+      animation: {
+        'dialog-in': 'dialog-in 200ms ease-out',
+      },
       fontFamily: {
         display: ["Poppins", "serif"],
         body: ["Poppins", "sans-serif"],
