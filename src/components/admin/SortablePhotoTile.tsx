@@ -76,7 +76,7 @@ export const SortablePhotoTile = ({ photo, index, isDisabled, onMakeCover, onRem
           onClick={() => onMakeCover(photo.path)}
           disabled={isDisabled}
           aria-label={`Make photo ${index + 1} the cover`}
-          className="absolute bottom-1.5 left-1.5 rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-text shadow-sm transition-colors hover:bg-mustard hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:opacity-50"
+          className="tile-action absolute bottom-1.5 left-1.5 rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-text shadow-sm transition-colors hover:bg-mustard hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:cursor-not-allowed"
         >
           Make cover
         </button>
@@ -88,7 +88,7 @@ export const SortablePhotoTile = ({ photo, index, isDisabled, onMakeCover, onRem
         disabled={isDisabled}
         aria-label={`Remove photo ${index + 1}`}
         title="Remove from the album"
-        className="absolute right-1.5 top-1.5 rounded-full bg-white/90 p-1.5 text-text shadow-sm transition-colors hover:bg-mauve hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:opacity-50"
+        className="tile-action absolute right-1.5 top-1.5 rounded-full bg-white/90 p-1.5 text-text shadow-sm transition-colors hover:bg-mauve hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:cursor-not-allowed"
       >
         <XIcon className="h-4 w-4" aria-hidden="true" />
       </button>

@@ -22,6 +22,8 @@ Log in at `/admin` with the admin login, then pick a gallery.
 - **Set the cover** with **Make cover** on a photo. That moves it to the first
   spot, which is the cover. Dragging a photo to the first spot does the same.
 - **Remove a photo** with the ✕. Its file is deleted for good when you save.
+- With a mouse, **Make cover** and ✕ appear when you hover over a photo. On a
+  phone or tablet they're always shown.
 - **Preview** shows the gallery the way visitors will see it, with your changes.
 
 Nothing changes on the site until you press **Save**. **Discard** undoes

@@ -37,6 +37,17 @@
   .btn-disabled {
     @apply opacity-50 cursor-not-allowed;
   }
+  /* Photo tile buttons in the album manager: with a mouse they appear on hover or keyboard focus.
+     Touch screens can't hover, so there they always show. */
+  @media (hover: hover) {
+    .tile-action {
+      @apply opacity-0 transition-opacity duration-150;
+    }
+    .group:hover .tile-action,
+    .group:focus-within .tile-action {
+      @apply opacity-100;
+    }
+  }
 
 }
 @layer utilities {
