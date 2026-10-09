@@ -1,12 +1,41 @@
 # Album manager
 
-The four galleries' photos are stored in the `albums` bucket in Supabase, one
-folder per gallery. The `album_photos` table lists which photos each gallery
-shows, and in what order. A gallery's first photo is its cover, both on the
-Home and Gallery pages and at the top of the gallery itself.
+The album manager at [`/admin`](https://www.littlebloomphotography.com/admin)
+is where the four galleries' photos are added, removed, put in order, and given
+a cover.
 
-The album manager page that edits this list comes in the next release. Until
-then, galleries keep working exactly as before.
+The photos are stored in the `albums` bucket in Supabase, one folder per
+gallery. The `album_photos` table lists which photos each gallery shows, and in
+what order. A gallery's first photo is its cover, both on the Home and Gallery
+pages and at the top of the gallery itself.
+
+## Using the album manager
+
+Log in at `/admin` with the album manager login, then pick a gallery.
+
+- **Add photos** by dragging them from your computer onto the page, or with
+  **add photos** (on a phone, this opens your photo library). New photos go at
+  the end of the gallery.
+- **Reorder** by dragging a photo to a new spot. On a phone, press and hold a
+  photo for a moment before dragging. With a keyboard, tab to a photo, press
+  Space, move it with the arrow keys, and press Space again.
+- **Set the cover** with the ☆ on a photo. That moves it to the first spot, which
+  is the cover. Dragging a photo to the first spot does the same.
+- **Remove a photo** with the ✕. Its file is deleted for good when you save.
+- **Preview** shows the gallery the way visitors will see it, with your changes.
+
+Nothing changes on the site until you press **Save**. **Discard** undoes
+everything since the last save, and the page warns you before you leave with
+unsaved changes.
+
+New photos are shrunk so their longest side is at most 2560px, and saved as
+high-quality JPEGs (85%). They're never cropped. This keeps galleries fast, and
+also drops hidden details like the GPS location the photo was taken at. The
+size and quality are set in [`resizeImage.ts`](../src/lib/resizeImage.ts).
+
+If the gallery was changed somewhere else while you were editing (another
+tab or device added or removed photos), Save is refused instead of undoing
+that change. Reload the gallery to see the latest version.
 
 ## How the site reads albums
 
@@ -19,23 +48,39 @@ Both read every gallery's order in one request, shared for the whole visit.
 
 A gallery with no rows in `album_photos` yet loads straight from its folder,
 the way it always has: the newest `cover…` file (or `00.jpg`) first, then the
-rest by filename. The album manager will add a gallery's rows the first time
-it's opened, in that same order, so the site looks the same when it switches
-over. If the table doesn't exist yet, every gallery loads from its folder.
+rest by filename. The album manager adds a gallery's rows the first time it's
+opened, in that same order, so the site looks the same when it switches over.
+If the table doesn't exist yet, every gallery loads from its folder.
 
-Once a gallery is in the table, the table decides what it shows. A file added
-to its folder in the Supabase dashboard won't appear, and a file deleted there
-leaves a "Photo unavailable" tile.
+Once a gallery is in the table, the table decides what it shows, so make
+changes in the album manager rather than the Supabase dashboard. A file added
+to its folder in the dashboard won't appear, and a file deleted there leaves a
+"Photo unavailable" tile.
+
+## How the album manager works
+
+| Piece | What it does |
+| --- | --- |
+| [`Admin`](../src/pages/Admin.tsx) | The `/admin` page: login, then the manager. It loads on its own, so visitors never download it. |
+| [`AlbumEditor`](../src/components/admin/AlbumEditor.tsx) | One gallery's photos, upload area, preview and save bar. |
+| [`useAlbumDraft()`](../src/lib/useAlbumDraft.ts) | Your unsaved changes to a gallery, and the uploads. |
+| [`albumAdmin.ts`](../src/lib/albumAdmin.ts) | Loading, importing, uploading and saving. |
+| [`adminSupabase`](../src/lib/adminSupabase.ts) | The logged-in Supabase connection, separate from the visitors' one. |
+
+Photos are uploaded as `<gallery>/<random id>.jpg`, so a new photo never
+replaces an old file and the CDN never serves a stale copy. Uploads from a
+draft that was never saved are deleted the next time that gallery is opened,
+once they're a day old.
 
 ## Setup
 
 Do these once, in order.
 
-### 1. Create the two logins
+### 1. Create the login
 
 In Supabase, go to **Authentication → Users → Add user → Create new user**.
-Enter the email and a strong password, keep **Auto Confirm User** ticked, and
-create the user. Do this for both of you.
+Enter `hello@littlebloomphotography.com` and a strong password, keep **Auto
+Confirm User** ticked, and create the user.
 
 ### 2. Turn off sign-ups
 
@@ -193,17 +238,17 @@ grant execute on function public.save_album(text, text[], text[]) to authenticat
 
 It should finish with "Success. No rows returned".
 
-### 4. Make your logins album admins
+### 4. Make the login an album admin
 
-Put your two emails in, then run this in the SQL Editor:
+Run this in the SQL Editor:
 
 ```sql
 insert into public.album_admins (user_id)
 select id from auth.users
-where email in ('you@example.com', 'your-wife@example.com');
+where email = 'hello@littlebloomphotography.com';
 ```
 
-To check it worked, this should list both emails:
+To check it worked, this should list the email:
 
 ```sql
 select users.email
@@ -211,7 +256,10 @@ from public.album_admins
 join auth.users on users.id = album_admins.user_id;
 ```
 
-To add or remove an admin later, insert or delete their row in `album_admins`.
+To give another login access later, create it the same way and run the
+`insert` with its email. To take access away, delete its row from
+`album_admins`. To change the password, use **Send password recovery** on the
+user in **Authentication → Users**.
 
 ## Checking on it
 
@@ -225,5 +273,7 @@ order by album_slug, position;
 
 A gallery that isn't listed there still loads from its folder.
 
-Failures loading a gallery are reported to Sentry with the tag `operation`:
-`get_gallery_images` or `get_gallery_cover`.
+Failures are reported to Sentry with the tag `operation`: `get_gallery_images`
+or `get_gallery_cover` on the site, and `album_manager_load`,
+`album_manager_save`, `album_manager_upload`, `album_manager_remove_files` or
+`album_manager_cleanup` in the album manager.

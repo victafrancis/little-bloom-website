@@ -18,7 +18,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   }
 });
 
-type StorageFile = { name: string; created_at?: string | null; updated_at?: string | null };
+export type StorageFile = { name: string; created_at?: string | null; updated_at?: string | null };
 type AlbumPhotoRow = { album_slug: string; storage_path: string };
 
 const ALBUMS_BUCKET = 'albums';
@@ -172,11 +172,7 @@ const listGalleryImageFiles = (slug: string): Promise<StorageFile[]> => {
       span.setAttribute('gallery_slug', slug);
 
       const files = await withNetworkRetry(() => listAlbumFolder(slug), () => span.setAttribute('retried', true));
-
-      // Filter to get only image files (not folders)
-      const imageFiles = files
-        .filter(item => IMAGE_FILE_PATTERN.test(item.name))
-        .sort((a, b) => a.name.localeCompare(b.name));
+      const imageFiles = orderFolderFiles(files);
 
       span.setAttribute('image_count', imageFiles.length);
       return imageFiles;
@@ -192,7 +188,7 @@ const listGalleryImageFiles = (slug: string): Promise<StorageFile[]> => {
 // The cover is any image whose name starts with "cover" (e.g. cover-2.jpg).
 // Use a new name each time the cover changes so the CDN never serves a stale copy.
 // If several exist, the most recently uploaded wins; with none, fall back to 00.jpg.
-const findCoverFile = (imageFiles: StorageFile[]): StorageFile | undefined => {
+const findCoverFile = <T extends StorageFile>(imageFiles: T[]): T | undefined => {
   const uploadedAt = (file: StorageFile) =>
     Date.parse(file.updated_at ?? file.created_at ?? '') || 0;
   const [latestCover] = imageFiles
@@ -202,14 +198,19 @@ const findCoverFile = (imageFiles: StorageFile[]): StorageFile | undefined => {
   return latestCover ?? imageFiles.find(file => file.name === DEFAULT_COVER_FILENAME);
 };
 
-// The current cover first, followed by the rest in filename order
+// A folder's images in the order the site has always shown them:
+// the current cover first, followed by the rest in filename order
+export const orderFolderFiles = <T extends StorageFile>(files: T[]): T[] => {
+  const imageFiles = files
+    .filter(file => IMAGE_FILE_PATTERN.test(file.name))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const cover = findCoverFile(imageFiles);
+  return cover ? [cover, ...imageFiles.filter(file => file !== cover)] : imageFiles;
+};
+
 const getFolderPhotoPaths = async (slug: string): Promise<string[]> => {
   const imageFiles = await listGalleryImageFiles(slug);
-  const cover = findCoverFile(imageFiles);
-  const orderedFiles = cover
-    ? [cover, ...imageFiles.filter(file => file !== cover)]
-    : imageFiles;
-  return orderedFiles.map(file => `${slug}/${file.name}`);
+  return imageFiles.map(file => `${slug}/${file.name}`);
 };
 
 // An album's photos in order, the first being its cover
