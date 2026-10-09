@@ -54,8 +54,8 @@ const Admin = () => {
   return (
     <>
       <SEO
-        title="Album Manager | Little Bloom Photography"
-        description="Manage the photo albums on the Little Bloom Photography website."
+        title="Admin | Little Bloom Photography"
+        description="Admin area for the Little Bloom Photography website."
         robots="noindex, nofollow"
       />
       {access === 'checking' && (

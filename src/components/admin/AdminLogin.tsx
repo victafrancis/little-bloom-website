@@ -29,7 +29,7 @@ export const AdminLogin = () => {
     <main className="flex min-h-screen items-center justify-center bg-cream px-4">
       <form onSubmit={handleSubmit} className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-sm">
         <img src="/assets/logo-nav.png" alt="Little Bloom Photography" className="mx-auto mb-4 h-16 w-auto" />
-        <h1 className="mb-6 text-center text-2xl font-display">Album Manager</h1>
+        <h1 className="mb-6 text-center text-2xl font-display">Admin Login</h1>
         <label className="mb-4 block">
           <span className="mb-1 block text-sm text-text/70">Email</span>
           <input

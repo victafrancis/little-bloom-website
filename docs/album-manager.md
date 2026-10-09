@@ -11,7 +11,7 @@ pages and at the top of the gallery itself.
 
 ## Using the album manager
 
-Log in at `/admin` with the album manager login, then pick a gallery.
+Log in at `/admin` with the admin login, then pick a gallery.
 
 - **Add photos** by dragging them from your computer onto the page, or with
   **add photos** (on a phone, this opens your photo library). New photos go at

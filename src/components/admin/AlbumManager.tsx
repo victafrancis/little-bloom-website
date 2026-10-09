@@ -35,7 +35,7 @@ export const AlbumManager = ({ onSignOut }: AlbumManagerProps) => {
         <div className="container mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
             <img src="/assets/logo-nav.png" alt="" className="h-10 w-auto" />
-            <h1 className="whitespace-nowrap text-lg font-display">Album Manager</h1>
+            <h1 className="whitespace-nowrap text-lg font-display">Admin</h1>
           </div>
           <div className="flex items-center gap-1 text-sm">
             <Link
