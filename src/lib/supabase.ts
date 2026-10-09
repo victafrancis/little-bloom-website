@@ -8,7 +8,15 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables. Please check your .env file.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// The site only reads public storage, so turn off the login session handling.
+// Its 30s refresh timer takes a browser lock, which crashed on some visitors' browsers.
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false
+  }
+});
 
 type StorageFile = { name: string; created_at?: string | null; updated_at?: string | null };
 
