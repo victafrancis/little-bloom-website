@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.6.1] - 2026-10-09
+- Turned off Supabase's login session handling in [`createClient()`](src/lib/supabase.ts), since the site only reads public photos from storage. Its refresh timer ran every 30 seconds and briefly claimed a browser lock each time. On a browser that alters how errors are built (likely an extension), the lock-busy error crashed with `Cannot add property isAcquireTimeout, object is not extensible` and reached Sentry as an unhandled error. Supabase also no longer saves an empty login entry in visitors' browser storage.
+
 ## [1.6.0] - 2026-10-06
 - Links that leave the site now ask first, so a stray tap can't throw a visitor into the Instagram app. Clicking one shows an "Open Instagram?" card with **Stay here** (the default) and **Open Instagram**, in [`ExternalLinkGuard`](src/components/ExternalLinkGuard.tsx). It covers the footer icons and every link in the Instagram section, and is named after where the link goes ("Open Facebook?", or the site's name for anything else). Email links ask too ("Open email?"), naming the address it will write to.
 - One listener on the document catches every link to another site, including ones added later or inside the notes, via [`getExternalLinkTarget()`](src/lib/externalLink.ts). Links within the site, and Ctrl/Cmd/Shift or middle clicks (which are deliberate), skip the question.
