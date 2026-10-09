@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.7.0] - 2026-10-09
+- Galleries can now take their photo order from a new Supabase `album_photos` table instead of their filenames, as the groundwork for the album manager. A gallery's first photo is its cover. [`getGalleryImages()`](src/lib/supabase.ts) and [`getGalleryCoverUrl()`](src/lib/supabase.ts) read every gallery's order in one request per visit, where the Home page's four covers used to take four folder listings.
+- Galleries that aren't in the table yet keep loading from their storage folder exactly as before (newest `cover…` file first, then by filename), so nothing changes on the site until the album manager imports them. The same goes for every gallery while the table hasn't been created. A failed table request is retried and reported like the folder listings, and never falls back to the folder, so an arranged gallery can't show up in filename order.
+- Galleries in the table aren't capped at 100 photos. A gallery with no `cover…` or `00.jpg` file now uses its first photo as its cover, instead of pointing at a missing `00.jpg`.
+- Setup steps are in [`docs/album-manager.md`](docs/album-manager.md): the two logins, turning off sign-ups, the table, admin-only storage permissions, and a `save_album` function that saves a whole gallery at once and refuses the save if someone else added or removed photos in the meantime.
+
 ## [1.6.1] - 2026-10-09
 - Turned off Supabase's unused login session handling in [`createClient()`](src/lib/supabase.ts), which fixes the `isAcquireTimeout` error from its background refresh timer.
 
