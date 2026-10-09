@@ -19,8 +19,8 @@ Log in at `/admin` with the album manager login, then pick a gallery.
 - **Reorder** by dragging a photo to a new spot. On a phone, press and hold a
   photo for a moment before dragging. With a keyboard, tab to a photo, press
   Space, move it with the arrow keys, and press Space again.
-- **Set the cover** with the ☆ on a photo. That moves it to the first spot, which
-  is the cover. Dragging a photo to the first spot does the same.
+- **Set the cover** with **Make cover** on a photo. That moves it to the first
+  spot, which is the cover. Dragging a photo to the first spot does the same.
 - **Remove a photo** with the ✕. Its file is deleted for good when you save.
 - **Preview** shows the gallery the way visitors will see it, with your changes.
 

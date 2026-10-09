@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { AlertCircleIcon, ImageOffIcon, Loader2, StarIcon, XIcon } from 'lucide-react';
+import { AlertCircleIcon, ImageOffIcon, Loader2, XIcon } from 'lucide-react';
 import { DraftPhoto } from '../../lib/useAlbumDraft';
 
 type SortablePhotoTileProps = {
@@ -70,30 +70,28 @@ export const SortablePhotoTile = ({ photo, index, isDisabled, onMakeCover, onRem
         </div>
       )}
 
-      <div className="absolute right-1.5 top-1.5 flex gap-1">
-        {!isCover && photo.status !== 'failed' && (
-          <button
-            type="button"
-            onClick={() => onMakeCover(photo.path)}
-            disabled={isDisabled}
-            aria-label={`Make photo ${index + 1} the cover`}
-            title="Make this the cover"
-            className="rounded-full bg-white/90 p-1.5 text-text shadow-sm transition-colors hover:bg-mustard hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:opacity-50"
-          >
-            <StarIcon className="h-4 w-4" aria-hidden="true" />
-          </button>
-        )}
+      {!isCover && photo.status !== 'failed' && (
         <button
           type="button"
-          onClick={() => onRemove(photo.path)}
+          onClick={() => onMakeCover(photo.path)}
           disabled={isDisabled}
-          aria-label={`Remove photo ${index + 1}`}
-          title="Remove from the album"
-          className="rounded-full bg-white/90 p-1.5 text-text shadow-sm transition-colors hover:bg-mauve hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:opacity-50"
+          aria-label={`Make photo ${index + 1} the cover`}
+          className="absolute bottom-1.5 left-1.5 rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-text shadow-sm transition-colors hover:bg-mustard hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:opacity-50"
         >
-          <XIcon className="h-4 w-4" aria-hidden="true" />
+          Make cover
         </button>
-      </div>
+      )}
+
+      <button
+        type="button"
+        onClick={() => onRemove(photo.path)}
+        disabled={isDisabled}
+        aria-label={`Remove photo ${index + 1}`}
+        title="Remove from the album"
+        className="absolute right-1.5 top-1.5 rounded-full bg-white/90 p-1.5 text-text shadow-sm transition-colors hover:bg-mauve hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-sage disabled:opacity-50"
+      >
+        <XIcon className="h-4 w-4" aria-hidden="true" />
+      </button>
     </div>
   );
 };
