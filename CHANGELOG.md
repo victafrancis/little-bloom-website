@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.8.0] - 2026-10-09
+- Added the album manager at `/admin` ([`Admin`](src/pages/Admin.tsx)), so photos no longer have to be renamed in Supabase to change a gallery. After logging in with the admin login, you can drag photos in from your computer (or pick them from a phone's photo library), drag photos into any order, make any photo the cover with **Make cover** (which moves it to the first spot), and remove photos with ✕. With a mouse, these two buttons appear on hover or keyboard focus; on touch screens they're always shown. Changes stay a draft until **Save**, with **Discard** to undo them and a warning before leaving with unsaved changes. **Preview** shows the gallery with the real gallery grid and lightbox, in your unsaved order.
+- The first time a gallery is opened in the manager, its photos are imported into the `album_photos` table in the order the site already shows them (newest `cover…` file first, then by filename), in [`loadAlbum()`](src/lib/albumAdmin.ts), so the live gallery looks the same when it switches over.
+- New photos are shrunk in the browser to at most 2560px on their longest side and saved as 85% JPEGs, in [`resizeImage()`](src/lib/resizeImage.ts). They're never cropped, and re-saving drops hidden metadata like GPS location. They upload one at a time as `<gallery>/<random id>.jpg`, so no file is ever overwritten and the CDN can cache them for a year.
+- Saving goes through `save_album`, which refuses the save if the gallery was changed in another tab or device in the meantime, rather than undoing that change. Removed photos' files are deleted after a successful save. Uploads from a draft that was never saved are deleted when the gallery is next opened, once they're a day old.
+- The manager uses its own Supabase connection with a remembered login, in [`adminSupabase`](src/lib/adminSupabase.ts). Visitors' connection keeps login handling off, and the manager uses an in-page lock instead of the browser lock behind the 1.6.1 crash.
+- `/admin` is lazy-loaded outside the public layout in [`App`](src/App.tsx), so visitors never download the manager or its drag-and-drop library (`@dnd-kit`), and it's marked `noindex`. Reordering works with a mouse, touch (press and hold), or the keyboard.
+- Setup and usage are in [`docs/album-manager.md`](docs/album-manager.md), now for a single `hello@littlebloomphotography.com` login.
+
+## [1.7.0] - 2026-10-09
+- Galleries can now take their photo order from a new Supabase `album_photos` table instead of their filenames, as the groundwork for the album manager. A gallery's first photo is its cover. [`getGalleryImages()`](src/lib/supabase.ts) and [`getGalleryCoverUrl()`](src/lib/supabase.ts) read every gallery's order in one request per visit, where the Home page's four covers used to take four folder listings.
+- Galleries that aren't in the table yet keep loading from their storage folder exactly as before (newest `cover…` file first, then by filename), so nothing changes on the site until the album manager imports them. The same goes for every gallery while the table hasn't been created. A failed table request is retried and reported like the folder listings, and never falls back to the folder, so an arranged gallery can't show up in filename order.
+- Galleries in the table aren't capped at 100 photos. A gallery with no `cover…` or `00.jpg` file now uses its first photo as its cover, instead of pointing at a missing `00.jpg`.
+- Setup steps are in [`docs/album-manager.md`](docs/album-manager.md): the two logins, turning off sign-ups, the table, admin-only storage permissions, and a `save_album` function that saves a whole gallery at once and refuses the save if someone else added or removed photos in the meantime.
+
 ## [1.6.1] - 2026-10-09
 - Turned off Supabase's unused login session handling in [`createClient()`](src/lib/supabase.ts), which fixes the `isAcquireTimeout` error from its background refresh timer.
 

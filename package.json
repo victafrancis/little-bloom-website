@@ -1,6 +1,6 @@
 {
   "name": "little-bloom-photography-website",
-  "version": "1.6.1",
+  "version": "1.8.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,6 +10,9 @@
     "preview": "npx vite preview"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@sentry/node": "^10.35.0",
     "@sentry/react": "^10.34.0",
     "@supabase/supabase-js": "^2.75.0",

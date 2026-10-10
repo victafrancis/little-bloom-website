@@ -1,4 +1,4 @@
-// Utility function to get all images from a gallery folder
+// Utility function to get all images in a gallery, in order
 import { getGalleryImages as getSupabaseGalleryImages } from '../lib/supabase';
 
 // Cache for gallery images to avoid repeated API calls

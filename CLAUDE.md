@@ -54,3 +54,4 @@ React 18 + TypeScript + Vite + Tailwind site, deployed on Vercel. Serverless fun
 Read these only when the task touches them:
 - **Sentry/errors:** `docs/sentry-rules.md` when implementing error handling.
 - **Instagram feed:** `docs/instagram-feed.md` when changing the Instagram section or its `api/instagram*` functions.
+- **Galleries:** `docs/album-manager.md` when changing how gallery photos are stored, ordered or loaded (`src/lib/supabase.ts`), or the album manager.
