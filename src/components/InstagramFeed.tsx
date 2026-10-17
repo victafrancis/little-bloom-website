@@ -16,6 +16,8 @@ const TILE_CLASS_NAME = 'w-[44%] sm:w-[30%] md:w-[23%] lg:w-[18%] xl:w-[15%] shr
 const TRACK_CLASS_NAME = 'flex gap-3 md:gap-4';
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Some headless scrapers fake a browser without element scrollBy, which every real browser has
+const canScrollBy = (element: HTMLElement) => typeof element.scrollBy === 'function';
 
 type FeedTileProps = {
   post: InstagramPost;
@@ -140,7 +142,7 @@ function FeedCarousel({ feed }: { feed: InstagramFeedData }) {
 
   useEffect(() => {
     const scroller = scrollerRef.current;
-    if (!scroller || !isLooping || isAutoplayStopped || prefersReducedMotion()) {
+    if (!scroller || !isLooping || isAutoplayStopped || prefersReducedMotion() || !canScrollBy(scroller)) {
       return;
     }
     let isInView = false;
@@ -165,7 +167,7 @@ function FeedCarousel({ feed }: { feed: InstagramFeedData }) {
 
   const scrollByPost = (direction: 1 | -1) => {
     const scroller = scrollerRef.current;
-    if (!scroller) {
+    if (!scroller || !canScrollBy(scroller)) {
       return;
     }
     stopAutoplay();

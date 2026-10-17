@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.8.1] - 2026-10-17
+- Fixed a `u.scrollBy is not a function` error reported to Sentry from a headless scraper that pretends to be Chrome but leaves out `scrollBy()`. The Instagram section's autoplay and arrow buttons in [`FeedCarousel`](src/components/InstagramFeed.tsx) now skip scrolling where it's missing. Real browsers all have it, so nothing changes for visitors.
+
 ## [1.8.0] - 2026-10-09
 - Added the album manager at `/admin` ([`Admin`](src/pages/Admin.tsx)), so photos no longer have to be renamed in Supabase to change a gallery. After logging in with the admin login, you can drag photos in from your computer (or pick them from a phone's photo library), drag photos into any order, make any photo the cover with **Make cover** (which moves it to the first spot), and remove photos with ✕. With a mouse, these two buttons appear on hover or keyboard focus; on touch screens they're always shown. Changes stay a draft until **Save**, with **Discard** to undo them and a warning before leaving with unsaved changes. **Preview** shows the gallery with the real gallery grid and lightbox, in your unsaved order.
 - The first time a gallery is opened in the manager, its photos are imported into the `album_photos` table in the order the site already shows them (newest `cover…` file first, then by filename), in [`loadAlbum()`](src/lib/albumAdmin.ts), so the live gallery looks the same when it switches over.
